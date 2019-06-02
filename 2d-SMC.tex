@@ -1,0 +1,607 @@
+
+%% bare_conf.tex
+%% V1.4b
+%% 2015/08/26
+%% by Michael Shell
+%% See:
+%% http://www.michaelshell.org/
+%% for current contact information.
+%%
+%% This is a skeleton file demonstrating the use of IEEEtran.cls
+%% (requires IEEEtran.cls version 1.8b or later) with an IEEE
+%% conference paper.
+%%
+%% Support sites:
+%% http://www.michaelshell.org/tex/ieeetran/
+%% http://www.ctan.org/pkg/ieeetran
+%% and
+%% http://www.ieee.org/
+
+%%*************************************************************************
+%% Legal Notice:
+%% This code is offered as-is without any warranty either expressed or
+%% implied; without even the implied warranty of MERCHANTABILITY or
+%% FITNESS FOR A PARTICULAR PURPOSE! 
+%% User assumes all risk.
+%% In no event shall the IEEE or any contributor to this code be liable for
+%% any damages or losses, including, but not limited to, incidental,
+%% consequential, or any other damages, resulting from the use or misuse
+%% of any information contained here.
+%%
+%% All comments are the opinions of their respective authors and are not
+%% necessarily endorsed by the IEEE.
+%%
+%% This work is distributed under the LaTeX Project Public License (LPPL)
+%% ( http://www.latex-project.org/ ) version 1.3, and may be freely used,
+%% distributed and modified. A copy of the LPPL, version 1.3, is included
+%% in the base LaTeX documentation of all distributions of LaTeX released
+%% 2003/12/01 or later.
+%% Retain all contribution notices and credits.
+%% ** Modified files should be clearly indicated as such, including  **
+%% ** renaming them and changing author support contact information. **
+%%*************************************************************************
+
+
+% *** Authors should verify (and, if needed, correct) their LaTeX system  ***
+% *** with the testflow diagnostic prior to trusting their LaTeX platform ***
+% *** with production work. The IEEE's font choices and paper sizes can   ***
+% *** trigger bugs that do not appear when using other class files.       ***                          ***
+% The testflow support page is at:
+% http://www.michaelshell.org/tex/testflow/
+
+
+
+\documentclass[conference]{IEEEtran}
+\usepackage{mathrsfs}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{bm}
+\usepackage{diagbox} 
+\usepackage[colorlinks,linkcolor=blue]{hyperref}
+\newtheorem{remark}{Remark}
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}{Definition} 
+\newtheorem{assumption}{Assumption}
+
+
+
+
+
+
+% *** CITATION PACKAGES ***
+%
+%\usepackage{cite}
+% cite.sty was written by Donald Arseneau
+% V1.6 and later of IEEEtran pre-defines the format of the cite.sty package
+% \cite{} output to follow that of the IEEE. Loading the cite package will
+% result in citation numbers being automatically sorted and properly
+% "compressed/ranged". e.g., [1], [9], [2], [7], [5], [6] without using
+% cite.sty will become [1], [2], [5]--[7], [9] using cite.sty. cite.sty's
+% \cite will automatically add leading space, if needed. Use cite.sty's
+% noadjust option (cite.sty V3.8 and later) if you want to turn this off
+% such as if a citation ever needs to be enclosed in parenthesis.
+% cite.sty is already installed on most LaTeX systems. Be sure and use
+% version 5.0 (2009-03-20) and later if using hyperref.sty.
+% The latest version can be obtained at:
+% http://www.ctan.org/pkg/cite
+% The documentation is contained in the cite.sty file itself.
+
+
+
+
+
+
+% *** GRAPHICS RELATED PACKAGES ***
+%
+\ifCLASSINFOpdf
+  % \usepackage[pdftex]{graphicx}
+  % declare the path(s) where your graphic files are
+  % \graphicspath{{../pdf/}{../jpeg/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+  % \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
+\else
+  % or other class option (dvipsone, dvipdf, if not using dvips). graphicx
+  % will default to the driver specified in the system graphics.cfg if no
+  % driver is specified.
+  % \usepackage[dvips]{graphicx}
+  % declare the path(s) where your graphic files are
+  % \graphicspath{{../eps/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+  % \DeclareGraphicsExtensions{.eps}
+\fi
+% graphicx was written by David Carlisle and Sebastian Rahtz. It is
+% required if you want graphics, photos, etc. graphicx.sty is already
+% installed on most LaTeX systems. The latest version and documentation
+% can be obtained at: 
+% http://www.ctan.org/pkg/graphicx
+% Another good source of documentation is "Using Imported Graphics in
+% LaTeX2e" by Keith Reckdahl which can be found at:
+% http://www.ctan.org/pkg/epslatex
+%
+% latex, and pdflatex in dvi mode, support graphics in encapsulated
+% postscript (.eps) format. pdflatex in pdf mode supports graphics
+% in .pdf, .jpeg, .png and .mps (metapost) formats. Users should ensure
+% that all non-photo figures use a vector format (.eps, .pdf, .mps) and
+% not a bitmapped formats (.jpeg, .png). The IEEE frowns on bitmapped formats
+% which can result in "jaggedy"/blurry rendering of lines and letters as
+% well as large increases in file sizes.
+%
+% You can find documentation about the pdfTeX application at:
+% http://www.tug.org/applications/pdftex
+
+
+
+
+
+% *** MATH PACKAGES ***
+%
+%\usepackage{amsmath}
+% A popular package from the American Mathematical Society that provides
+% many useful and powerful commands for dealing with mathematics.
+%
+% Note that the amsmath package sets \interdisplaylinepenalty to 10000
+% thus preventing page breaks from occurring within multiline equations. Use:
+%\interdisplaylinepenalty=2500
+% after loading amsmath to restore such page breaks as IEEEtran.cls normally
+% does. amsmath.sty is already installed on most LaTeX systems. The latest
+% version and documentation can be obtained at:
+% http://www.ctan.org/pkg/amsmath
+
+
+
+
+
+% *** SPECIALIZED LIST PACKAGES ***
+%
+%\usepackage{algorithmic}
+% algorithmic.sty was written by Peter Williams and Rogerio Brito.
+% This package provides an algorithmic environment fo describing algorithms.
+% You can use the algorithmic environment in-text or within a figure
+% environment to provide for a floating algorithm. Do NOT use the algorithm
+% floating environment provided by algorithm.sty (by the same authors) or
+% algorithm2e.sty (by Christophe Fiorio) as the IEEE does not use dedicated
+% algorithm float types and packages that provide these will not provide
+% correct IEEE style captions. The latest version and documentation of
+% algorithmic.sty can be obtained at:
+% http://www.ctan.org/pkg/algorithms
+% Also of interest may be the (relatively newer and more customizable)
+% algorithmicx.sty package by Szasz Janos:
+% http://www.ctan.org/pkg/algorithmicx
+
+
+
+
+% *** ALIGNMENT PACKAGES ***
+%
+%\usepackage{array}
+% Frank Mittelbach's and David Carlisle's array.sty patches and improves
+% the standard LaTeX2e array and tabular environments to provide better
+% appearance and additional user controls. As the default LaTeX2e table
+% generation code is lacking to the point of almost being broken with
+% respect to the quality of the end results, all users are strongly
+% advised to use an enhanced (at the very least that provided by array.sty)
+% set of table tools. array.sty is already installed on most systems. The
+% latest version and documentation can be obtained at:
+% http://www.ctan.org/pkg/array
+
+
+% IEEEtran contains the IEEEeqnarray family of commands that can be used to
+% generate multiline equations as well as matrices, tables, etc., of high
+% quality.
+
+
+
+
+% *** SUBFIGURE PACKAGES ***
+%\ifCLASSOPTIONcompsoc
+%  \usepackage[caption=false,font=normalsize,labelfont=sf,textfont=sf]{subfig}
+%\else
+%  \usepackage[caption=false,font=footnotesize]{subfig}
+%\fi
+% subfig.sty, written by Steven Douglas Cochran, is the modern replacement
+% for subfigure.sty, the latter of which is no longer maintained and is
+% incompatible with some LaTeX packages including fixltx2e. However,
+% subfig.sty requires and automatically loads Axel Sommerfeldt's caption.sty
+% which will override IEEEtran.cls' handling of captions and this will result
+% in non-IEEE style figure/table captions. To prevent this problem, be sure
+% and invoke subfig.sty's "caption=false" package option (available since
+% subfig.sty version 1.3, 2005/06/28) as this is will preserve IEEEtran.cls
+% handling of captions.
+% Note that the Computer Society format requires a larger sans serif font
+% than the serif footnote size font used in traditional IEEE formatting
+% and thus the need to invoke different subfig.sty package options depending
+% on whether compsoc mode has been enabled.
+%
+% The latest version and documentation of subfig.sty can be obtained at:
+% http://www.ctan.org/pkg/subfig
+
+
+
+
+% *** FLOAT PACKAGES ***
+%
+%\usepackage{fixltx2e}
+% fixltx2e, the successor to the earlier fix2col.sty, was written by
+% Frank Mittelbach and David Carlisle. This package corrects a few problems
+% in the LaTeX2e kernel, the most notable of which is that in current
+% LaTeX2e releases, the ordering of single and double column floats is not
+% guaranteed to be preserved. Thus, an unpatched LaTeX2e can allow a
+% single column figure to be placed prior to an earlier double column
+% figure.
+% Be aware that LaTeX2e kernels dated 2015 and later have fixltx2e.sty's
+% corrections already built into the system in which case a warning will
+% be issued if an attempt is made to load fixltx2e.sty as it is no longer
+% needed.
+% The latest version and documentation can be found at:
+% http://www.ctan.org/pkg/fixltx2e
+
+
+%\usepackage{stfloats}
+% stfloats.sty was written by Sigitas Tolusis. This package gives LaTeX2e
+% the ability to do double column floats at the bottom of the page as well
+% as the top. (e.g., "\begin{figure*}[!b]" is not normally possible in
+% LaTeX2e). It also provides a command:
+%\fnbelowfloat
+% to enable the placement of footnotes below bottom floats (the standard
+% LaTeX2e kernel puts them above bottom floats). This is an invasive package
+% which rewrites many portions of the LaTeX2e float routines. It may not work
+% with other packages that modify the LaTeX2e float routines. The latest
+% version and documentation can be obtained at:
+% http://www.ctan.org/pkg/stfloats
+% Do not use the stfloats baselinefloat ability as the IEEE does not allow
+% \baselineskip to stretch. Authors submitting work to the IEEE should note
+% that the IEEE rarely uses double column equations and that authors should try
+% to avoid such use. Do not be tempted to use the cuted.sty or midfloat.sty
+% packages (also by Sigitas Tolusis) as the IEEE does not format its papers in
+% such ways.
+% Do not attempt to use stfloats with fixltx2e as they are incompatible.
+% Instead, use Morten Hogholm'a dblfloatfix which combines the features
+% of both fixltx2e and stfloats:
+%
+% \usepackage{dblfloatfix}
+% The latest version can be found at:
+% http://www.ctan.org/pkg/dblfloatfix
+
+
+
+
+% *** PDF, URL AND HYPERLINK PACKAGES ***
+%
+%\usepackage{url}
+% url.sty was written by Donald Arseneau. It provides better support for
+% handling and breaking URLs. url.sty is already installed on most LaTeX
+% systems. The latest version and documentation can be obtained at:
+% http://www.ctan.org/pkg/url
+% Basically, \url{my_url_here}.
+
+
+
+
+% *** Do not adjust lengths that control margins, column widths, etc. ***
+% *** Do not use packages that alter fonts (such as pslatex).         ***
+% There should be no need to do such things with IEEEtran.cls V1.6 and later.
+% (Unless specifically asked to do so by the journal or conference you plan
+% to submit to, of course. )
+
+
+% correct bad hyphenation here
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+
+\begin{document}
+%
+% paper title
+% Titles are generally capitalized except for words such as a, an, and, as,
+% at, but, by, for, in, nor, of, on, or, the, to and up, which are usually
+% not capitalized unless they are the first or last word of the title.
+% Linebreaks \\ can be used within to get better formatting as desired.
+% Do not put math or special symbols in the title.
+\title{Asynchronous Siding Mode Control of Two-dimensional Markov Jump Systems in Roesser Model}
+
+
+% author names and affiliations
+% use a multiple column layout for up to three different
+% affiliations
+%\author{\IEEEauthorblockN{Michael Shell}
+%\IEEEauthorblockA{School of Electrical and\\Computer Engineering\\
+%Georgia Institute of Technology\\
+%Atlanta, Georgia 30332--0250\\
+%Email: http://www.michaelshell.org/contact.html}
+%\and
+%\IEEEauthorblockN{Homer Simpson}
+%\IEEEauthorblockA{Twentieth Century Fox\\
+%Springfield, USA\\
+%Email: homer@thesimpsons.com}
+%\and
+%\IEEEauthorblockN{James Kirk\\ and Montgomery Scott}
+%\IEEEauthorblockA{Starfleet Academy\\===
+%San Francisco, California 96678--2391\\
+%Telephone: (800) 555--1212\\
+%Fax: (888) 555--1212}}
+
+% conference papers do not typically use \thanks and this command
+% is locked out in conference mode. If really needed, such as for
+% the acknowledgment of grants, issue a \IEEEoverridecommandlockouts
+% after \documentclass
+
+% for over three affiliations, or if they all won't fit within the width
+% of the page, use this alternative format:
+% 
+%\author{\IEEEauthorblockN{Michael Shell\IEEEauthorrefmark{1},
+%Homer Simpson\IEEEauthorrefmark{2},
+%James Kirk\IEEEauthorrefmark{3}, 
+%Montgomery Scott\IEEEauthorrefmark{3} and
+%Eldon Tyrell\IEEEauthorrefmark{4}}
+%\IEEEauthorblockA{\IEEEauthorrefmark{1}School of Electrical and Computer Engineering\\
+%Georgia Institute of Technology,
+%Atlanta, Georgia 30332--0250\\ Email: see http://www.michaelshell.org/contact.html}
+%\IEEEauthorblockA{\IEEEauthorrefmark{2}Twentieth Century Fox, Springfield, USA\\
+%Email: homer@thesimpsons.com}
+%\IEEEauthorblockA{\IEEEauthorrefmark{3}Starfleet Academy, San Francisco, California 96678-2391\\
+%Telephone: (800) 555--1212, Fax: (888) 555--1212}
+%\IEEEauthorblockA{\IEEEauthorrefmark{4}Tyrell Inc., 123 Replicant Street, Los Angeles, California 90210--4321}}
+
+
+
+
+% use for special paper notices
+%\IEEEspecialpapernotice{(Invited Paper)}
+
+
+
+
+% make the title area
+\maketitle
+
+% As a general rule, do not put math, special symbols or citations
+% in the abstract
+\begin{abstract}
+	abstract
+\end{abstract}
+
+% no keywords
+
+\begin{IEEEkeywords}
+	Markov jump systems, 2D systems, Siding mode control, Hidden Markov model
+\end{IEEEkeywords}
+
+
+
+% For peer review papers, you can put extra information on the cover
+% page as needed:
+% \ifCLASSOPTIONpeerreview
+% \begin{center} \bfseries EDICS Category: 3-BBND \end{center}
+% \fi
+%
+% For peerreview papers, this IEEEtran command inserts a page break and
+% creates the second title. It will be ignored for other modes.
+\IEEEpeerreviewmaketitle
+  
+   
+
+\section{Introduction}
+	This part is introduciton.
+
+
+\section{Preliminaries} \label{priliminaries}
+	In this paper, we consider the following two-dimensional Markov jump systems in Roesser model:
+	\begin{equation} \label{system-equation}
+	\left\{
+		\begin{array}{lr}
+			\begin{split}
+				\emph{\textbf{x(i, j)}} &= A_{r(i,j)}x(i,j)+E_{r(i,j)}w(i,j)\\
+										&+B_{r(i,j)}[(u(i,j)+f(x(i,j),r(i,j))]
+			\end{split}\\
+			\begin{split}
+				y(i,j) = C_{r(i,j)}x(i,j)+D_{r(i,j)}w(i,j)
+			\end{split}
+		\end{array}
+	\right.
+	\end{equation}
+	where
+	\begin{equation*}
+		\emph{\textbf{x(i, j)}} = \begin{bmatrix}
+			x^{h}(i+1,j)\\
+			x^{v}(i,j+1)
+		\end{bmatrix}, \quad 
+		x(i, j) = \begin{bmatrix}
+		x^{h}(i,j)\\
+		x^{v}(i,j)
+		\end{bmatrix},          
+	\end{equation*}
+	$x^{h}(i,h)\in \mathbb{R}^{n_h}$ and $x^{v}(i,h)\in \mathbb{R}^{n_v}$ represent horizontal and vertical states respectively, $u(i,j) \in \mathbb{R}^{n_u}$ and $y(i,j) \in \mathbb{R}^{n_y}$ represent the controlled input and output respectively, and $w(i,j) \in \mathbb{R}^{n_w}$ represents the exogenous disturbance which belongs to $\ell_{2}\{[0,\infty),[0,\infty)\}$. $A_{r(i,j)}$,$B_{r(i,j)}$,$C_{r(i,j)}$,$D_{r(i,j)}$ and $E_{r(i,j)}$ represent the time-varying system matrices, all of which are real known constant matrices with appropriate dimensions. Besides, we assume that the matrix $B_{r(i,j)}$ is full column rank for each $r(i,j)\in\mathcal{N}_{1}$, that is, rank($B_{r(i,j)}$)$=n_u$. The nonlinear function $f(x(i,j),r(i,j))$ satisfying the following property:
+	\begin{equation}\label{nonlinear-func}
+		\|f(x(i,j),r(i,j)\| \leq \delta_{r(i,j)}\|x(i,j)\|
+	\end{equation}
+	where $\delta_{r(i,j)}$ is a known scalar, $\|\cdot\|$ denotes the Euclidean norm of a vector. The parameter $r(i,j)$ takes values in a finite set $\mathcal{N}_{1}=\{1,2...,N_{1} \}$ with transition probability matrix $\varLambda = \{\lambda_{k\tau}\}$, and the related transition probability from mode $k$ to mode $\tau$ is given by 
+	\begin{equation}
+		\begin{split}
+			&\Pr\{r(i+1,j)=\tau|r(i,j)=k\}\\
+		    =&\Pr\{r(i,j+1)=\tau|r(i,j)=k\}=\lambda_{k\tau},\  \forall k,\tau \in \mathcal{N}_{1}
+		\end{split}
+	\end{equation}
+	where $\lambda_{k\tau}\in[0,1]$, for all $k, \tau\in\mathcal{N}_{1}$, and $\sum_{\tau=1}^{N_1}\lambda_{k\tau}=1$ for every mode $k$.
+	
+	We define the boundary condition ($X_{0},\Gamma_{0}$) of system \eqref{system-equation}, as follows:
+	\begin{equation} \label{boundary-condition}
+	\left\{
+		\begin{array}{lr}
+			\begin{split}
+				X_{0} &= \{x^{h}(0,j),x^{v}(i,0)|\ i,j = 0,1,2...\}\\
+				\varGamma_{0} &= \{r(0,j), r(i,0)|\ i,j = 0,1,2... \}
+			\end{split}
+		\end{array}
+	\right.
+	\end{equation}
+	And the corresponding zero boundary condition is assumed as $x^{h}(0,j) =0, x^{v}(i,0)=0, i,j =0,1,2...$. Besides, we further impose following assumption on $X_{0}$.
+	
+	\begin{assumption}\label{boundary-assumptin}
+	 	The boundary condition $X_{0}$ satisfies:
+	 	\begin{equation}
+	 		\lim\limits_{L\to\infty}\mathbb{E}\Big\{\sum_{\ell=1}^{L}(\|x^{h}(0,\ell)\|^{2}+ \|x^{v}(\ell,0)\|^{2})\Big\} < \infty
+	 	\end{equation}
+	 	where $\mathbb{E}\{\cdot\}$ stands for mathematical expectation.
+	\end{assumption}
+	
+	In practical applications, the complete information of $r(i,j)$ can not always be available to the controller. Hence, in this paper, the hidden Markov model $(r(i,j),\sigma(i,j),\varLambda,\varPsi)$ as in [refto] is introduced to characterize the asynchronous phenomenon between the controller and the system. The parameter $\sigma(i,j)$, refers to controller mode, takes values in another finite set $\mathcal{N}_{2} = \{1,2...N_{2}\}$, and satisfies the conditional probability matrix $\varPsi=\{\mu_{ks}\}$ with conditional mode transition probabilities
+	\begin{equation}
+		\Pr\{\sigma(i,j)=s|r(i,j)=k\}=\mu_{ks}, %\forall  k\in\mathcal{N}_{1}, s\in\mathcal{N}_{2}
+	\end{equation}
+	where $\mu_{ks}\in[0,1]$ for all $k\in\mathcal{N}_{1}, s\in\mathcal{N}_{2}$, and $\sum_{s=1}^{N2}\mu_{ks} = 1$ for any mode $k$.
+	
+	Next, the definitions of  asymptotically mean square stable and $H_{\infty}$ performance for 2D systems will be given in Definition \ref{mean-square-stable} and Definition \ref{H_infty-performance}, respectively.
+	
+	\begin{definition}\label{mean-square-stable}
+	The 2D Markov jump system \eqref{system-equation} with $w(i,j)\equiv0$ is said to be asymptotically mean square stable if the following holds:
+	\begin{equation}\label{AMSS}
+			\lim\limits_{i+j\to\infty}\mathbb{E}\{\|x(i,j)\|^{2}\} = 0
+	\end{equation}
+	for any boundary condition $X_{0}$ with Assumption \ref{boundary-assumptin}.
+	\end{definition}
+
+%	\begin{definition}\label{mean-square-stable}
+%	If for $w(i,j)\equiv0$, boundary condition $(X_{0},\varGamma_{0})$, the following formulation holds:
+%	\begin{equation}
+%	\lim\limits_{i+j\to\infty}\mathbb{E}\{\|x(i,j)\|^{2}\} = 0
+%	\end{equation}
+%	then the 2D Markov jump system \eqref{system-equation} is said to be asymptotically mean square stable.
+%	\end{definition}
+
+	\begin{definition}\label{H_infty-performance}
+		Given a scalar $\gamma>0$, the 2D Markov jump system \eqref{system-equation} is said to be asymptotically mean square stable with an $H_{\infty}$ disturbance attenuation performance $\gamma$ if the system satisfies \eqref{AMSS}, and under zero boundary condition, the following holds:
+		\begin{equation}
+			\sum_{i=0}^{\infty}\sum_{j=0}^{\infty}\mathbb\{\|y(i,j)\|^{2}\} <  \gamma^{2} \sum_{i=0}^{\infty}\sum_{j=0}^{\infty}\mathbb\{\|w(i,j)\|^{2}\}
+		\end{equation}
+		for all $w(i,j)\in\ell_{2}\{[0,\infty),[0,\infty)\}$.
+	\end{definition}
+	
+	Now, we will make some notational simplification for convenience. The parameter $r(i,j)$ is represented by $k$, $r(i+1,j)$ and $r(i,j+1)$ are represented by $\tau$, $\sigma(i,j)$ is represented by $s$. 
+	
+	
+	
+	 The objective of this work is to devise an asynchronous  SMC law $u(i,j)$, such that the 2D Markov jump system \eqref{system-equation} is asymptotically mean square stable with an $H_{\infty}$ disturbance attenuation performance $\gamma$. 
+
+\section{Main Result}
+
+\subsection{ Sliding surface and sliding mode controller} \label{sliding-surface}
+	In this paper, an asynchronous sliding surface function is constructed as follows: 
+	\begin{equation}\label{siding-surface-equation}	
+		s(i,j) = \begin{bmatrix}
+					s^{h}(i,j)\\
+					s^{v}(i,j)
+					\end{bmatrix}
+			   = Gx(i,j)
+	\end{equation}
+	where $G=\sum_{k=1}^{N_{1}}\beta_{k}G^{T}_{k}$, and scalars $\beta_{k}$ should be chosen such that $GB_{k}$ is nonsingular for any $k\in\mathcal{N}_{1}$. Based on the the assumption that $B_{k}$ is full column rank for any $k\in\mathcal{N}_{1}$, we can find that the above condition can be guaranteed easily with the properly selected parameter $\beta_{k}$. 
+%	by selecting parameter $\beta_{k}$ properly. 
+ 	
+ 	An asynchronous 2D-SMC law is designed as follows:
+	\begin{equation}\label{smc-law}
+		u(i,j) = K_{s}x(i,j)-\rho(i,j)\frac{s(i,j)}{\|s(i,j)\|}, 
+	\end{equation}
+	for any $s\in\mathcal{N}_{2}$, where the matrix $K_{s}\in\mathbb{R}^{nu\times nx}$ with $nx=nh+nv$ will be determined later, and the parameter $\rho(i,j)$ is given as
+	\begin{equation}
+	\rho(i,j) = \varrho_{1}\|x(i,j)\| + \varrho_{2}\|w(i,j)\|
+	\end{equation}
+	with $\varrho_{1}=\max_{k\in\mathcal{N}_{1}} \{\delta_{k} \}$, $\varrho_{2} = \max_{k\in\mathcal{N}_{1}}\{\|(GB_{k})^{-1}GE_{k}\| \} $, and the parameter $\delta_{k}$ is given in \eqref{nonlinear-func}. 
+	
+	Combining system \eqref{system-equation} and the asynchronous 2D-SMC low \eqref{siding-surface-equation}, the closed-loop 2D markov jump system can be obtained easily as follows:
+%	\begin{equation} \label{closed-loop-system-equation}
+%	\left\{
+%	\begin{array}{lr}
+%	\begin{split}
+%	\emph{\textbf{x(i, j)}} = \bar{A}_{ks}x(i,j)+B_{k}\bar{\rho}_{k}(i,j)+E_{k}w(i,j)
+%	\end{split}\\
+%	\begin{split}
+%	y(i,j) = C_{k}x(i,j)+D_{k}w(i,j)
+%	\end{split}
+%	\end{array}
+%	\right.
+%	\end{equation}
+	\begin{equation} \label{closed-loop-system-equation}
+	\emph{\textbf{x(i, j)}} = \bar{A}_{ks}x(i,j)+B_{k}\bar{\rho}_{k}(i,j)+E_{k}w(i,j)
+	\end{equation}
+	where $\bar{A}_{ks} = A_{k}+B_{k}K_{s}$, and $\bar{\rho}_{k}(i,j)$ as follows
+	\begin{equation*}
+	\bar\rho_{k}(i,j)=f_{k}(x(i,j))-(\varrho_{1}\|x(i,j)\|+\varrho_{2}\|w(i,j)\|)\cdot\frac{s(i,j)}{\|s(i,j)\|}
+	\end{equation*}
+	Then, based on the properties of norm, the following condition can be deduced easily
+	\begin{equation}
+	\|\bar{\rho}_{k}(i,j)\| \leq (\varrho_{1}+\delta_{k})\|x(i,j)\| + \varrho_{2}\|w(i,j)\| .
+	\end{equation}
+
+
+\begin{theorem}
+	Theorem.
+\end{theorem}
+
+
+\begin{proof}
+	Select the Lyapunov candidate as follows\\
+	Theroem proof.
+\end{proof}
+
+
+\begin{remark}
+	Remark.
+\end{remark}
+
+
+\subsection{$l_2$-gain minimization}\label{minimization} 
+	subsection introduction.
+
+\begin{theorem}\label{theorem2}	
+	Theroem.
+\end{theorem}
+
+\begin{proof} 
+	Proof of theorem.
+\end{proof}
+
+\begin{remark}
+	Remark.
+\end{remark}
+
+\section{Numerical Example} \label{example}
+In this section, we provide an example to verify the validity of the proposed method.
+
+
+
+
+
+\section{Conclusions} \label{conclusion}
+
+
+
+% conference papers do not normally have an appendix
+
+% use section* for acknowledgment
+%\section*{Acknowledgment}
+%
+%
+%The authors would like to thank...
+
+
+\begin{thebibliography}{1}
+	
+	\bibitem{zhang-guangming}
+	Zhang, Guangming, et al. "Finite-time H ∞ static output control of Markov jump systems with an auxiliary approach." Applied Mathematics \& Computation 273.C(2016):553-561.
+	
+\end{thebibliography}
+
+
+
+
+% that's all folks
+\end{document}
+
+
+
+
+
