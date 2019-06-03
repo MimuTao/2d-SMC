@@ -505,7 +505,7 @@
 	\begin{equation}\label{smc-law}
 		u(i,j) = K_{s}x(i,j)-\rho(i,j)\frac{s(i,j)}{\|s(i,j)\|}, 
 	\end{equation}
-	for any $s\in\mathcal{N}_{2}$, where the matrix $K_{s}\in\mathbb{R}^{nu\times nx}$ with $nx=nh+nv$ will be determined later, and the parameter $\rho(i,j)$ is given as
+	for any $s\in\mathcal{N}_{2}$, where the matrix $K_{s}\in\mathbb{R}^{n_u\times n_x}$ with $n_x=n_h+n_v$ will be determined later, and the parameter $\rho(i,j)$ is given as
 	\begin{equation}
 	\rho(i,j) = \varrho_{1}\|x(i,j)\| + \varrho_{2}\|w(i,j)\|
 	\end{equation}
@@ -534,11 +534,43 @@
 	Then, based on the properties of norm, the following condition can be deduced easily
 	\begin{equation}
 	\|\bar{\rho}_{k}(i,j)\| \leq (\varrho_{1}+\delta_{k})\|x(i,j)\| + \varrho_{2}\|w(i,j)\| .
-	\end{equation}
-
-
+	\end{equation} 
+		
+\subsection{Analysis of Stability and $H_{\infty}$ attenuation performance } \label{stability&H_infty}
+ In this subsection, we focus on the stability and $H_{\infty}$ attenuation performance analysis for the closed-loop 2D system \eqref{closed-loop-system-equation}. A sufficient condition will be derived to guarantee the considered system is  asymptotically mean square stable with an $H_{\infty}$ attenuation performance $\gamma$.
 \begin{theorem}
-	Theorem.
+	Consider the  Markov jump system \eqref{system-equation} under the Assumption \eqref{boundary-assumptin} and with the asynchronous 2D-SMC low \eqref{smc-law}. For a given scalar $\gamma>0$, if there exist matrices $K_{s}\in\mathbb{R}^{n_u\times n_x}$,  $R_{k}=\mathrm{diag}\{R^{h}_{k},R^{v}_{k}\}>0$,  $Q_{ks}>0$, $T_{ks}>0$ and scalars $\epsilon_{k}>0$, for any $k\in\mathcal{N}_{1}, s\in\mathcal{N}_{2}$,  such that the following inequalities hold: 
+	\begin{equation}
+	B^{T}_{k}  	\mathcal{R}_{k} B_{k} -\epsilon_{k}I \leq 0
+	\end{equation}
+	\begin{equation}
+	\mathcal{A} +2\Big(\sum_{s=0}^{N_{2}}\mu_{ks} \mathrm{diag}\{Q_{ks}, T_{ks}\}\Big) \leq 0
+	\end{equation}
+	\begin{equation}
+	\hat{A}^{T}_{ks}\mathcal{R}_{k}\hat{A}_{ks} - \mathrm{diag}\{Q_{ks}, T_{ks}\} \leq 0
+	\end{equation}
+	where
+	\begin{equation*}
+	\mathcal{A}=\begin{bmatrix}
+	\varPi_{1} & \varPi_{3}\\
+	*&\varPi_{2}
+	\end{bmatrix}
+	\end{equation*} with
+	\begin{equation*} \label{varPi}
+	\left\{
+	\begin{array}{lr}
+	\begin{split}
+	\varPi_{1}&=-R_{k}+4(\delta_{k}+\varrho_{1})^{2}\epsilon_{k}I+C^{T}_{k}C_{k}\\
+	\varPi_{2}&=-\gamma^{2}I+D^{T}_{k}D_{k}+4\varrho_{2}^{2}\epsilon_{k}I\\
+	\varPi_{3}&= C_{k}^{T}D_{k}\\
+	\end{split}
+	\end{array}
+	\right.
+	\end{equation*}
+	and $\mathcal{R}_{k}=\sum_{\tau=1}^{N1}\lambda_{k\tau}R_{\tau}$, $\hat{A}_{ks}=\begin{bmatrix}
+	\bar{A}_{ks}& E_{k}
+	\end{bmatrix}$, 
+	then, the closed-loop system \eqref{closed-loop-system-equation} is asymptotically mean square stable with an $H_{\infty}$ disturbance attenuation performance $\gamma$.
 \end{theorem}
 
 
