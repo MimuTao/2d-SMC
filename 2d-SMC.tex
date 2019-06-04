@@ -532,7 +532,7 @@
 	\bar\rho_{k}(i,j)=f_{k}(x(i,j))-(\varrho_{1}\|x(i,j)\|+\varrho_{2}\|w(i,j)\|)\cdot\frac{s(i,j)}{\|s(i,j)\|}
 	\end{equation*}
 	Then, based on the properties of norm, the following condition can be deduced easily
-	\begin{equation}
+	\begin{equation}\label{norm-rho-inequality}
 	\|\bar{\rho}_{k}(i,j)\| \leq (\varrho_{1}+\delta_{k})\|x(i,j)\| + \varrho_{2}\|w(i,j)\| .
 	\end{equation} 
 		
@@ -540,14 +540,14 @@
  In this subsection, we focus on the stability and $H_{\infty}$ attenuation performance analysis for the closed-loop 2D system \eqref{closed-loop-system-equation}. A sufficient condition will be derived to guarantee the considered system is  asymptotically mean square stable with an $H_{\infty}$ attenuation performance $\gamma$.
 \begin{theorem}
 	Consider the  Markov jump system \eqref{system-equation} under the Assumption \eqref{boundary-assumptin} and with the asynchronous 2D-SMC low \eqref{smc-law}. For a given scalar $\gamma>0$, if there exist matrices $K_{s}\in\mathbb{R}^{n_u\times n_x}$,  $R_{k}=\mathrm{diag}\{R^{h}_{k},R^{v}_{k}\}>0$,  $Q_{ks}>0$, $T_{ks}>0$ and scalars $\epsilon_{k}>0$, for any $k\in\mathcal{N}_{1}, s\in\mathcal{N}_{2}$,  such that the following inequalities hold: 
-	\begin{equation}
+	\begin{equation}\label{T1C1}
 	B^{T}_{k}  	\mathcal{R}_{k} B_{k} -\epsilon_{k}I \leq 0
 	\end{equation}
-	\begin{equation}
-	\mathcal{A} +2\Big(\sum_{s=0}^{N_{2}}\mu_{ks} \mathrm{diag}\{Q_{ks}, T_{ks}\}\Big) \leq 0
+	\begin{equation}\label{T1C2}
+	\mathcal{A} +2\Big(\sum_{s=0}^{N_{2}}\mu_{ks} \mathrm{diag}\{Q_{ks}, T_{ks}\}\Big) < 0
 	\end{equation}
-	\begin{equation}
-	\hat{A}^{T}_{ks}\mathcal{R}_{k}\hat{A}_{ks} - \mathrm{diag}\{Q_{ks}, T_{ks}\} \leq 0
+	\begin{equation}\label{T1C3}
+	\hat{A}^{T}_{ks}\mathcal{R}_{k}\hat{A}_{ks} - \mathrm{diag}\{Q_{ks}, T_{ks}\} < 0
 	\end{equation}
 	where
 	\begin{equation*}
@@ -575,8 +575,52 @@
 
 
 \begin{proof}
-	Select the Lyapunov candidate as follows\\
-	Theroem proof.
+	Let's start the proof with the stability of system. We select the Lyapunov candidate as $V_{1}(i,j) = x^(i,j)R_{k}x(i,j)$, then, define
+	\begin{equation*}
+	\varDelta V_{1}(i,j) = \emph{\textbf{x(i, j)}}^{T}R_{\tau}\emph{\textbf{x(i, j)}} - x^{T}(i,j)R_{k}x(i,j)
+	\end{equation*}
+	Based on the closed-loop system equation \eqref{closed-loop-system-equation} with $w(i,j)=0$, it is easy to find that
+	\begin{equation}
+	\begin{split}
+	\mathbb{E}\{\varDelta &V_{1}(i,j) \}\\
+	= & \sum_{s=0}^{N_{2}}\mu_{ks}\Big\{\big[\bar{A}_{ks}x(i,j)+B_{k}\bar{\rho}_{k}(i,j)\big]^{T}\mathcal{R}_{k}\\
+	\times&\big[\bar{A}_{ks}x(i,j)+B_{k}\bar{\rho}_{k}(i,j)\big]\Big\}\\
+	-& x^{T}(i,j)R_{k}x(i,j) \\
+	\leq &x^{T}(i,j) \Big\{2\big(\sum_{s=1}^{N_{2}}\mu_{ks}\bar{A}^{T}_{ks}(i,j)\mathcal{R}_{k}\bar{A}_{ks}\big)\Big\}x(i,j)\\ +&2\bar{\rho}^{T}_{k}(i,j)B^{T}_{k}\mathcal{R}_{k}B_{k}\bar{\rho}_{k}(i,j) \\
+	-&  x^{T}(i,j)R_{k}x(i,j)
+	\end{split}
+	\end{equation}
+	Recalling the conditions given in \eqref{norm-rho-inequality} and \eqref{T1C1}, the following inequality can be further obtained
+	\begin{equation}\label{combine-one-1}
+	\begin{split}
+		\mathbb{E}\{\varDelta  V_{1}(i,j) \} \leq x^{T}(i,j)\mathcal{G}_{ks}x(i,j)
+	\end{split}
+	\end{equation}
+	where $\mathcal{G}_{ks}= 2\big(\sum_{s=0}^{N_{2}}\mu_{ks}\bar{A}^{T}_{ks}\mathcal{R}_{k}\bar{A}_{ks}\big)
+	+ 2\epsilon_{k}(\delta_{k}+\varrho_{1})^{2}I- R_{k}$.
+	The following inequality can be deduced from \eqref{T1C2} based on the properties of  matrix quadratic
+	\begin{equation}
+	2\big(\sum_{s=1}^{N_{2}}\mu_{ks}Q_{ks}\big)+4\epsilon_{k}(\delta_{k}+\varrho_{1})^{2}I+C^{T}_{k}C_{k}-R_{k} < 0
+	\end{equation}
+	which will further deduce
+	\begin{equation}\label{combine-one-2}
+			2\big(\sum_{s=1}^{N_{2}}\mu_{ks}Q_{ks}\big)+2\epsilon_{k}(\delta_{k}+\varrho_{1})^{2}I-R_{k} < 0
+	\end{equation}
+	The following inequality can be  inferred directly from condition \eqref{T1C3} 
+	\begin{equation}\label{combine-one-3}
+		\bar{A}^{T}_{ks}\mathcal{R}_{k}\bar{A}_{ks}-Q_{ks} < 0
+	\end{equation}
+	Combine \eqref{combine-one-2} and \eqref{combine-one-3}, we can infer that $\mathcal{G}_{ks}<0$. 
+	Recalling \eqref{combine-one-1}, we can further infer that
+	\begin{equation}
+		\mathbb{E}\{\varDelta V_{1}(i,j) \}<\math
+	\end{equation}
+	
+	
+	
+	
+	
+	
 \end{proof}
 
 
