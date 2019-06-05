@@ -451,7 +451,7 @@
 	
 	In practical applications, the complete information of $r(i,j)$ can not always be available to the controller. Hence, in this paper, the hidden Markov model $(r(i,j),\sigma(i,j),\varLambda,\varPsi)$ as in [refto] is introduced to characterize the asynchronous phenomenon between the controller and the system. The parameter $\sigma(i,j)$, refers to controller mode, takes values in another finite set $\mathcal{N}_{2} = \{1,2...N_{2}\}$, and satisfies the conditional probability matrix $\varPsi=\{\mu_{ks}\}$ with conditional mode transition probabilities
 	\begin{equation}
-		\Pr\{\sigma(i,j)=s|r(i,j)=k\}=\mu_{ks}, %\forall  k\in\mathcal{N}_{1}, s\in\mathcal{N}_{2}
+		\Pr\{\sigma(i,j)=s|r(i,j)=k\}=\mu_{ks} %\forall  k\in\mathcal{N}_{1}, s\in\mathcal{N}_{2}
 	\end{equation}
 	where $\mu_{ks}\in[0,1]$ for all $k\in\mathcal{N}_{1}, s\in\mathcal{N}_{2}$, and $\sum_{s=1}^{N2}\mu_{ks} = 1$ for any mode $k$.
 	
@@ -503,7 +503,7 @@
  	
  	An asynchronous 2D-SMC law is designed as follows:
 	\begin{equation}\label{smc-law}
-		u(i,j) = K_{s}x(i,j)-\rho(i,j)\frac{s(i,j)}{\|s(i,j)\|}, 
+		u(i,j) = K_{s}x(i,j)-\rho(i,j)\frac{s(i,j)}{\|s(i,j)\|}
 	\end{equation}
 	for any $s\in\mathcal{N}_{2}$, where the matrix $K_{s}\in\mathbb{R}^{n_u\times n_x}$ with $n_x=n_h+n_v$ will be determined later, and the parameter $\rho(i,j)$ is given as
 	\begin{equation}
@@ -529,7 +529,7 @@
 	\end{equation}
 	where $\bar{A}_{ks} = A_{k}+B_{k}K_{s}$, and $\bar{\rho}_{k}(i,j)$ as follows
 	\begin{equation*}
-	\bar\rho_{k}(i,j)=f_{k}(x(i,j))-(\varrho_{1}\|x(i,j)\|+\varrho_{2}\|w(i,j)\|)\cdot\frac{s(i,j)}{\|s(i,j)\|}
+	\bar\rho_{k}(i,j)=f_{k}(x(i,j))-(\varrho_{1}\|x(i,j)\|+\varrho_{2}\|w(i,j)\|)\cdot\frac{s(i,j)}{\|s(i,j)\|}.
 	\end{equation*}
 	Then, based on the properties of norm, the following condition can be deduced easily
 	\begin{equation}\label{norm-rho-inequality}
@@ -542,10 +542,10 @@
 	Consider the  Markov jump system \eqref{system-equation} under the Assumption \eqref{boundary-assumptin} and with the asynchronous 2D-SMC low \eqref{smc-law}. For a given scalar $\gamma>0$, if there exist matrices $K_{s}\in\mathbb{R}^{n_u\times n_x}$,  $R_{k}=\mathrm{diag}\{R^{h}_{k},R^{v}_{k}\}>0$,  $Q_{ks}>0$, $T_{ks}>0$ and scalars $\epsilon_{k}>0$, for any $k\in\mathcal{N}_{1}, s\in\mathcal{N}_{2}$,  such that the following inequalities hold: 
 	\begin{equation}\label{T1C1}
 	B^{T}_{k}  	\mathcal{R}_{k} B_{k} -\epsilon_{k}I \leq 0
-	\end{equation}
+	\end{equation},
 	\begin{equation}\label{T1C2}
 	\mathcal{A} +2\Big(\sum_{s=0}^{N_{2}}\mu_{ks} \mathrm{diag}\{Q_{ks}, T_{ks}\}\Big) < 0
-	\end{equation}
+	\end{equation},
 	\begin{equation}\label{T1C3}
 	\hat{A}^{T}_{ks}\mathcal{R}_{k}\hat{A}_{ks} - \mathrm{diag}\{Q_{ks}, T_{ks}\} < 0
 	\end{equation}
@@ -576,9 +576,9 @@
 
 \begin{proof}
 	Let's start the proof with the stability of system. We select the Lyapunov candidate as $V_{1}(i,j) = x^(i,j)R_{k}x(i,j)$, then, define
-	\begin{equation*}
+	\begin{equation}\label{VAR-DELTA-V1}
 	\varDelta V_{1}(i,j) = \emph{\textbf{x(i, j)}}^{T}R_{\tau}\emph{\textbf{x(i, j)}} - x^{T}(i,j)R_{k}x(i,j)
-	\end{equation*}
+	\end{equation}
 	Based on the closed-loop system equation \eqref{closed-loop-system-equation} with $w(i,j)=0$, it is easy to find that
 	\begin{equation}
 	\begin{split}
@@ -610,13 +610,38 @@
 	\begin{equation}\label{combine-one-3}
 		\bar{A}^{T}_{ks}\mathcal{R}_{k}\bar{A}_{ks}-Q_{ks} < 0
 	\end{equation}
-	Combine \eqref{combine-one-2} and \eqref{combine-one-3}, we can infer that $\mathcal{G}_{ks}<0$. 
-	Recalling \eqref{combine-one-1}, we can further infer that
+	Combine \eqref{combine-one-2} and \eqref{combine-one-3}, we can infer that $\mathcal{G}_{ks}<0$, which is equivalent to 
 	\begin{equation}
-		\mathbb{E}\{\varDelta V_{1}(i,j) \}<\math
+		\mathcal{G}_{ks} \leq -\alpha I
 	\end{equation}
-	
-	
+	with scalar $\alpha>0$.
+	Recalling \eqref{combine-one-1}, we can further infer that
+	\begin{equation}\label{VleqAlpha}
+		\mathbb{E}\{\varDelta V_{1}(i,j) \} \leq-\alpha \mathbb{E}\{\|x(i,j)\|^{2} \}
+	\end{equation}
+	Summing up on the both side of \eqref{VleqAlpha}, we have
+	\begin{equation}
+		\mathbb{E}\Big\{\sum_{i=0}^{\kappa_{1}}\sum_{j=0}^{\kappa_{2}}  \|x(i,j)\|^{2} \Big\} \leq \mathbb{E}\Big\{\sum_{i=0}^{\kappa_{1}}\sum_{j=0}^{\kappa_{2}}  \varDelta V_{1}(i,j)  \Big\}
+	\end{equation}
+	where parameters $\kappa_{1}$, $\kappa_{2}$ are any positive integers. By substituting $\varDelta V_{1}$ and $R_{k}$ with \eqref{VAR-DELTA-V1} and $R_{k}=\mathrm{diag}\{R^{\rm{h}}_{k},R^{\rm{v}}_{k}\}$ respectively, we obtain
+	\begin{equation}
+		\begin{split}
+			\sum_{i=0}^{\kappa_{1}}\sum_{j=0}^{\kappa_{2}}  \varDelta V_{1}(i,j)&= \sum_{i=0}^{\kappa_{1}}\big\{V^{v}_{1}(i,\kappa_{2}+1) - V^{v}_{1}(i,0) \big\}\\
+			&-  \sum_{j=0}^{\kappa_{2}}\big\{V^{h}_{1}(\kappa_{1}+1,j) - V^{h}_{1}(0,j) \big\}\\
+			&\leq -\Big(\sum_{i=0}^{\kappa_{1}}V^{v}_{1}(i,0) + \sum_{j=0}^{\kappa_{2}}V^{h}_{1}(0,j)\Big)
+		\end{split}
+	\end{equation}
+	where 
+	\begin{equation*} \label{Vhv}
+	\left\{
+	\begin{array}{lr}
+	\begin{split}
+	V^{h}_{1}(i,j)=x^{hT}(i,j)R^{h}_{r(i,j)}x^{h}(i,j)\\
+	V^{v}_{1}(i,j)=x^{vT}(i,j)R^{v}_{r(i,j)}x^{v}(i,j)
+	\end{split}
+	\end{array}
+	\right.
+	\end{equation*}
 	
 	
 	
