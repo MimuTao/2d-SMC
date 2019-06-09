@@ -582,12 +582,12 @@
 	Based on the closed-loop system equation \eqref{closed-loop-system-equation} with $w(i,j)=0$, it is easy to find that
 	\begin{equation}
 	\begin{split}
-	\mathbb{E}\{\varDelta &V_{1}(i,j) \}\\
-	= & \sum_{s=0}^{N_{2}}\mu_{ks}\Big\{\big[\bar{A}_{ks}x(i,j)+B_{k}\bar{\rho}_{k}(i,j)\big]^{T}\mathcal{R}_{k}\\
-	\times&\big[\bar{A}_{ks}x(i,j)+B_{k}\bar{\rho}_{k}(i,j)\big]\Big\}\\
-	-& x^{T}(i,j)R_{k}x(i,j) \\
-	\leq &x^{T}(i,j) \Big\{2\big(\sum_{s=1}^{N_{2}}\mu_{ks}\bar{A}^{T}_{ks}(i,j)\mathcal{R}_{k}\bar{A}_{ks}\big)\Big\}x(i,j)\\ +&2\bar{\rho}^{T}_{k}(i,j)B^{T}_{k}\mathcal{R}_{k}B_{k}\bar{\rho}_{k}(i,j) \\
-	-&  x^{T}(i,j)R_{k}x(i,j)
+	&\mathbb{E}\{\varDelta V_{1}(i,j) \}\\
+	&=  \sum_{s=0}^{N_{2}}\mu_{ks}\Big\{\big[\bar{A}_{ks}x(i,j)+B_{k}\bar{\rho}_{k}(i,j)\big]^{T}\mathcal{R}_{k}\\
+	&\times\big[\bar{A}_{ks}x(i,j)+B_{k}\bar{\rho}_{k}(i,j)\big]\Big\}\\
+	&- x^{T}(i,j)R_{k}x(i,j) \\
+	&\leq x^{T}(i,j) \Big\{2\big(\sum_{s=1}^{N_{2}}\mu_{ks}\bar{A}^{T}_{ks}(i,j)\mathcal{R}_{k}\bar{A}_{ks}\big)\Big\}x(i,j)\\ &+2\bar{\rho}^{T}_{k}(i,j)B^{T}_{k}\mathcal{R}_{k}B_{k}\bar{\rho}_{k}(i,j) \\
+	&-  x^{T}(i,j)R_{k}x(i,j)
 	\end{split}
 	\end{equation}
 	Recalling the conditions given in \eqref{norm-rho-inequality} and \eqref{T1C1}, the following inequality can be further obtained
@@ -620,19 +620,20 @@
 		\mathbb{E}\{\varDelta V_{1}(i,j) \} \leq-\alpha \mathbb{E}\{\|x(i,j)\|^{2} \}
 	\end{equation}
 	Summing up on the both side of \eqref{VleqAlpha}, we have
-	\begin{equation}
-		\mathbb{E}\Big\{\sum_{i=0}^{\kappa_{1}}\sum_{j=0}^{\kappa_{2}}  \|x(i,j)\|^{2} \Big\} \leq \mathbb{E}\Big\{\sum_{i=0}^{\kappa_{1}}\sum_{j=0}^{\kappa_{2}}  \varDelta V_{1}(i,j)  \Big\}
+	\begin{equation} \label{levE}
+		\mathbb{E}\Big\{\sum_{i=0}^{\kappa_{1}}\sum_{j=0}^{\kappa_{2}}  \|x(i,j)\|^{2} \Big\} \leq -\frac{1}{\alpha} \mathbb{E}\Big\{\sum_{i=0}^{\kappa_{1}}\sum_{j=0}^{\kappa_{2}}  \varDelta V_{1}(i,j)  \Big\}
 	\end{equation}
 	where parameters $\kappa_{1}$, $\kappa_{2}$ are any positive integers. By substituting $\varDelta V_{1}$ and $R_{k}$ with \eqref{VAR-DELTA-V1} and $R_{k}=\mathrm{diag}\{R^{\rm{h}}_{k},R^{\rm{v}}_{k}\}$ respectively, we obtain
-	\begin{equation}
+	\begin{equation} \label{Vhv}
 		\begin{split}
-			\sum_{i=0}^{\kappa_{1}}\sum_{j=0}^{\kappa_{2}}  \varDelta V_{1}(i,j)&= \sum_{i=0}^{\kappa_{1}}\big\{V^{v}_{1}(i,\kappa_{2}+1) - V^{v}_{1}(i,0) \big\}\\
+			&\sum_{i=0}^{\kappa_{1}}\sum_{j=0}^{\kappa_{2}}  \varDelta V_{1}(i,j)\\&= \sum_{i=0}^{\kappa_{1}}\big\{V^{v}_{1}(i,\kappa_{2}+1) - V^{v}_{1}(i,0) \big\}\\
 			&-  \sum_{j=0}^{\kappa_{2}}\big\{V^{h}_{1}(\kappa_{1}+1,j) - V^{h}_{1}(0,j) \big\}\\
-			&\leq -\Big(\sum_{i=0}^{\kappa_{1}}V^{v}_{1}(i,0) + \sum_{j=0}^{\kappa_{2}}V^{h}_{1}(0,j)\Big)
+			&\leq -\big( \sum_{i=0}^{\kappa_{1}}V^{v}_{1}(i,0) + \sum_{j=0}^{\kappa_{2}}V^{h}_{1}(0,j)\big) \\
+%			&\leq -\beta \sum_{\ell=0}^{\infty} \big(  \|x^{v}(\ell,0)\|^{2} + \|x^{h}(0,\ell)\|^{2} \big)
 		\end{split}
-	\end{equation}
-	where 
-	\begin{equation*} \label{Vhv}
+	\end{equation} 
+	where $V_{1}^{h}(i,j)$ and $V_{1}^{v}(i,j)$ are defined as   
+	\begin{equation*}
 	\left\{
 	\begin{array}{lr}
 	\begin{split}
@@ -642,9 +643,17 @@
 	\end{array}
 	\right.
 	\end{equation*}
+	Recalling the boundary condition in Assumption \ref{boundary-assumptin}, and let $\kappa_{1}$, $\kappa_{2}$ tend to infinity, it follows from \eqref{levE} and \eqref{Vhv} that
+	\begin{equation}
+		\begin{split}
+		&\mathbb{E}\Big\{\sum_{i=0}^{\kappa_{1}}\sum_{j=0}^{\kappa_{2}}  \|x(i,j)\|^{2} \Big\} \\
+		&\leq -\frac{\beta}{\alpha} \sum_{\ell=0}^{\infty} \big(  \|x^{v}(\ell,0)\|^{2} + \|x^{h}(0,\ell)\|^{2} \big)\\
+		&<\infty
+		\end{split}	
+	\end{equation}
+	where $\beta$ is the maximum value of $R^{h}(0,\ell)$ and $R^{v}(\ell,0)$, for any $\ell=0,1,2...$, which implies that \eqref{AMSS} holds. Thus, the asymptotically mean square stable of the considered system is proved. 
 	
-	
-	
+	Next, let's focus on the $H_{\infty}$ attenuation performance under zero boundary condition.  
 	
 \end{proof}
 
