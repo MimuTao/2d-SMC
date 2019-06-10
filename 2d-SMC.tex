@@ -409,11 +409,11 @@
 		\emph{\textbf{x(i, j)}} = \begin{bmatrix}
 			x^{h}(i+1,j)\\
 			x^{v}(i,j+1)
-		\end{bmatrix}, \quad 
+		\end{bmatrix}, \ 
 		x(i, j) = \begin{bmatrix}
 		x^{h}(i,j)\\
 		x^{v}(i,j)
-		\end{bmatrix},          
+		\end{bmatrix}          
 	\end{equation*}
 	$x^{h}(i,h)\in \mathbb{R}^{n_h}$ and $x^{v}(i,h)\in \mathbb{R}^{n_v}$ represent horizontal and vertical states respectively, $u(i,j) \in \mathbb{R}^{n_u}$ and $y(i,j) \in \mathbb{R}^{n_y}$ represent the controlled input and output respectively, and $w(i,j) \in \mathbb{R}^{n_w}$ represents the exogenous disturbance which belongs to $\ell_{2}\{[0,\infty),[0,\infty)\}$. $A_{r(i,j)}$,$B_{r(i,j)}$,$C_{r(i,j)}$,$D_{r(i,j)}$ and $E_{r(i,j)}$ represent the time-varying system matrices, all of which are real known constant matrices with appropriate dimensions. Besides, we assume that the matrix $B_{r(i,j)}$ is full column rank for each $r(i,j)\in\mathcal{N}_{1}$, that is, rank($B_{r(i,j)}$)$=n_u$. The nonlinear function $f(x(i,j),r(i,j))$ satisfying the following property:
 	\begin{equation}\label{nonlinear-func}
@@ -475,7 +475,7 @@
 
 	\begin{definition}\label{H_infty-performance}
 		Given a scalar $\gamma>0$, the 2D Markov jump system \eqref{system-equation} is said to be asymptotically mean square stable with an $H_{\infty}$ disturbance attenuation performance $\gamma$ if the system satisfies \eqref{AMSS}, and under zero boundary condition, the following holds:
-		\begin{equation}
+		\begin{equation} \label{invDef2}
 			\sum_{i=0}^{\infty}\sum_{j=0}^{\infty}\mathbb\{\|y(i,j)\|^{2}\} <  \gamma^{2} \sum_{i=0}^{\infty}\sum_{j=0}^{\infty}\mathbb\{\|w(i,j)\|^{2}\}
 		\end{equation}
 		for all $w(i,j)\in\ell_{2}\{[0,\infty),[0,\infty)\}$.
@@ -490,7 +490,7 @@
 \section{Main Result}
 
 \subsection{ Sliding surface and sliding mode controller} \label{sliding-surface}
-	In this paper, an asynchronous sliding surface function is constructed as follows: 
+	In this paper, a novel Two-dimensional sliding surface function is constructed as follows: 
 	\begin{equation}\label{siding-surface-equation}	
 		s(i,j) = \begin{bmatrix}
 					s^{h}(i,j)\\
@@ -538,7 +538,7 @@
 		
 \subsection{Analysis of Stability and $H_{\infty}$ attenuation performance } \label{stability&H_infty}
  In this subsection, we focus on the stability and $H_{\infty}$ attenuation performance analysis for the closed-loop 2D system \eqref{closed-loop-system-equation}. A sufficient condition will be derived to guarantee the considered system is  asymptotically mean square stable with an $H_{\infty}$ attenuation performance $\gamma$.
-\begin{theorem}
+\begin{theorem}\label{theorem1}
 	Consider the  Markov jump system \eqref{system-equation} under the Assumption \eqref{boundary-assumptin} and with the asynchronous 2D-SMC low \eqref{smc-law}. For a given scalar $\gamma>0$, if there exist matrices $K_{s}\in\mathbb{R}^{n_u\times n_x}$,  $R_{k}=\mathrm{diag}\{R^{h}_{k},R^{v}_{k}\}>0$,  $Q_{ks}>0$, $T_{ks}>0$ and scalars $\epsilon_{k}>0$, for any $k\in\mathcal{N}_{1}, s\in\mathcal{N}_{2}$,  such that the following inequalities hold: 
 	\begin{equation}\label{T1C1}
 	B^{T}_{k}  	\mathcal{R}_{k} B_{k} -\epsilon_{k}I \leq 0
@@ -653,7 +653,67 @@
 	\end{equation}
 	where $\beta$ is the maximum value of $R^{h}(0,\ell)$ and $R^{v}(\ell,0)$, for any $\ell=0,1,2...$, which implies that \eqref{AMSS} holds. Thus, the asymptotically mean square stable of the considered system is proved. 
 	
-	Next, let's focus on the $H_{\infty}$ attenuation performance under zero boundary condition.  
+	Next, let's focus on the $H_{\infty}$ attenuation performance under zero boundary condition. Based on the closed-loop system equation \eqref{closed-loop-system-equation}, it is easy to find that
+	\begin{equation}\label{DETAV1}
+	\begin{split}
+	&\mathbb{E}\{\varDelta V_{1}(i,j) \}\\
+	&=  \sum_{s=0}^{N_{2}}\mu_{ks}\Big\{\big[\bar{A}_{ks}x(i,j)+B_{k}\bar{\rho}_{k}(i,j)+E_{p}w(i,j)\big]^{T}\\
+	&\times \mathcal{R}_{k}\big[\bar{A}_{ks}x(i,j)+B_{k}\bar{\rho}_{k}(i,j)+E_{p}w(i,j)\big]\Big\}\\
+	&- x^{T}(i,j)R_{k}x(i,j) \\
+	&\leq \hat{x}^{T}(i,j) \Big\{2\big(\sum_{s=1}^{N_{2}}\mu_{ks}\hat{A}^{T}_{ks}(i,j)\mathcal{R}_{k}\hat{A}_{ks}\big)\Big\}\hat{x}(i,j)\\ &+2\bar{\rho}^{T}_{k}(i,j)B^{T}_{k}\mathcal{R}_{k}B_{k}\bar{\rho}_{k}(i,j) \\
+	&-  x^{T}(i,j)R_{k}x(i,j)\\
+	\end{split}
+	\end{equation}
+%	where $\hat{x}(i,j)=\begin{bmatrix}
+%		x(i,j)\\ w(i,j)
+%	\end{bmatrix}$, $\hat{A}_{ks}(i,j)=\begin{bmatrix}
+%		\bar{A}_{ks}&E_{k}
+%	\end{bmatrix}$.
+	where
+	\begin{equation*}
+		\hat{x}(i,j)=\begin{bmatrix}
+		x(i,j)\\ w(i,j)
+		\end{bmatrix},\ \hat{A}_{ks}(i,j)=\begin{bmatrix}
+		\bar{A}_{ks}&E_{k}
+		\end{bmatrix}
+	\end{equation*}
+	Notice that from \eqref{norm-rho-inequality} and \eqref{T1C1}, we have
+	\begin{equation}\label{invRho}
+		\begin{split}
+		 	&\bar{\rho}^{T}_{k}(i,j)B^{T}_{k}\mathcal{R}_{k}B_{k}\bar{\rho}_{k}(i,j)\\
+		 	&\leq 2\epsilon_{k}\big((\delta_{k}+\varrho_{1})^{2}\|x(i,j)\|^{2}+\varrho_{2}^{2}\|w(i,j)\|^{2} \big)
+		\end{split}
+	\end{equation} 
+	The following condition can be deduced easily from \eqref{T1C2} and \eqref{T1C3}
+	\begin{equation}\label{T1P4}
+	\mathcal{\varXi}_{ks}<0
+	\end{equation}	
+	where $\mathcal{\varXi}_{ks} \equiv \mathcal{A} +2\sum_{s=1}^{N_{2}}\mu_{ks}\hat{A}^{T}_{ks}\mathcal{R}_{k}\hat{A}_{ks}$. 
+	Recalling the system \eqref{system-equation}, and substituting \eqref{invRho} into \eqref{DETAV1} yields
+	\begin{equation}\label{DETAV1ZW}
+		\begin{split}
+			&\mathbb{E}\{\varDelta V_{1}(i,j)+\|z(i,j)\|^{2}-\gamma^{2}\|w(i,j)\|^{2}  \}\\
+			&\leq \hat{x}^{T}(i,j)\mathcal{\varXi}_{ks} \hat{x}(i,j)<0
+		\end{split}
+	\end{equation}
+	Noting \eqref{Vhv} with the zero boundary condition, we can infer that
+	\begin{equation} \label{Vhv2}
+	\begin{split}
+	&\sum_{i=0}^{\kappa_{1}}\sum_{j=0}^{\kappa_{2}}  \varDelta V_{1}(i,j)\\
+	&=\sum_{i=0}^{\kappa_{1}}V^{v}_{1}(i,\kappa_{2}+1) + \sum_{j=0}^{\kappa_{2}}V^{h}_{1}(\kappa_{1}+1,j) \\
+	&\geq 0 \qquad \forall \kappa_{1},\kappa_{2} = 1,2,3...
+	\end{split}
+	\end{equation}
+	Then, we can further deduce from \eqref{DETAV1ZW} and \eqref{Vhv2} that 
+	\begin{equation}\label{DETAV1ZW2}
+	\begin{split}
+	&\sum_{i=0}^{\infty}\sum_{j=0}^{\infty}  \mathbb{E}\{\|z(i,j)\|^{2}-\gamma^{2}\|w(i,j)\|^{2}  \}\\
+	\leq& \sum_{i=0}^{\infty}\sum_{j=0}^{\infty}  \mathbb{E}\{\varDelta V_{1}(i,j)+\|z(i,j)\|^{2}-\gamma^{2}\|w(i,j)\|^{2}  \}  \\
+	<& 0
+	\end{split}
+	\end{equation}
+	which implies \eqref{invDef2} holds. And this completes the proof of Theorem \ref{theorem1}.
+	
 	
 \end{proof}
 
@@ -663,8 +723,9 @@
 \end{remark}
 
 
-\subsection{$l_2$-gain minimization}\label{minimization} 
-	subsection introduction.
+\subsection{Analysis of reachability}\label{minimization} 
+	 The reachability of the  designed asynchronous 2D-SMC low for the closed-loop system \eqref{closed-loop-system-equation} will be discussed in this subsection. By using a stochastic Lyapunov method, we provide a sufficient condition which will confirm that the designed asynchronous 2D-SMC law \eqref{smc-law} can force the state trajectories of the closed-loop system \eqref{closed-loop-system-equation} into a time-varying sliding region around the specified 2D sliding surface \eqref{siding-surface-equation}.
+	 
 
 \begin{theorem}\label{theorem2}	
 	Theroem.
