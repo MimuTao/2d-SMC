@@ -575,7 +575,7 @@
 
 
 \begin{proof}
-	Let's start the proof with the stability of system. We select the Lyapunov candidate as $V_{1}(i,j) = x^(i,j)R_{k}x(i,j)$, then, define
+	Let's start the proof with the stability of system. We select the Lyapunov candidate as $V_{1}(i,j) = x^{T}(i,j)R_{k}x(i,j)$, then, define
 	\begin{equation}\label{VAR-DELTA-V1}
 	\varDelta V_{1}(i,j) = \emph{\textbf{x(i, j)}}^{T}R_{\tau}\emph{\textbf{x(i, j)}} - x^{T}(i,j)R_{k}x(i,j)
 	\end{equation}
@@ -749,7 +749,64 @@
 \end{theorem} 
 
 \begin{proof} 
-	Proof of theorem.
+	First, let's define $\emph{\textbf{s(i, j)}} = \begin{bmatrix}
+	s^{h}(i+1,j)\\ s^{v}(i,j+1)
+	\end{bmatrix}$.  Then, we select the Lyapunov candidate as
+	\begin{equation}
+		V(i,j)=V_{1}(i,j)+V_{2}(i,j)
+	\end{equation}
+	where $V_{1}(i,j)$ is defined in Theorem \ref{theorem1}, $V_{2}(i,j)=s^{T}(i,j)F_{k}s(i,j)$. Similar with the proof in Theorem \ref{theorem1}, it is easy to find that
+	\begin{equation}
+		\begin{split}
+			&\mathbb{E}\{\varDelta V_{1}(i,j) \}\\
+			&=\mathbb{E}\Big\{\emph{\textbf{x(i, j)}}^{T}R_{\tau}\emph{\textbf{x(i, j)}} - x^{T}(i,j)R_{k}x(i,j)\Big\}\\
+			&=  \sum_{s=0}^{N_{2}}\mu_{ks}\Big\{\big[\bar{A}_{ks}x(i,j)+B_{k}\bar{\rho}_{k}(i,j)+E_{k}w(i,j)\big]^{T}\\
+			&\times\mathcal{R}_{k} \big[ \bar{A}_{ks}x(i,j)+B_{k}\bar{\rho}_{k}(i,j)+E_{k}w(i,j)\big]\Big\}\\
+			&-x^{T}(i,j)R_{k}x(i,j)\\
+			&\leq 2x^{T}(i,j)\sum_{s=1}^{N_{2}}\mu_{ks}\bar{A}^{T}_{ks}\mathcal{R}_{k}\bar{A}_{ks}x(i,j) \\
+			&+2\big[B_{k}\bar{\rho}_{k}(i,j)+E_{k}w(i,j)\big]^{T}\mathcal{R}_{k}\\
+			&\times\big[B_{k}\bar{\rho}_{k}(i,j)+E_{k}w(i,j)\big]\\
+			&-x^{T}(i,j)R_{k}x(i,j)\\
+			&\leq 2x^{T}(i,j)\sum_{s=1}^{N_{2}}\mu_{ks}\bar{A}^{T}_{ks}\mathcal{R}_{k}\bar{A}_{ks}x(i,j) \\
+			&+ \bar{\rho}^{T}_{k}(i,j)B^{T}_{k}\mathcal{R}_{k}B_{k}\bar{\rho}_{k}(i,j)\\
+			&+w^{T}(i,j)E^{T}_{k}\mathcal{R}_{k}E_{k}w(i,j)\\
+			&-x^{T}(i,j)R_{k}x(i,j)
+%&\mathbb{E}\{\varDelta V_{1}(i,j) \}\\
+%=&\mathbb{E}\Big\{\emph{\textbf{x(i, j)}}^{T}R_{\tau}\emph{\textbf{x(i, j)}} - x^{T}(i,j)R_{k}x(i,j)\Big\}\\
+%=&  \sum_{s=0}^{N_{2}}\mu_{ks}\Big\{\big[\bar{A}_{ks}x(i,j)+B_{k}\bar{\rho}_{k}(i,j)+E_{k}w(i,j)\big]^{T}\\
+%\times&\mathcal{R}_{k} \big[ \bar{A}_{ks}x(i,j)+B_{k}\bar{\rho}_{k}(i,j)+E_{k}w(i,j)\big]\Big\}\\
+%-&x^{T}(i,j)R_{k}x(i,j)\\
+%\leq& 2x^{T}(i,j)\sum_{s=1}^{K_{2}}\mu_{ks}\bar{A}^{T}_{ks}\mathcal{R}_{k}\bar{A}_{ks}x(i,j) \\
+%+&2\big[B_{k}\bar{\rho}_{k}(i,j)+E_{k}w(i,j)\big]^{T}\mathcal{R}_{k}\\
+%\times&\big[B_{k}\bar{\rho}_{k}(i,j)+E_{k}w(i,j)\big]\\
+%-&x^{T}(i,j)R_{k}x(i,j)\\
+%\leq& 2x^{T}(i,j)\sum_{s=1}^{K_{2}}\mu_{ks}\bar{A}^{T}_{ks}\mathcal{R}_{k}\bar{A}_{ks}x(i,j) \\
+%+& \bar{\rho}^{T}_{k}(i,j)B^{T}_{k}\mathcal{R}_{k}B_{k}\bar{\rho}_{k}(i,j)\\
+%+&w^{T}(i,j)E^{T}_{k}\mathcal{R}_{k}E_{k}w(i,j)\\
+%-&x^{T}(i,j)R_{k}x(i,j)
+		\end{split}
+	\end{equation}
+	Along with the sliding function in \eqref{siding-surface-equation}, we have
+	\begin{equation}
+		\begin{split}
+			&\mathbb{E}\{\varDelta V_{2}(i,j) \}\\
+			&=\mathbb{E}\Big\{\emph{\textbf{s(i, j)}}^{T}F_{\tau}\emph{\textbf{s(i, j)}} - s^{T}(i,j)F_{k}s(i,j)\Big\}\\
+			&=  \sum_{s=0}^{N_{2}}\mu_{ks}\Big\{\big[\bar{A}_{ks}x(i,j)+B_{k}\bar{\rho}_{k}(i,j)+E_{k}w(i,j)\big]^{T}\\
+			&\times G^{T}\mathcal{F}_{k} G\big[ \bar{A}_{ks}x(i,j)+B_{k}\bar{\rho}_{k}(i,j)+E_{k}w(i,j)\big]\Big\}\\
+			&-x^{T}(i,j)F_{k}x(i,j)\\
+			&\leq 2x^{T}(i,j)\sum_{s=1}^{N_{2}}\mu_{ks}\bar{A}^{T}_{ks}G^{T}\mathcal{F}_{k}G\bar{A}_{ks}x(i,j) \\
+			&+2\big[B_{k}\bar{\rho}_{k}(i,j)+E_{k}w(i,j)\big]^{T}G^{T}\mathcal{F}_{k}\\
+			&\times G\big[B_{k}\bar{\rho}_{k}(i,j)+E_{k}w(i,j)\big]\\
+			&-x^{T}(i,j)G^{T}F_{k}Gx(i,j)\\
+			&\leq 2x^{T}(i,j)\sum_{s=1}^{N_{2}}\mu_{ks}\bar{A}^{T}_{ks}G^{T}\mathcal{F}_{k}G\bar{A}_{ks}x(i,j) \\
+			&+ \bar{\rho}^{T}_{k}(i,j)B^{T}_{k}G^{T}\mathcal{F}_{k}GB_{k}\bar{\rho}_{k}(i,j)\\
+			&+w^{T}(i,j)E^{T}_{k}G^{T}\mathcal{F}_{k}GE_{k}w(i,j)\\
+			&-x^{T}(i,j)G^{T}F_{k}Gx(i,j)
+		\end{split}
+	\end{equation}
+	Then 
+	  
+	  
 \end{proof}
 
 \begin{remark}
@@ -757,7 +814,7 @@
 \end{remark}
 
 \section{Numerical Example} \label{example}
-In this section, we provide an example to verify the validity of the proposed method.
+In this section, we provide an example to verify the validity of the proposed method. 
 
 
 
