@@ -708,8 +708,8 @@
 	\begin{equation}\label{DETAV1ZW2}
 	\begin{split}
 	&\sum_{i=0}^{\infty}\sum_{j=0}^{\infty}  \mathbb{E}\{\|z(i,j)\|^{2}-\gamma^{2}\|w(i,j)\|^{2}  \}\\
-	\leq& \sum_{i=0}^{\infty}\sum_{j=0}^{\infty}  \mathbb{E}\{\varDelta V_{1}(i,j)+\|z(i,j)\|^{2}-\gamma^{2}\|w(i,j)\|^{2}  \}  \\
-	<& 0
+	&\leq \sum_{i=0}^{\infty}\sum_{j=0}^{\infty}  \mathbb{E}\{\varDelta V_{1}(i,j)+\|z(i,j)\|^{2}-\gamma^{2}\|w(i,j)\|^{2}  \}  \\
+	&< 0
 	\end{split}
 	\end{equation}
 	which implies \eqref{invDef2} holds. And this completes the proof of Theorem \ref{theorem1}.
@@ -730,12 +730,12 @@
 \begin{theorem}\label{theorem2}	
 	Consider the closed-loop 2D Markov jump system \eqref{closed-loop-system-equation} with asynchronous 2D-SMC law \eqref{smc-law}. If there exists matrices $K_{s}\in\mathbb{R}^{n_u\times n_x}$, $R_{k}>0$, $F_{k}>0$, and  scalars $\epsilon_{k}>0$, for any $k\in\mathcal{N}_{1}, s\in\mathcal{N}_{2}$, such that the condition \eqref{T1C1} and the following inequality hold
 	\begin{equation}
-		2\sum_{s=1}^{N_{2}} (\bar{A}^{T}_{ks}\mathcal{R}_{k}\bar{A}_{ks}+ \bar{A}^{T}_{ks}G^{T}\mathcal{F}_{k}G\bar{A}_{ks})-R_{k} <0
+		2\sum_{s=1}^{N_{2}} \bar{A}^{T}_{ks}\big(\mathcal{R}_{k}+G^{T}\mathcal{F}_{k}G\big)\bar{A}_{ks}-R_{k} <0
 	\end{equation}
 	where $\mathcal{R}_{k}$ is defined in Theorem \ref{theorem1}, and $\mathcal{F}_{k}=\sum_{\tau=1}^{N_{1}}\lambda_{k\tau}F_{\tau}$. Then, the state trajectories of the considered closed-loop system will be driven into the following sliding region $\mathcal{O}$, around the specified sliding surface \eqref{siding-surface-equation}:
-	\begin{equation}
+	\begin{equation}\label{smc-region}
 		\mathcal{O}\equiv\Big\{\|s(i,j)\|\leq\ \rho^{*}(i,j) \Big\}
-	\end{equation}
+	\end{equation} 
 	where $\rho^{*}(i,j) = \mathrm{max}_{k\in\mathcal{N}_{1}}\sqrt{\hat{\rho}_{k}(i,j)/
 	\lambda_{\mathrm{min}}(F_{k})}$ with
 	\begin{equation*}
@@ -751,12 +751,12 @@
 \begin{proof} 
 	First, let's define $\emph{\textbf{s(i, j)}} = \begin{bmatrix}
 	s^{h}(i+1,j)\\ s^{v}(i,j+1)
-	\end{bmatrix}$.  Then, we select the Lyapunov candidate as
+	\end{bmatrix}$,  it is easy find that $\emph{\textbf{s(i, j)}}=G\emph{\textbf{x(i, j)}}$.  Then, we select the Lyapunov candidate as
 	\begin{equation}
 		V(i,j)=V_{1}(i,j)+V_{2}(i,j)
 	\end{equation}
 	where $V_{1}(i,j)$ is defined in Theorem \ref{theorem1}, $V_{2}(i,j)=s^{T}(i,j)F_{k}s(i,j)$. Similar with the proof in Theorem \ref{theorem1}, it is easy to find that
-	\begin{equation}
+	\begin{equation} \label{P2T1}
 		\begin{split}
 			&\mathbb{E}\{\varDelta V_{1}(i,j) \}\\
 			&=\mathbb{E}\Big\{\emph{\textbf{x(i, j)}}^{T}R_{\tau}\emph{\textbf{x(i, j)}} - x^{T}(i,j)R_{k}x(i,j)\Big\}\\
@@ -787,26 +787,58 @@
 		\end{split}
 	\end{equation}
 	Along with the sliding function in \eqref{siding-surface-equation}, we have
-	\begin{equation}
+	\begin{equation} \label{P2T2}
 		\begin{split}
 			&\mathbb{E}\{\varDelta V_{2}(i,j) \}\\
 			&=\mathbb{E}\Big\{\emph{\textbf{s(i, j)}}^{T}F_{\tau}\emph{\textbf{s(i, j)}} - s^{T}(i,j)F_{k}s(i,j)\Big\}\\
 			&=  \sum_{s=0}^{N_{2}}\mu_{ks}\Big\{\big[\bar{A}_{ks}x(i,j)+B_{k}\bar{\rho}_{k}(i,j)+E_{k}w(i,j)\big]^{T}\\
 			&\times G^{T}\mathcal{F}_{k} G\big[ \bar{A}_{ks}x(i,j)+B_{k}\bar{\rho}_{k}(i,j)+E_{k}w(i,j)\big]\Big\}\\
-			&-x^{T}(i,j)F_{k}x(i,j)\\
+			&-s^{T}(i,j)F_{k}s(i,j)\\
 			&\leq 2x^{T}(i,j)\sum_{s=1}^{N_{2}}\mu_{ks}\bar{A}^{T}_{ks}G^{T}\mathcal{F}_{k}G\bar{A}_{ks}x(i,j) \\
 			&+2\big[B_{k}\bar{\rho}_{k}(i,j)+E_{k}w(i,j)\big]^{T}G^{T}\mathcal{F}_{k}\\
 			&\times G\big[B_{k}\bar{\rho}_{k}(i,j)+E_{k}w(i,j)\big]\\
-			&-x^{T}(i,j)G^{T}F_{k}Gx(i,j)\\
+			&-s^{T}(i,j)F_{k}s(i,j)\\
 			&\leq 2x^{T}(i,j)\sum_{s=1}^{N_{2}}\mu_{ks}\bar{A}^{T}_{ks}G^{T}\mathcal{F}_{k}G\bar{A}_{ks}x(i,j) \\
 			&+ \bar{\rho}^{T}_{k}(i,j)B^{T}_{k}G^{T}\mathcal{F}_{k}GB_{k}\bar{\rho}_{k}(i,j)\\
 			&+w^{T}(i,j)E^{T}_{k}G^{T}\mathcal{F}_{k}GE_{k}w(i,j)\\
-			&-x^{T}(i,j)G^{T}F_{k}Gx(i,j)
+			&-s^{T}(i,j)F_{k}s(i,j)
 		\end{split}
 	\end{equation}
-	Then 
-	  
-	  
+	Combing \eqref{P2T1} and \eqref{P2T2}, we can infer that 
+	\begin{equation}\label{P2T3}
+		\begin{split}
+				&\mathbb{E}\{\varDelta V(i,j) \}\\
+				&= \mathbb{E}\Big\{\varDelta_{1}(i,j)+\varDelta V_{2}(i,j) \Big\}\\
+				&\leq x^{T}(i,j)\Big\{ 2\sum_{s=1}^{N_{2}}\mu_{ks}\bar{A}^{T}_{ks}\big(\mathcal{R}_{k} +G^{T}\mathcal{F}_{k}G\big)\bar{A}_{ks} \Big\} x(i,j) \\
+				& +\vec{\rho}_{k}(i,j)-x^{T}(i,j)R_{k}x(i,j) - \lambda_{\mathrm{min}}(F_{k})\|s(i,j)\|^{2}\\
+		\end{split}
+	\end{equation}
+	where
+	\begin{equation*}
+		\begin{split}
+			&\vec{\rho}_{k}(i,j)\\
+			&= 4\big(\|B^{T}_{k}\mathcal{F}_{k}B_{k}\|+ \|B^{T}_{k}G^{T}\mathcal{F}_{k}GB_{k}\|\big) \|\bar{\rho}_{k}(i,j)\|^{2} \\
+			&+ 4\big(\|E^{T}_{k}\mathcal{R}_{k}E_{k}\|+ \|E^{T}_{k}G^{T}\mathcal{R}_{k}GE_{k}\|\big) \|w(i,j)\|^{2} 
+		\end{split}
+	\end{equation*}
+	Recalling the condition \eqref{norm-rho-inequality}, we can get an inequality as follows
+	\begin{equation}\label{rholeseq}
+		\|\bar{\rho}_{k}(i,j)\|^{2} \leq 2(\varrho_{1}+\delta_{k})^{2}\|x(i,j)\|^{2} +2\varrho_{2}^{2}\|w(i,j\|^{2} 
+	\end{equation}	  
+	It is obvious that $\vec{\rho}_{k}(i,j) < \hat{\rho}_{k}(i,j) $ for any $k\in\mathcal{N}_{1}$ after substitute \eqref{rholeseq} into $\vec{\rho}_{k}(i,j)$. 
+	Then, based on the condition \eqref{T1C2}, when the state trajectories is out of the region $\mathcal{O}$ around the specified siding surface \eqref{siding-surface-equation}, we can infer that
+	\begin{equation}\label{P2T5}
+		-\lambda_{\mathrm{min}}(F_{k})\|s(i,j)\|^{2} + \vec{\rho}_{k}(i,j) <0
+	\end{equation}
+	It yields from \eqref{P2T1}, \eqref{P2T3} and \eqref{P2T5} that 
+	\begin{equation}
+		\begin{split}
+			&\mathbb{E}\{\varDelta V(i,j) \}\\
+			&\leq x^{T}(i,j)\Big\{ 2\sum_{s=1}^{N_{2}}\mu_{ks}\bar{A}^{T}_{ks}\big(\mathcal{R}_{k} +G^{T}\mathcal{F}_{k}G \big)\bar{A}_{ks}\\ &-R_{k} \Big\} x(i,j)<0
+		\end{split}
+	\end{equation}
+	which means the state trajectories of the close-loop \eqref{closed-loop-system-equation} are strictly decreasing (with mean square) outside the region $\mathcal{O}$ defined in \eqref{smc-region}. Now, the proof is complete.
+	 
 \end{proof}
 
 \begin{remark}
