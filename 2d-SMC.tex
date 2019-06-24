@@ -66,7 +66,7 @@
 \newtheorem{theorem}{Theorem}
 \newtheorem{definition}{Definition} 
 \newtheorem{assumption}{Assumption}
-
+\newtheorem{algorithm}{Algorithm}
 
 
 
@@ -302,7 +302,7 @@
 % not capitalized unless they are the first or last word of the title.
 % Linebreaks \\ can be used within to get better formatting as desired.
 % Do not put math or special symbols in the title.
-\title{Asynchronous Siding Mode Control of Two-dimensional Markov Jump Systems in Roesser Model}
+\title{Asynchronous Sliding Mode Control of Two-dimensional Markov Jump Systems in Roesser Model}
 
 
 % author names and affiliations
@@ -362,13 +362,13 @@
 % As a general rule, do not put math, special symbols or citations
 % in the abstract
 \begin{abstract}
-	abstract
+	This paper is concerned with the problem of asynchronous sliding mode control (SMC) for two-dimensional (2D) discrete-time Markov jump systems, which is described by Roesser model.  A hidden Markov model (HHM) is introduced to describe the asynchronization which appears between the designed sliding model controller and the original system. Based on the constructed 2D sliding surface, an asynchronous 2D-SMC law is designed. The Lyapunov function and Linear matrix inequality technique are utilized to establish sufficient conditions of the asymptotic mean square stability with a prescribed $H_{\infty}$ disturbance attenuation performance for the closed-loop 2D system. Moreover, the reachability of the constructed 2D sliding surface is ensured simultaneously. Then, the asynchronous 2D-SMC law can be obtained by solving a  convex optimization problem.  Finally, a numerical example is provided to demonstrate the  effectiveness of the proposed asynchronous 2D-SMC law design method.
 \end{abstract}
 
 % no keywords
 
 \begin{IEEEkeywords}
-	Markov jump systems, 2D systems, Siding mode control, Hidden Markov model
+	Markov jump systems, 2D systems, Sliding mode control, Hidden Markov model
 \end{IEEEkeywords}
 
 
@@ -506,7 +506,7 @@
 		u(i,j) = K_{s}x(i,j)-\rho(i,j)\frac{s(i,j)}{\|s(i,j)\|}
 	\end{equation}
 	for any $s\in\mathcal{N}_{2}$, where the matrix $K_{s}\in\mathbb{R}^{n_u\times n_x}$ with $n_x=n_h+n_v$ will be determined later, and the parameter $\rho(i,j)$ is given as
-	\begin{equation}
+	\begin{equation}\label{varrho}
 	\rho(i,j) = \varrho_{1}\|x(i,j)\| + \varrho_{2}\|w(i,j)\|
 	\end{equation}
 	with $\varrho_{1}=\max_{k\in\mathcal{N}_{1}} \{\delta_{k} \}$, $\varrho_{2} = \max_{k\in\mathcal{N}_{1}}\{\|(GB_{k})^{-1}GE_{k}\| \} $, and the parameter $\delta_{k}$ is given in \eqref{nonlinear-func}. 
@@ -692,7 +692,7 @@
 	Recalling the system \eqref{system-equation}, and substituting \eqref{invRho} into \eqref{DETAV1} yields
 	\begin{equation}\label{DETAV1ZW}
 		\begin{split}
-			&\mathbb{E}\{\varDelta V_{1}(i,j)+\|z(i,j)\|^{2}-\gamma^{2}\|w(i,j)\|^{2}  \}\\
+			&\mathbb{E}\{\varDelta V_{1}(i,j)+\|y(i,j)\|^{2}-\gamma^{2}\|w(i,j)\|^{2}  \}\\
 			&\leq \hat{x}^{T}(i,j)\mathcal{\varXi}_{ks} \hat{x}(i,j)<0
 		\end{split}
 	\end{equation}
@@ -707,8 +707,8 @@
 	Then, we can further deduce from \eqref{DETAV1ZW} and \eqref{Vhv2} that 
 	\begin{equation}\label{DETAV1ZW2}
 	\begin{split}
-	&\sum_{i=0}^{\infty}\sum_{j=0}^{\infty}  \mathbb{E}\{\|z(i,j)\|^{2}-\gamma^{2}\|w(i,j)\|^{2}  \}\\
-	&\leq \sum_{i=0}^{\infty}\sum_{j=0}^{\infty}  \mathbb{E}\{\varDelta V_{1}(i,j)+\|z(i,j)\|^{2}-\gamma^{2}\|w(i,j)\|^{2}  \}  \\
+	&\sum_{i=0}^{\infty}\sum_{j=0}^{\infty}  \mathbb{E}\{\|y(i,j)\|^{2}-\gamma^{2}\|w(i,j)\|^{2}  \}\\
+	&\leq \sum_{i=0}^{\infty}\sum_{j=0}^{\infty}  \mathbb{E}\{\varDelta V_{1}(i,j)+\|y(i,j)\|^{2}-\gamma^{2}\|w(i,j)\|^{2}  \}  \\
 	&< 0
 	\end{split}
 	\end{equation}
@@ -926,7 +926,7 @@ It is obvious that, if the theorem \ref{theorem1} and the theorem \ref{theorem2}
 \begin{proof}
 	As we discussed above, the objective is to testify that, the conditions \eqref{T1C1}, \eqref{T1C2}, \eqref{T1C3} in Theorem \ref{theorem1} and \eqref{T2C1} in Theorem \ref{theorem2}  can be guaranteed simultaneously by \eqref{T3C1}, \eqref{T3C2}, \eqref{T3C3}. Before that, let's make some notations as $\tilde{K}_{s}=K_{s}L_{s}$, $\tilde{R}_{k}=R^{-1}_{k}$, $\tilde{F}_{k}=F^{-1}_{k}$, $\tilde{Q}_{ks}=Q^{-1}_{ks}$, $\tilde{T}_{ks}=T^{-1}_{ks}$ and  $\tilde{\epsilon}=\epsilon^{-1}_{k}$. 
 	Firstly, we will prove that \eqref{T1C1} and \eqref{T3C1} are equivalent. Pre- and post- multiplying the inequalities given in \eqref{T3C1} by $\mathrm{diag}\{\epsilon_{k}I, I,I,\cdots,I \}$, respectively, and applying  Schur complement after that, then, we can see \eqref{T1C1} satisfied.  
-	Next, we will verity that \eqref{T3C2} and \eqref{T3C3} are sufficient  to ensure \eqref{T1C2}, \eqref{T1C3} and \eqref{T2C1} hold.  Using $\mathrm{diag}\{R_{k}, I ,I,\cdots, I \}$  to pre- and post-multiply the inequality given in \eqref{T3C3}, and applying Schur complement after that, then we will have \eqref{T1C2} satisfied.  
+	Next, we will verity that \eqref{T3C2} and \eqref{T3C3} are sufficient  to ensure \eqref{T1C2}, \eqref{T1C3} and \eqref{T2C1} hold simultaneously.  Using $\mathrm{diag}\{R_{k}, I ,I,\cdots, I \}$  to pre- and post-multiply the inequality given in \eqref{T3C3}, and applying Schur complement after that, then we will have \eqref{T1C2} satisfied.  
 	It follows from  \eqref{T3C2} that $\tilde{Q}_{ps}-L^{T}_{s}-L_{s}<0$, that is $L^{T}_{s}+L_{s} $ is positive definite, which guarantees that the matrix  $L_{s}$ is invertible. We can infer the following formulation based on $Q_{ps}>0$
 	\begin{equation}
 		(\tilde{Q}_{ps} - L_{s} )^{T}\tilde{Q}^{-1}_{ks}(\tilde{Q}_{ps} - L_{s} )\geq 0
@@ -935,7 +935,7 @@ It is obvious that, if the theorem \ref{theorem1} and the theorem \ref{theorem2}
 	\begin{equation}
 		-L^{T}_{s}\tilde{Q}_{ks}L_{s} \leq  \tilde{Q}_{ps}-L^{T}_{s}-L_{s}
 	\end{equation}
-	 Noting the condition give in \eqref{T3C3}, we can infer that
+	Recalling the condition give in \eqref{T3C3}, then we can infer that
 	 \begin{equation} \label{ls2}
 	 	\begin{bmatrix}
 	 	\tilde{\mathscr{L}}_{ks}&\mathscr{A}_{ks}&\mathscr{G}_{ks}\\
@@ -944,26 +944,30 @@ It is obvious that, if the theorem \ref{theorem1} and the theorem \ref{theorem2}
 	 	\end{bmatrix}<0
 	 \end{equation}
 	 where $\tilde{\mathscr{L}}_{ks}= \mathrm{diag}\{-L^{T}_{s}\tilde{Q}_{ks}L_{s},  -\tilde{T}_{ks} \}$. \\
-	 Noting the slack matrix $L_{s}$ is invertible, we denote $h_{ks}= \mathrm{diag}\{L^{-1}_{s}, T_{ks}, I, I,\cdots, I \}$. Using $h_{ks}$ to  pre- and post-multiply the inequality given in \eqref{ls2}, and applying Schur complement after that, then the following inequality will be obtained
+	 Noting that the slack matrix $L_{s}$ is invertible, we denote $h_{ks}= \mathrm{diag}\{L^{-1}_{s}, T_{ks}, I, I,\cdots, I \}$. Using $h_{ks}$ to  pre- and post-multiply the inequality given in \eqref{ls2}, and applying Schur complement after that, then the following inequality will be obtained
 	 \begin{equation} \label{ls3}
 	 	\hat{A}^{T}_{ks}\mathcal{R}_{k}\hat{A}_{ks} + \check{A}^{T}_{ks}\mathcal{F}_{k}\check{A}_{ks}  - \mathrm{diag}\{Q_{ks}, T_{ks}\} < 0  
 	 \end{equation}
 	 where $\check{A}_{ks}=\begin{bmatrix}
 	 \bar{A}_{ks}&0
-	 \end{bmatrix}$. Combing \eqref{T1C2} and \eqref{ls3} we have
+	 \end{bmatrix}$. Combing \eqref{T1C2} and \eqref{ls3},  we will have
 	 \begin{equation}
 	 	\mathcal{A} +2\sum_{s=0}^{N_{2}}\mu_{ks}\Big\{ \hat{A}^{T}_{ks}\mathcal{R}_{k}\hat{A}_{ks} + \check{A}^{T}_{ks}\mathcal{F}_{k}\check{A}_{ks} \Big\} < 0
 	 \end{equation}
 	 which further implies \eqref{T2C1} holds based on the property of positive definite matrix. It is clear that, the gain matrix $K_{s}$ can not obtained directly from LMIs in Theorem \ref{theorem3} while $\tilde{K}_{s}$ is obtained. Thanks to the matrix $L_{s}$ is invertible, $K_{s}$ can be calculated indirectly with $K_{s}=\tilde{K}_{s}L^{-1}_{s}$. Now, the proof is finished.
 \end{proof}
+	It is clear that, the conditions in Theorem \ref{theorem3} are presented in the form of Linear matrix inequality, which can be easily solved with the help of Matlab LMI toolbox. Next, we are going to propose an algorithm to obtain the asynchronous 2D-SMC law with the minimum disturbance attenuation performance $\gamma^{*}$. The design procedures of the algorithm are summarized as follows.
+	
+	1. Select the parameters $\beta_{k}$ properly and compute matrix $G$, such that the matrix $GB_{k}$ is nonsingular for any $k\in\mathcal{N}_{1}$. 
+	
+	2. Compute the scalars $\varrho_{1}$ and $\varrho_{2}$ in \eqref{varrho}. 
 
-
-
-
-
-
-
-
+	3. Get the matrices  $\tilde{K}_{s}$ and $L_{s}$ by solving the  following optimization problem
+	\begin{equation}\label{optimization-problem}
+		\text{min $\tilde{\sigma}$ subject to \eqref{T3C1}-\eqref{T3C3} with $\tilde\sigma=\gamma^{2}$ }.
+	\end{equation}
+	
+	4. Then, the sliding mode controller matrix $K_s$ can be obtained with $K_{s}= \tilde{K}_{s}L^{-1}_{s}$.
 
 
 
@@ -976,14 +980,157 @@ It is obvious that, if the theorem \ref{theorem1} and the theorem \ref{theorem2}
 
 
 \section{Numerical Example} \label{example}
-In this section, we provide an example to verify the validity of the proposed method. 
+In this section, we provide an example to verify the effectiveness of the proposed asynchronous 2D-SMC law design method.  It is known that some dynamical processes, for instance, gas absorption, air drying and  water stream heating  can be described by the Darboux equation \cite{darboux-equation}. It is generally described in the form of partial differential equation, and can be easily converted into  a 2D Markov jump system in Roesser model with a similar approach applied in \cite{du-chunling&l-xie}. The considered 2D Markov jump system and the asynchronous  2D-SMC law both consist of two operation modes, that is, $\mathcal{N}_1=\{1,2\}$, $ \mathcal{N}_{2}=\{1,2\}$,  and the corresponding system matrices are listed  as follows: \\
+Mode 1:
+\begin{equation} \notag
+\begin{aligned}
+	A_{1} &= \begin{bmatrix}
+	-1.0&0.4\\
+	0.2&-1.0
+	\end{bmatrix}, \ 
+	B_{1} = \begin{bmatrix}
+	0.2&0.1\\ -0.2&-0.3
+	\end{bmatrix} ,\ 
+	D_{1} = \begin{bmatrix}
+		-0.1\\0
+	\end{bmatrix} \\
+	C_{1} &= \begin{bmatrix}
+		0.1&-0.1\\-0.2&0.1
+	\end{bmatrix},\ 
+	E_{1} = \begin{bmatrix}
+		-0.1\\ 0.1
+	\end{bmatrix}
+\end{aligned}  
+\end{equation}
+Mode 2:
+\begin{equation} \notag
+\begin{aligned}
+A_{2} &=\begin{bmatrix}
+-0.8&0.6\\
+0.2&-1.2
+\end{bmatrix}, \ 
+B_{2} = \begin{bmatrix}
+0.2&-0.2\\ -0.1&-0.2
+\end{bmatrix} ,\ 
+D_{2} = \begin{bmatrix}
+-0.1\\0.2
+\end{bmatrix} \\
+C_{2} &= \begin{bmatrix}
+-0.2&-0.1\\0.1&0.2
+\end{bmatrix},\
+E_{2} = E_{1}
+\end{aligned}  
+\end{equation}
+The nonlinear function $f(x(i,j),r(i,j))$ is set as
+\begin{equation*}
+	f((x(i,j),r(i,j)) = \begin{cases}
+	0.2\sin{ \|x(i,j)\|}, \quad \ r(i,j)=1\\
+	0.3\sin{ \|x(i,j)\|}, \quad \ r(i,j)=2
+	\end{cases}
+\end{equation*}
+Thus, the parameter $\delta_{k}$ can be selected as first mode with $\delta_{1}=0.2$  and  second mode with $\delta_{2}=0.3$.\\
+The mode jumps of the considered 2D system and 2D-SMC law are governed by the transition probability matrix  $\varLambda$ and $\varPsi$, respectively, which are set as follows:
+\begin{equation*}
+\begin{aligned}
+	\varLambda=\begin{bmatrix}
+	0.8&0.2\\ 0.3&0.7
+	\end{bmatrix}, \ 
+	\varPsi = \begin{bmatrix}
+	0.6&0.4\\ 0.4 &0.6
+	\end{bmatrix}
+\end{aligned}
+\end{equation*}
+\begin{figure}[!htb]
+	\centering\includegraphics[scale=0.6]{./simulations/r_eps.eps}
+	\caption{Modes of the considered  2D system}
+	\label{fig1}
+\end{figure}
+\begin{figure}[!htb]
+	\centering\includegraphics[scale=0.6]{./simulations/sigma_eps.eps}\\ 
+	\caption{Modes of the 2D-SMC law}
+	\label{fig2}
+\end{figure}
+A possible time sequences with two different directions of the system modes and the asynchronous 2D-SMC law modes are depicted in Fig.\ref{fig1} and Fig.\ref{fig2}, respectively. By comparison, it is clear that the designed 2D-SMC law run asynchronously with the original 2D system.  \\
+Based on the corresponding assumptions, the boundary condition $X_{0}$ and  the exogenous disturbance $w(i,j)$ are assumed to be
+\begin{equation*}
+\begin{aligned}
+	x^{h}(0, j)&=\begin{cases}
+		0.1, \quad 0\leq j \leq 10 \\
+		0, \quad \ \ elsewhere
+	\end{cases} \\
+	x^{v}(i, 0)&=\begin{cases}
+	0.1, \quad 0\leq i \leq 10 \\
+	0, \quad \ \ elsewhere
+	\end{cases}\\
+	w(i, j)\ &=\begin{cases}
+	0.2, \quad 0\leq i,j \leq 10 \\
+	0, \quad \ \ elsewhere
+	\end{cases}
+\end{aligned}
+\end{equation*}
+\begin{figure}[!htb]
+\centering\includegraphics[scale=0.6]{./simulations/hx-no-controll-input.eps}
+\caption{Modes of the considered  2D system}
+\label{fig3}
+\end{figure}
+\begin{figure}[!htb]
+\centering\includegraphics[scale=0.6]{./simulations/vx-no-controll-input.eps}\\ 
+\caption{Modes of the 2D-SMC law}
+\label{fig4}
+\end{figure}
+ The horizontal and vertical state responses of the open-loop system in \eqref{system-equation} under $u(i,j) = 0$ are depicted in Fig.\ref{fig3} and Fig.\ref{fig4}, respectively. The obtained result implies the considered 2D system is unstable under zero control input. 
+Next, let's follow the procedures of asynchronous 2D-SMC law design algorithm, and obtain the sliding model controller gain. 
+Letting $\beta_{1}=0.6$ and $\beta_{2}=0.4$, and the  matrix $G$ can be calculated as follows:
+\begin{equation*}
+G=\begin{bmatrix}
+0.2&-0.02\\
+0.16&-0.26
+\end{bmatrix}
+\end{equation*}
+It's easy to verify that the non-singularity of the matrix $GB_{k}$ is satisfied for any $k\in\mathcal{N}_{1}$. The parameters $\varrho_{1}$ and $\varrho_{2}$ can be calculated as $\varrho_{1}=0.3$ and $\varrho_{2}=0.6872$, respectively. By solving optimization problem \eqref{optimization-problem}, we can obtain the following sliding mode controller gains\\
+Mode1
+\begin{equation*}
+ 	K_{1}=\begin{bmatrix}
+ 	4.4148 &-4.3508\\
+ 	-0.6827& -2.1887
+ 	\end{bmatrix}
+\end{equation*}
+Mode2
+\begin{equation*}
+K_{2} = 	\begin{bmatrix}
+4.3707 &  -3.8450 \\
+-0.6826 &  -2.3252\\
+\end{bmatrix}
+\end{equation*}
+with the minimum $H_{\infty}$ disturbance attenuation performance $\gamma^{*}=0.3164$. \\
+\begin{figure}[!htb]
+	\centering\includegraphics[scale=0.6]{./simulations/h-state-with-force.eps}
+	\caption{Modes of the considered  2D system}
+	\label{fig5}
+\end{figure}
+\begin{figure}[!htb]
+	\centering\includegraphics[scale=0.6]{./simulations/v-state-with-force_eps.eps}\\ 
+	\caption{Modes of the 2D-SMC law}
+	\label{fig6}
+\end{figure}
+Figs.\ref{fig5}-\ref{fig6} plot the state responses of the resultant closed-loop system, 
+
+with the minimum $H_{\infty}$ disturbance attenuation performance $\gamma^{*}=0.3164$. \\
+\begin{figure}[!htb]
+	\centering\includegraphics[scale=0.6]{./simulations/h-control-input_eps.eps}
+	\caption{Modes of the considered  2D system}
+	\label{fig5}
+\end{figure}
+\begin{figure}[!htb]
+	\centering\includegraphics[scale=0.6]{./simulations/v-controll-input_eps.eps}\\ 
+	\caption{Modes of the 2D-SMC law}
+	\label{fig6}
+\end{figure}
 
 
 
-
-
-\section{Conclusions} \label{conclusion}
-
+\section{Conclusions} \label{conclusion} 
+This is conclusion.
 
 
 % conference papers do not normally have an appendix
@@ -999,6 +1146,14 @@ In this section, we provide an example to verify the validity of the proposed me
 	
 	\bibitem{zhang-guangming}
 	Zhang, Guangming, et al. "Finite-time H ∞ static output control of Markov jump systems with an auxiliary approach." Applied Mathematics \& Computation 273.C(2016):553-561.
+	
+	\bibitem{du-chunling&l-xie}
+	Du, Chunling , L. Xie , and C. Zhang . "$H_{\infty}$ control and robust stabilization of two-dimensional systems in Roesser models." Automatica 37.2(2001):205-211.
+	
+	\bibitem{darboux-equation}
+	Marszalek, Wieslaw. "Two-dimensional state-space discrete models for hyperbolic partial differential equations." Applied Mathematical Modelling 8.1 (1984): 11-14.
+	
+	
 	
 \end{thebibliography}
 
