@@ -498,7 +498,7 @@
 					\end{bmatrix}
 			   = Gx(i,j)
 	\end{equation}
-	where $G=\sum_{k=1}^{N_{1}}\beta_{k}G^{T}_{k}$, and scalars $\beta_{k}$ should be chosen such that $GB_{k}$ is nonsingular for any $k\in\mathcal{N}_{1}$. Based on the the assumption that $B_{k}$ is full column rank for any $k\in\mathcal{N}_{1}$, we can find that the above condition can be guaranteed easily with the properly selected parameter $\beta_{k}$. 
+	where $G=\sum_{k=1}^{N_{1}}\beta_{k}B^{T}_{k}$, and scalars $\beta_{k}$ should be chosen such that $GB_{k}$ is nonsingular for any $k\in\mathcal{N}_{1}$. Based on the the assumption that $B_{k}$ is full column rank for any $k\in\mathcal{N}_{1}$, we can find that the above condition can be guaranteed easily with the properly selected parameter $\beta_{k}$. 
 %	by selecting parameter $\beta_{k}$ properly. 
  	
  	An asynchronous 2D-SMC law is designed as follows:
@@ -1070,12 +1070,12 @@ Based on the corresponding assumptions, the boundary condition $X_{0}$ and  the 
 \end{equation*}
 \begin{figure}[!htb]
 \centering\includegraphics[scale=0.6]{./simulations/hx-no-controll-input.eps}
-\caption{Modes of the considered  2D system}
+\caption{ Horizontal state $x^{h}(i,j)$ with control input $u(i,j)=0$}
 \label{fig3}
 \end{figure}
 \begin{figure}[!htb]
 \centering\includegraphics[scale=0.6]{./simulations/vx-no-controll-input.eps}\\ 
-\caption{Modes of the 2D-SMC law}
+\caption{Vertical state $x^{v}(i,j)$ without control input $u(i,j)=0$}
 \label{fig4}
 \end{figure}
  The horizontal and vertical state responses of the open-loop system in \eqref{system-equation} under $u(i,j) = 0$ are depicted in Fig.\ref{fig3} and Fig.\ref{fig4}, respectively. The obtained result implies the considered 2D system is unstable under zero control input. 
@@ -1083,50 +1083,58 @@ Next, let's follow the procedures of asynchronous 2D-SMC law design algorithm, a
 Letting $\beta_{1}=0.6$ and $\beta_{2}=0.4$, and the  matrix $G$ can be calculated as follows:
 \begin{equation*}
 G=\begin{bmatrix}
-0.2&-0.02\\
-0.16&-0.26
+0.2&-0.16\\
+-0.02&-0.26
 \end{bmatrix}
 \end{equation*}
 It's easy to verify that the non-singularity of the matrix $GB_{k}$ is satisfied for any $k\in\mathcal{N}_{1}$. The parameters $\varrho_{1}$ and $\varrho_{2}$ can be calculated as $\varrho_{1}=0.3$ and $\varrho_{2}=0.6872$, respectively. By solving optimization problem \eqref{optimization-problem}, we can obtain the following sliding mode controller gains\\
 Mode1
 \begin{equation*}
  	K_{1}=\begin{bmatrix}
- 	4.4148 &-4.3508\\
- 	-0.6827& -2.1887
+ 	4.4147  & -4.3512\\
+ 	-0.6827 &  -2.1886
  	\end{bmatrix}
 \end{equation*}
 Mode2
 \begin{equation*}
 K_{2} = 	\begin{bmatrix}
-4.3707 &  -3.8450 \\
--0.6826 &  -2.3252\\
+ 4.3706  & -3.8453 \\
+-0.6826 &  -2.3252 \\
 \end{bmatrix}
 \end{equation*}
-with the minimum $H_{\infty}$ disturbance attenuation performance $\gamma^{*}=0.3164$. \\
+with the minimum $H_{\infty}$ disturbance attenuation performance $\gamma^{*}=0.3164$. 
 \begin{figure}[!htb]
 	\centering\includegraphics[scale=0.6]{./simulations/h-state-with-force.eps}
-	\caption{Modes of the considered  2D system}
+	\caption{Horizontal state $x^{h}(i,j)$ with  asynchronous 2D-SMC law}
 	\label{fig5}
 \end{figure}
 \begin{figure}[!htb]
 	\centering\includegraphics[scale=0.6]{./simulations/v-state-with-force_eps.eps}\\ 
-	\caption{Modes of the 2D-SMC law}
+	\caption{Vertical state $x^{v}(i,j)$ with asynchronous 2D-SMC law }
 	\label{fig6}
 \end{figure}
-Figs.\ref{fig5}-\ref{fig6} plot the state responses of the resultant closed-loop system, 
-
-with the minimum $H_{\infty}$ disturbance attenuation performance $\gamma^{*}=0.3164$. \\
+\\The horizontal and vertical state response of the closed-loop system \eqref{closed-loop-system-equation} with asynchronous 2D-SMC law are depicted in Fig.\ref{fig5}-\ref{fig6}. It is clear that both horizontal and vertical system state converge to zero within finite steps. The sliding surface $s(i,j)$ and the asynchronous 2D-SMC law can be obtained based on the conditions given in \eqref{siding-surface-equation} and \eqref{smc-law}. Then, the horizontal 2D-SMC input, vertical 2D-SMC input, horizontal sliding surface and vertical sliding surface are depicted in Fig.\ref{fig7}-ref{fig10}, respectively.  Clearly, the observed simulation results imply that the proposed asynchronous 2D-SMC law is effective for the considered 2D system.
 \begin{figure}[!htb]
 	\centering\includegraphics[scale=0.6]{./simulations/h-control-input_eps.eps}
-	\caption{Modes of the considered  2D system}
-	\label{fig5}
+	\caption{Horizontal  asynchronous 2D-SMC input $u^{h}(i,j)$}
+	\label{fig7}
 \end{figure}
 \begin{figure}[!htb]
 	\centering\includegraphics[scale=0.6]{./simulations/v-controll-input_eps.eps}\\ 
-	\caption{Modes of the 2D-SMC law}
-	\label{fig6}
+	\caption{Vertical asynchronous 2D-SMC input $u^{v}(i,j)$}
+	\label{fig8}
 \end{figure}
 
+\begin{figure}[!htb]
+	\centering\includegraphics[scale=0.6]{./simulations/hs_eps.eps}
+	\caption{Horizontal  sliding surface $s^{h}(i,j)$}
+	\label{fig9}
+\end{figure}
+\begin{figure}[!htb]
+	\centering\includegraphics[scale=0.6]{./simulations/vs_eps.eps}\\ 
+	\caption{Vertical sliding surface $s^{v}(i,j)$}
+	\label{fig10}
+\end{figure}
 
 
 \section{Conclusions} \label{conclusion} 
