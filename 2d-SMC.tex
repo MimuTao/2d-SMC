@@ -362,7 +362,7 @@
 % As a general rule, do not put math, special symbols or citations
 % in the abstract
 \begin{abstract}
-	This paper is concerned with the problem of asynchronous sliding mode control (SMC) for two-dimensional (2D) discrete-time Markov jump systems, which is described by Roesser model.  A hidden Markov model (HHM) is introduced to describe the asynchronization which appears between the designed sliding model controller and the original system. Based on the constructed 2D sliding surface, an asynchronous 2D-SMC law is designed. The Lyapunov function and Linear matrix inequality technique are utilized to establish sufficient conditions of the asymptotic mean square stability with a prescribed $H_{\infty}$ disturbance attenuation performance for the closed-loop 2D system. Moreover, the reachability of the constructed 2D sliding surface is ensured simultaneously. Then, the asynchronous 2D-SMC law can be obtained by solving a  convex optimization problem.  Finally, a numerical example is provided to demonstrate the  effectiveness of the proposed asynchronous 2D-SMC law design method.
+	This paper is concerned with the problem of asynchronous sliding mode control (SMC) for two-dimensional (2D) discrete-time Markov jump systems, which is described by Roesser model.  A hidden Markov model is introduced to describe the asynchronization which appears between the designed sliding model controller and the original system. Based on the constructed 2D sliding surface, an asynchronous 2D-SMC law is designed. The Lyapunov function and Linear matrix inequality technique are utilized to establish sufficient conditions of the asymptotic mean square stability with a prescribed $H_{\infty}$ disturbance attenuation performance for the closed-loop 2D system. Moreover, the reachability of the constructed 2D sliding surface is ensured simultaneously. Then, the asynchronous 2D-SMC law can be obtained by solving a  convex optimization problem.  Finally, a numerical example is provided to demonstrate the  effectiveness of the proposed asynchronous 2D-SMC law design method.
 \end{abstract}
 
 % no keywords
@@ -386,8 +386,12 @@
    
 
 \section{Introduction}
-	This part is introduciton.
-
+	The main contributions of this paper include the following three aspects:
+	\begin{enumerate}
+		\item  For the concerned 2D-MJSs, the asymptotically mean square stability with $H_{\infty}$ disturbance attenuation  performance is analyzed and the reachability of the 2D sliding mode dynamics is ensured simultaneously. It is the first time that the asynchronous SMC is studies for 2D-MJSs, which shows the feasibility and effectiveness of 2D-SMC for 2D systems.
+		\item   Based on the constructed 2D sliding surface, an asynchronous 2D-SMC law is designed under the framework of hidden Markov model, which means it is more generalized than the synchronous and mode-independent ones.
+		\item  The proposed asynchronous 2D-SMC law design method can be applied not only to the Roesser model, but also to the FM model through some simple modifications.
+	\end{enumerate}
 
 \section{Preliminaries} \label{priliminaries}
 	In this paper, we consider the following two-dimensional Markov jump systems in Roesser model:
@@ -891,7 +895,7 @@ It is obvious that, if the theorem \ref{theorem1} and the theorem \ref{theorem2}
 %				\tilde{Q}_{ps}-L^{T}_{s}-L_{s}&0\\
 %				*&-\tilde{T}_{ks}
 %			\end{bmatrix}, \
-			\mathscr{H}_{k} &= \begin{bmatrix}
+			\mathscr{H}_{k}\ &= \begin{bmatrix}
 				-\tilde{R}_{k} & \tilde{R}C^{T}_{k}D^{T}_{k}\\
 				*& -\gamma^{2}I
 			\end{bmatrix} \\
