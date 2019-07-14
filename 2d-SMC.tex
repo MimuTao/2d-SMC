@@ -386,17 +386,26 @@
    
 
 \section{Introduction}
-	 On the other hand, two-dimensional (2D) systems have be used to describe a wide variety of practical applications, such as digital image processing, partial differential equations modeling and signal filtering \cite{roesser}-\cite{signal-processing}, etc. Comparied with one dimensional (1D) systems, the key feature of  2D systems is that thay are consist of two independent  information that propagated along different directions.
+	Markov jump systems (MJSs), an important class of stochastic switching systems, have received considerable attentions for its powerful ability in modeling systems with abrupt change in parameters or system structures, for instance,  environmental disturbances, actuator failures, and interconnection variations in subsystems, etc. Over the past decades, a large number of results on stability analysis and the design of controller/filter have been reported in \cite{temp}.  
+	
+	However, the aforementioned works are generally based on the implicit assumption that the information of system modes can always be  fully available for the controller/filter, so that the controller/filter modes can run synchronously with system modes. Unfortunately, in practical applications, it is rather difficult to satisfy this ideal assumption because of some unexpected factors, such as, time delays, data dropouts and quantization in networked control systems. In order to overcome the strict limitation, two research approaches were proposed, namely, mode-independent and asynchronous methods. In mode-independent methods, see \cite{mode_independent_T} and \cite{mode_independent_wuhuaining}, the controller/filter modes is independent of system modes, which means the information of system modes is not fully utilized and may result in some conservativeness. In \cite{passive_wu}, Wu proposed a hidden Markov model, a united asynchronous framework that covering synchronous and mode-independent cases. The hidden Markov model supposes that the controller/filter modes can be detected via a hidden Markov chain, such that controllers/filters can utilize more information of system modes.  Therefore, many problems of asynchronous control/filtering for MJSs have been studies in recent years \cite{Hinfty_shenying}-\cite{continus_filter_dongshanling}.
+	
+	
+	On the other hand, two-dimensional (2D) systems, a special class of multi-dimensional systems  dating back to 1970s,  have be used to describe a wide variety of practical applications, such as digital image processing, partial differential equations modeling and signal filtering \cite{roesser}-\cite{signal-processing}, etc. Different from one dimensional (1D) systems, the key feature of  2D systems is that the system information are independent and propagated along two different directions, which will brought much complexity and difficulty in system analysis and synthesis. To describe the special properties of 2D systems, server different mathematical models presented in state-space framework, such as Roesser model \cite{roesser} and Fornasini-Marchesini model \cite{FM-model}, have been proposed. In Roesser model, the system state is composed of two independent states, horizontal state and vertical state, which are denoted by  sub-vectors, the next horizontal state and vertical state in different directions can be deduced from current state, respectively. Different from the Roesser model, the system state in Fornasini-Marchesini model is represented by a vector which is a function with two independent variables, and the current system state is derived from the adjacent last two states. In most circumstances , the Roesser model can be considered as a special case of Fornasini-Marchesini model, but is much simpler and more intelligible than the latter. Based on 2D bounded real lemma, the $H_{\infty}$ control theory for 2D systems was established by Du and Xie in \cite{du-chunling&l-xie} and \cite{Du-Xie}. This result was extended to control and filtering problems for 2D systems with time-varying delays \cite{tile-varing-delay},  multiplicative noise \cite{Ahn-noise} and uncertainty parameters \cite{Uncertainty-parmeters2D}. 
+	Anh has studied  the dissipative control and filtering problems for 2D systems in \cite{Ahn-2}  by utilizing Linear matrix inequalities technique.
+	A number of preliminary results on sliding mode control of discrete-time 2D systems have been studied in \cite{SMC2D1}-\cite{SMC2D3}.
+	In recent years, 2D systems with Markov jump parameters have attract more interests of researchers. For example,  the $H_{\infty}$ control, $H_{\infty}$ filtering, $H_{\infty}$ mode reduction and fault detection problems for 2D-MJSs have been investigated in \cite{Markov-Gao}-\cite{fault-dectction-shenying}, respectively. However, we have to notice that, the issue of SMC for 2D-MJSs has not been studied yet, which motivates us for current work.
+	 
 	 
 	The main contributions of this paper include the following three aspects:
 	\begin{enumerate}
 		\item  For the concerned 2D-MJSs, the asymptotically mean square stability with $H_{\infty}$ disturbance attenuation  performance is analyzed and the reachability of the 2D sliding mode dynamics is ensured simultaneously. It is the first time that the asynchronous SMC is studies for 2D-MJSs, which shows the feasibility and effectiveness of 2D-SMC for 2D control systems.
 		\item   Based on the constructed 2D sliding surface, an asynchronous 2D-SMC law is designed under the framework of hidden Markov model, which means it is more generalized than the synchronous and mode-independent ones.
-		\item  The proposed asynchronous 2D-SMC law design method can be applied not only to the Roesser model, but also to the FM model through some simple modifications.
+		\item  The proposed asynchronous 2D-SMC law design method can be applied not only to the Roesser model, but also to the  Fornasini-Marchesini  model through some simple modifications.
 	\end{enumerate}
 
 \section{Preliminaries} \label{priliminaries}
-	In this paper, we consider the following two-dimensional Markov jump systems in Roesser model:
+	In this paper, we consider the following 2D-MJSs in Roesser model:
 	\begin{equation} \label{system-equation}
 	\left\{
 		\begin{array}{lr}
@@ -927,12 +936,12 @@ It is obvious that, if the theorem \ref{theorem1} and the theorem \ref{theorem2}
 	\begin{equation}
 		K_{s} = \tilde{K}_{s}L^{-1}_{s}
 	\end{equation}
-	if the LMIs \eqref{T3C1}, \eqref{T3C2} and \eqref{T3C3} have feasible solutions.
+	if the LMIs \eqref{T3C1}-\eqref{T3C3} have feasible solutions.
 \end{theorem}
 \begin{proof}
-	As we discussed above, the objective is to testify that, the conditions \eqref{T1C1}, \eqref{T1C2}, \eqref{T1C3} in Theorem \ref{theorem1} and \eqref{T2C1} in Theorem \ref{theorem2}  can be guaranteed simultaneously by \eqref{T3C1}, \eqref{T3C2}, \eqref{T3C3}. Before that, let's make some notations as $\tilde{K}_{s}=K_{s}L_{s}$, $\tilde{R}_{k}=R^{-1}_{k}$, $\tilde{F}_{k}=F^{-1}_{k}$, $\tilde{Q}_{ks}=Q^{-1}_{ks}$, $\tilde{T}_{ks}=T^{-1}_{ks}$ and  $\tilde{\epsilon}=\epsilon^{-1}_{k}$. 
+	As we discussed above, the objective is to testify that, the conditions \eqref{T1C1}-\eqref{T1C3} in Theorem \ref{theorem1} and \eqref{T2C1} in Theorem \ref{theorem2}  can be guaranteed simultaneously by \eqref{T3C1}-\eqref{T3C3}. Before that, let's make some notations as $\tilde{K}_{s}=K_{s}L_{s}$, $\tilde{R}_{k}=R^{-1}_{k}$, $\tilde{F}_{k}=F^{-1}_{k}$, $\tilde{Q}_{ks}=Q^{-1}_{ks}$, $\tilde{T}_{ks}=T^{-1}_{ks}$ and  $\tilde{\epsilon}=\epsilon^{-1}_{k}$. 
 	Firstly, we will prove that \eqref{T1C1} and \eqref{T3C1} are equivalent. Pre- and post- multiplying the inequalities given in \eqref{T3C1} by $\mathrm{diag}\{\epsilon_{k}I, I,I,\cdots,I \}$, respectively, and applying  Schur complement after that, then, we can see \eqref{T1C1} satisfied.  
-	Next, we will verity that \eqref{T3C2} and \eqref{T3C3} are sufficient  to ensure \eqref{T1C2}, \eqref{T1C3} and \eqref{T2C1} hold simultaneously.  Using $\mathrm{diag}\{R_{k}, I ,I,\cdots, I \}$  to pre- and post-multiply the inequality given in \eqref{T3C3}, and applying Schur complement after that, then we will have \eqref{T1C2} satisfied.  
+	Next, we will verity that \eqref{T3C2}-\eqref{T3C3} are sufficient  to ensure \eqref{T1C2}-\eqref{T1C3} and \eqref{T2C1} hold simultaneously.  Using $\mathrm{diag}\{R_{k}, I ,I,\cdots, I \}$  to pre- and post-multiply the inequality given in \eqref{T3C3}, and applying Schur complement after that, then we will have \eqref{T1C2} satisfied.  
 	It follows from  \eqref{T3C2} that $\tilde{Q}_{ps}-L^{T}_{s}-L_{s}<0$, that is $L^{T}_{s}+L_{s} $ is positive definite, which guarantees that the matrix  $L_{s}$ is invertible. We can infer the following formulation based on $Q_{ps}>0$
 	\begin{equation}
 		(\tilde{Q}_{ps} - L_{s} )^{T}\tilde{Q}^{-1}_{ks}(\tilde{Q}_{ps} - L_{s} )\geq 0
@@ -1157,6 +1166,26 @@ This is conclusion.
 
 
 \begin{thebibliography}{1}
+	
+	\bibitem{mode_independent_T}
+	Todorov, Marcos G., and Marcelo D. Fragoso. "New methods for mode-independent robust control of Markov jump linear systems." Systems \& Control Letters 90 (2016): 38-44.
+	
+	\bibitem{mode_independent_wuhuaining}
+	Wu, Huai-Ning, and Kai-Yuan Cai. "Mode-independent robust stabilization for uncertain Markovian jump nonlinear systems via fuzzy control." IEEE Transactions on Systems, Man, and Cybernetics, Part B (Cybernetics) 36.3 (2005): 509-519.
+	
+	
+	\bibitem{passive_wu}
+	Wu, Zheng Guang, et al. "Passivity-Based Asynchronous Control for Markov Jump Systems." IEEE Transactions on Automatic Control 62.4(2017):2020-2025.
+	
+	\bibitem{Hinfty_shenying}
+	Shen, Ying, et al. "$H_\infty$ control of Markov jump time-delay systems under asynchronous controller and quantizer." Automatica 99 (2019): 352-360.
+	
+	\bibitem{filter_zhangmeng}
+	Zhang M, Shi P, Liu Z, et al. Fuzzy Model-based Asynchronous H $\infty$ Filter Design of Discrete-Time Markov Jump Systems[J]. Journal of the Franklin Institute, 2017, 354(18).
+	
+	\bibitem{continus_filter_dongshanling}
+	Dong, Shanling, et al. "Hidden-Markov-Model-Based Asynchronous Filter Design of Nonlinear Markov Jump Systems in Continuous-Time Domain." IEEE Transact  ions on Cybernetics PP.99:1-11.
+	
 	\bibitem{roesser}
 	Roesser, Robert. "A discrete state-space model for linear image processing." IEEE Transactions on Automatic Control 20.1 (1975): 1-10.
 	
@@ -1166,48 +1195,59 @@ This is conclusion.
 	\bibitem{signal-processing}
 	E. Rogers, K. Galkowski, W. Paszke, K. L. Moore, P. H. Bauer, L. Hladowski, and P. Dabkowski, “Multidimensional control systems: case studies in design and evaluation,” Multidimensional Systems and Signal Processing, vol. 26, no. 4, pp. 895–939, 2015.
 	
-	\bibitem{citekey}
+	\bibitem{FM-model}
 	Fornasini, Ettore, and Giovanni Marchesini. "Doubly-indexed dynamical systems: State-space models and structural properties." Mathematical systems theory 12.1 (1978): 59-72.
-	
-	\bibitem{citekey}
-	Ahn, Choon Ki, Peng Shi, and Michael V. Basin. "Two-dimensional dissipative control and filtering for Roesser model." IEEE Transactions on Automatic Control 60.7 (2015): 1745-1759.
-	
-	\bibitem{citekey}
-	Wu, Ligang, et al. "$H_{\infty}$ filtering for 2D Markovian jump systems." Automatica 44.7 (2008): 1849-1858.
-	
-	\bibitem{citekey}
-	Wu, Ligang, et al. "$H_{\infty}$ mode reduction for two-dimensional discrete state-delayed systems." IEE Proceedings-Vision, Image and Signal Processing 153.6 (2006): 769-784.
-	
-	\bibitem{citekey}
-	Chesi, Graziano, and Richard H. Middleton. "Robust stability and performance analysis of 2D mixed continuous–discrete-time systems with uncertainty." Automatica 67 (2016): 233-243.
-	
-	\bibitem{citekey}
-	Ahn, Choon Ki, Ligang Wu, and Peng Shi. "Stochastic stability analysis for 2-D Roesser systems with multiplicative noise." Automatica 69 (2016): 356-363.
-	
-	\bibitem{citekey}
-	Emelianova, Julia P., et al. "Stability of nonlinear 2D systems described by the continuous-time Roesser model." Automation and Remote Control 75.5 (2014): 845-858.
-	
-	\bibitem{citekey}
-	El-Kasri, Chakir, et al. "Robust $ H_ {\infty} $ filtering for uncertain two-dimensional continuous systems with time-varying delays." Multidimensional Systems and Signal Processing 24.4 (2013): 685-706.
-	
-	\bibitem{citekey}
-	Gao, Huijun, et al. "Stabilization and $H_{\infty}$ control of two-dimensional Markovian jump systems." IMA Journal of Mathematical Control and Information 21.4 (2004): 377-392.
-	
-	\bibitem{citekey}
-	Wu, Zheng-Guang, et al. "$H_{\infty}$ Performance Analysis and Applications of 2-D Hidden Bernoulli Jump System." IEEE Transactions on Systems, Man, and Cybernetics: Systems (2017).
-	
-	\bibitem{citekey}
-	Wu, Zheng-Guang, et al. "$H_{\infty}$ Control for 2-D Markov Jump Systems in Roesser Model." IEEE Transactions on Automatic Control 64.1 (2018): 427-432.
-	
-	\bibitem{citekey}
-	Shen, Ying, et al. "Dissipativity based fault detection for 2D Markov jump systems with asynchronous modes." Automatica 106 (2019): 8-17.
-	
-	
-	\bibitem{zhang-guangming}
-	Zhang, Guangming, et al. "Finite-time $H_{\infty}$ static output control of Markov jump systems with an auxiliary approach." Applied Mathematics \& Computation 273.C(2016):553-561.
 	
 	\bibitem{du-chunling&l-xie}
 	Du, Chunling , L. Xie , and C. Zhang . "$H_{\infty}$ control and robust stabilization of two-dimensional systems in Roesser models." Automatica 37.2(2001):205-211.
+	
+	\bibitem{Du-Xie}
+	Du, Chungling, and Lihua Xie. $H_{\infty}$ Control and Filtering of Two-Dimensional Systems. Vol. 278. Springer Science \& Business Media, 2002.
+	
+	\bibitem{tile-varing-delay}
+	Trinh, Hieu. "Stability of two-dimensional Roesser systems with time-varying delays via novel 2D finite-sum inequalities." IET Control Theory \& Applications 10.14 (2016): 1665-1674.
+	
+	\bibitem{Ahn-noise}
+	Ahn, Choon Ki, Ligang Wu, and Peng Shi. "Stochastic stability analysis for 2-D Roesser systems with multiplicative noise." Automatica 69 (2016): 356-363.
+	
+	\bibitem{Uncertainty-parmeters2D}
+	Chesi, Graziano, and Richard H. Middleton. "Robust stability and performance analysis of 2D mixed continuous–discrete-time systems with uncertainty." Automatica 67 (2016): 233-243.
+	
+	\bibitem{Ahn-2}
+	Ahn, Choon Ki, Peng Shi, and Michael V. Basin. "Two-dimensional dissipative control and filtering for Roesser model." IEEE Transactions on Automatic Control 60.7 (2015): 1745-1759.
+	
+	\bibitem{SMC2D1}
+	Liu, Diantong, et al. "Adaptive sliding mode fuzzy control for a two-dimensional overhead crane." Mechatronics 15.5 (2005): 505-522.
+	
+	\bibitem{SMC2D2}
+	Wu, Ligang, and Huijun Gao. "Sliding mode control of two-dimensional systems in Roesser model." IET Control Theory \& Applications 2.4 (2008): 352-364.
+	
+	\bibitem{SMC2D3}
+	Yang, Rongni, and Wei Xing Zheng. "Two-dimensional Sliding Mode Control of Discrete-Time Fornasini-Marchesini Systems." IEEE Transactions on Automatic Control (2019).
+	
+	\bibitem{Markov-Gao}
+	Gao, Huijun, et al. "Stabilization and $H_{\infty}$ control of two-dimensional Markovian jump systems." IMA Journal of Mathematical Control and Information 21.4 (2004): 377-392.
+	
+	\bibitem{H_infty-Wuzg-control}
+	Wu, Zheng-Guang, et al. "$H_{\infty}$ Control for 2-D Markov Jump Systems in Roesser Model." IEEE Transactions on Automatic Control 64.1 (2018): 427-432.
+	
+	\bibitem{H_infty-Wuligang-filtering}
+	Wu, Ligang, et al. "$H_{\infty}$ filtering for 2D Markovian jump systems." Automatica 44.7 (2008): 1849-1858.
+	
+	\bibitem{H_infty-Wuligang-modereduction}
+	Wu, Ligang, et al. "$H_{\infty}$ mode reduction for two-dimensional discrete state-delayed systems." IEE Proceedings-Vision, Image and Signal Processing 153.6 (2006): 769-784.
+	
+	
+	\bibitem{fault-dectction-shenying}
+	Shen, Ying, et al. "Dissipativity based fault detection for 2D Markov jump systems with asynchronous modes." Automatica 106 (2019): 8-17.
+	
+	
+	\bibitem{lifanbiao}
+	Li, Fanbiao, et al. "Passivity-based asynchronous sliding mode control for delayed singular Markovian jump systems." IEEE Transactions on Automatic Control 63.8 (2017): 2715-2721.
+	
+	\bibitem{songjun-filtering}
+	Song, Jun, Yugang Niu, and Yuanyuan Zou. "Asynchronous sliding mode control of Markovian jump systems with time-varying delays and partly accessible mode detection probabilities." Automatica 93 (2018): 33-41.
+	
 	
 	
 	
