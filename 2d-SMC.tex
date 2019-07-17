@@ -388,7 +388,7 @@
 \section{Introduction}
 	Markov jump systems (MJSs), an important class of stochastic switching systems, have received considerable attentions for its powerful ability in modeling systems with abrupt change in parameters or system structures, for instance,  environmental disturbances, actuator failures, and interconnection variations in subsystems, etc. Over the past decades, a large number of results on stability analysis and the design of controller/filter have been reported in \cite{temp}.  
 	
-	However, the aforementioned works are generally based on the implicit assumption that the information of system modes can always be  fully available for the controller/filter, so that the controller/filter modes can run synchronously with system modes. Unfortunately, in practical applications, it is rather difficult to satisfy this ideal assumption because of some unexpected factors, such as, time delays, data dropouts and quantization in networked control systems. In order to overcome the strict limitation, two research approaches were proposed, namely, mode-independent and asynchronous methods. In mode-independent methods, see \cite{mode_independent_T} and \cite{mode_independent_wuhuaining}, the controller/filter modes is independent of system modes, which means the information of system modes is not fully utilized and may result in some conservativeness. In \cite{passive_wu}, Wu proposed a hidden Markov model, a united asynchronous framework that covering synchronous and mode-independent cases. The hidden Markov model supposes that the controller/filter modes can be detected via a hidden Markov chain, such that controllers/filters can utilize more information of system modes.  Therefore, many problems of asynchronous control/filtering for MJSs have been studies in recent years \cite{Hinfty_shenying}-\cite{continus_filter_dongshanling}. 
+	However, the aforementioned works are generally based on the implicit assumption that the information of system modes can always be  fully available for the controller/filter, so that the controller/filter modes can run synchronously with system modes. Unfortunately, in practical applications, it is rather difficult to satisfy this ideal assumption because of some unexpected factors, such as, time delays, data dropouts and quantization in networked control systems. In order to overcome the strict limitation, two research approaches were proposed, namely, mode-independent and asynchronous methods. In mode-independent methods, see \cite{mode_independent_T} and \cite{mode_independent_wuhuaining}, the controller/filter modes is independent of system modes, which means the information of system modes is not fully utilized and may result in some conservativeness. In \cite{passive_wu}, Wu proposed the hidden Markov model, a united asynchronous framework that covering synchronous and mode-independent cases. The hidden Markov model supposes that the controller/filter modes can be detected via a hidden Markov chain, such that controllers/filters can utilize more information of system modes.  Therefore, many problems of asynchronous control/filtering for MJSs have been studies in recent years \cite{Hinfty_shenying}-\cite{continus_filter_dongshanling}. 
 	
 	
 	Moreover, sliding mode control (SMC), an effective control method for its strong robustness against parameter variations,  exogenous disturbances and model uncertainties, has been successfully applied to a variety of practical systems \cite{smc-motor}-\cite{smc-robot}.  The main idea of SMC is to design a discontinuous control law to force the system state trajectories toward the sliding surface and remain within a neighbourhood of the  sliding surface after reaching it \cite{smc-book}. In the last few decades, the SMC design problems have been extensively studied, and a large number of  research results for MJSs have been published \cite{smc-semiMarkov}-\cite{smc-nonlinear}. Recently, some researchers have investigated the asynchronous SMC design methods for MJSs based on hidden Markov model \cite{songjun-smc}-\cite{smc-qi}. 
@@ -403,7 +403,7 @@
 	Based on the aforementioned considerations, we will investigate the asynchronous SMC design problems for 2D-MJSs in this paper. 
 	The main contributions of this paper include the following three aspects:
 	\begin{enumerate}
-		\item  For the concerned 2D-MJSs, the asymptotically mean square stability with $H_{\infty}$ disturbance attenuation  performance is analyzed and the reachability of the 2D sliding mode dynamics is ensured simultaneously. It is the first time that the asynchronous SMC is studies for 2D-MJSs, which shows the feasibility and effectiveness of 2D-SMC for 2D control systems.
+		\item  For the concerned 2D-MJSs, the asymptotically mean square stability with $H_{\infty}$ disturbance attenuation  performance is analyzed and the reachability of the 2D sliding mode dynamics are ensured simultaneously. It is the first time that the asynchronous SMC is studies for 2D-MJSs, which shows the feasibility and effectiveness of 2D-SMC for 2D control systems.
 		\item   Based on the constructed 2D sliding surface, an asynchronous 2D-SMC law is designed under the framework of hidden Markov model, which means it is more generalized than the synchronous and mode-independent ones.
 		\item  The proposed asynchronous 2D-SMC law design method can be applied not only to the Roesser model, but also to the  Fornasini-Marchesini  model through some simple modifications.
 	\end{enumerate}
@@ -747,7 +747,7 @@
 	 
 
 \begin{theorem}\label{theorem2}	
-	Consider the closed-loop 2D Markov jump system \eqref{closed-loop-system-equation} with asynchronous 2D-SMC law \eqref{smc-law}. If there exists matrices $K_{s}\in\mathbb{R}^{n_u\times n_x}$, $R_{k}>0$, $F_{k}>0$, and  scalars $\epsilon_{k}>0$, for any $k\in\mathcal{N}_{1}, s\in\mathcal{N}_{2}$, such that the condition \eqref{T1C1} and the following inequality hold
+	Consider the closed-loop 2D-MJSs \eqref{closed-loop-system-equation} with asynchronous 2D-SMC law \eqref{smc-law}. If there exists matrices $K_{s}\in\mathbb{R}^{n_u\times n_x}$, $R_{k}>0$, $F_{k}>0$, and  scalars $\epsilon_{k}>0$, for any $k\in\mathcal{N}_{1}, s\in\mathcal{N}_{2}$, such that the condition \eqref{T1C1} and the following inequality hold
 	\begin{equation} \label{T2C1}
 		2\sum_{s=1}^{N_{2}} \bar{A}^{T}_{ks}\big(\mathcal{R}_{k}+G^{T}\mathcal{F}_{k}G\big)\bar{A}_{ks}-R_{k} <0
 	\end{equation}
@@ -1157,9 +1157,7 @@ with the minimum $H_{\infty}$ disturbance attenuation performance $\gamma^{*}=0.
 
 
 \section{Conclusions} \label{conclusion} 
-This is conclusion.
-
-
+This work has investigate the problem of asynchronous SMC for 2D-MJSs on Roesser model. In consideration of the system modes is is not always accessible to the controller, an asynchronous 2D-SMC design method is explored with hidden Markov model. By utilizing Lyapunov function, the asymptotic mean square stability for the concerned 2D-MJSs  and the reachability of the sliding mode dynamics are analyzed, respectively. A sufficient condition is derived that can guarantee the asymptotic mean square stability for the closed-loop system with $H_{\infty}$ disturbance attenuation  performance and the reachability of the 2D sliding mode dynamics, simultaneously. Finaly, the asynchronous 2D-SMC design procedures are summarized as an algorithm whose effectiveness is verified by an numerical example.
 % conference papers do not normally have an appendix
 
 % use section* for acknowledgment
