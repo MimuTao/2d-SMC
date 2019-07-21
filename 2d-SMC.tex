@@ -474,6 +474,18 @@
 	\end{equation}
 	where $\mu_{ks}\in[0,1]$ for all $k\in\mathcal{N}_{1}, s\in\mathcal{N}_{2}$, and $\sum_{s=1}^{N2}\mu_{ks} = 1$ for any mode $k$.
 	
+\begin{remark}
+	The hidden Markov model is a united framework that covering synchronous and mode-independent cases. The controller belongs to which case is decided by the conditional probability matrix $\varPsi$.  The necessary and sufficient condition for synchronous case is as follows:
+	\begin{equation*}
+	\mu(k,s)=
+	\begin{cases}
+	1, \quad s=s_{k}\\
+	0, \quad s\neq s_{k}
+	\end{cases}\ s_{k}\in\mathcal{N}_{2}
+	\end{equation*}
+	for every mode $k\in\mathcal{N}_{1}$. The controller becomes a mode-independent one when $N_{2}=\{1\}$. This means the result derived in this work can be easily applied to synchronous or mode-independent cases.
+\end{remark}
+	
 	Next, the definitions of  asymptotically mean square stable and $H_{\infty}$ performance for 2D systems will be given in Definition \ref{mean-square-stable} and Definition \ref{H_infty-performance}, respectively.
 	
 	\begin{definition}\label{mean-square-stable}
@@ -555,6 +567,16 @@
 	\|\bar{\rho}_{k}(i,j)\| \leq (\varrho_{1}+\delta_{k})\|x(i,j)\| + \varrho_{2}\|w(i,j)\| .
 	\end{equation} 
 		
+	\begin{remark}
+		As mentioned above, the SMC  designed in this paper is  asynchronous with the original system, and the phenomenon that lies between them is described by the hidden Markov model $(r(i,j),\sigma(i,j),\varLambda,\varPsi)$. The model is consists of two Markov chain, the first Markov chain $\{r(i,j), i,j=1,2\ \dots\}$ governs the mode jumps of original system and the second $\{ \sigma(i,j), i,j=1,2\dots \}$ governs the mode jumps of controller. Noting that, the second Markov chain is related to a conditional probability matrix $\varPsi$ which build a connection between the controller modes and the system modes, this mean the SMC can fully utilize the information of original system.
+	\end{remark}
+
+\begin{remark}
+	2D-SMC discussed here.
+\end{remark}
+
+
+	
 \subsection{Analysis of Stability and $H_{\infty}$ attenuation performance } \label{stability&H_infty}
  In this subsection, we focus on the stability and $H_{\infty}$ attenuation performance analysis for the closed-loop 2D system \eqref{closed-loop-system-equation}. A sufficient condition will be derived to guarantee the considered system is  asymptotically mean square stable with an $H_{\infty}$ attenuation performance $\gamma$.
 \begin{theorem}\label{theorem1}
@@ -738,9 +760,8 @@
 
 
 \begin{remark}
-	Remark.
+	As we mentioned above, the hidden Markov model is consists of two Markov chain and will result in some difficulties in SMC design. Follow the method imposed in \cite{passive_wu}, the matrix $Q_{ks}$ is introduced to separate those two Markov chains.
 \end{remark}
-
 
 \subsection{Analysis of reachability}\label{minimization} 
 	 The reachability of the  designed asynchronous 2D-SMC low for the closed-loop system \eqref{closed-loop-system-equation} will be discussed in this subsection. By using a stochastic Lyapunov method, we provide a sufficient condition which will confirm that the designed asynchronous 2D-SMC law \eqref{smc-law} can force the state trajectories of the closed-loop system \eqref{closed-loop-system-equation} into a time-varying sliding region around the specified 2D sliding surface \eqref{siding-surface-equation}.
@@ -905,7 +926,7 @@ It is obvious that, if the theorem \ref{theorem1} and the theorem \ref{theorem2}
 			\mathscr{I}_{k} &= \mathrm{diag}\{-\tilde{\epsilon}_{k}, -I, -I, -\tilde{\epsilon}_{k} \}\\	
 			\mathscr{Q}_{ks}&= \mathrm{diag}\{-\tilde{Q}_{k1}, -\tilde{Q}_{k2}, \cdots, -\tilde{Q}_{kN_{2}} \}\\
 			\mathscr{T}_{ks}&= \mathrm{diag}\{-\tilde{T}_{k1}, -\tilde{T}_{k2}, \cdots, -\tilde{T}_{kN_{2}} \}\\
-			\mathscr{L}_{ks}&= \mathrm{diag}\{\tilde{Q}_{ps}-L^{T}_{s}-L_{s},  -\tilde{T}_{ks} \}\\
+			\mathscr{L}_{ks}&= \mathrm{diag}\{\tilde{Q}_{ks}-L^{T}_{s}-L_{s},  -\tilde{T}_{ks} \}\\
 %			\begin{bmatrix}
 %				\tilde{Q}_{ps}-L^{T}_{s}-L_{s}&0\\
 %				*&-\tilde{T}_{ks}
@@ -975,6 +996,8 @@ It is obvious that, if the theorem \ref{theorem1} and the theorem \ref{theorem2}
 	 \end{equation}
 	 which further implies \eqref{T2C1} holds based on the property of positive definite matrix. It is clear that, the gain matrix $K_{s}$ can not obtained directly from LMIs in Theorem \ref{theorem3} while $\tilde{K}_{s}$ is obtained. Thanks to the matrix $L_{s}$ is invertible, $K_{s}$ can be calculated indirectly with $K_{s}=\tilde{K}_{s}L^{-1}_{s}$. Now, the proof is finished.
 \end{proof}
+
+
 	It is clear that, the conditions in Theorem \ref{theorem3} are presented in the form of Linear matrix inequality, which can be easily solved with the help of Matlab LMI toolbox. Next, we are going to propose an algorithm to obtain the asynchronous 2D-SMC law with the minimum disturbance attenuation performance $\gamma^{*}$. The design procedures of the algorithm are summarized as follows.
 	
 	1. Select the parameters $\beta_{k}$ properly and compute matrix $G$, such that the matrix $GB_{k}$ is nonsingular for any $k\in\mathcal{N}_{1}$. 
@@ -988,7 +1011,9 @@ It is obvious that, if the theorem \ref{theorem1} and the theorem \ref{theorem2}
 	
 	4. Then, the sliding mode controller matrix $K_s$ can be obtained with $K_{s}= \tilde{K}_{s}L^{-1}_{s}$.
 
-
+\begin{remark}
+	Noting that, the conditions \eqref{T3C1}-\eqref{T3C3} is presented in the form of linear matrix inequalities, so, the related parameters can be easily computed  via Matlab tool box. 
+\end{remark}
 
 
 
