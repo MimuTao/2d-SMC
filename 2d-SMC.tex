@@ -51,11 +51,12 @@
 
 
 
-\documentclass[conference]{IEEEtran}
+\documentclass[journal,final,twocolumn]{IEEEtran}
 \usepackage{mathrsfs}
 \usepackage{amsmath}
 \usepackage{amsthm}
 \usepackage{amssymb}
+\usepackage{cite}
 \usepackage{amsfonts}
 \usepackage{graphicx}
 \usepackage{subfigure}
@@ -322,7 +323,7 @@
 %\IEEEauthorblockA{Starfleet Academy\\===
 %San Francisco, California 96678--2391\\
 %Telephone: (800) 555--1212\\
-%%Fax: (888) 555--1212}}
+%Fax: (888) 555--1212}}
 
 % conference papers do not typically use \thanks  and this command
 % is locked out in conference mode. If really needed, such as for
@@ -346,20 +347,28 @@
 %Telephone: (800) 555--1212, Fax: (888) 555--1212}
 %\IEEEauthorblockA{\IEEEauthorrefmark{4}Tyrell Inc., 123 Replicant Street, Los Angeles, California 90210--4321}}
 
-\author{\IEEEauthorblockN{Yue-Yue Tao, Zheng-Guang Wu, and Peng Shi}}
+%\author{\IEEEauthorblockN{Yue-Yue Tao, Zheng-Guang Wu, and Peng Shi }}
+
+\author{Yue-Yue Tao, Zheng-Guang Wu, and Peng Shi
+%	\thanks{ This work was supported by the Fundamental Research Funds for the Central Universities (Grant no. 2018FZA5009), the National Science Foundation (Grant no. ECCS-1611423) and the China Scholarship Council (Grant no. 201706320267). Corresponding author:~Wei~Ren.}
+	\thanks{Y. Tao and Z.-G. Wu are with the National Laboratory of Industrial Control Technology, Institute of Cyber-Systems and Control, Zhejiang University, Hangzhou Zhejiang, 310027, PR China (e-mail: taoyueyue54@zju.edu.cn; nashwzhg@zju.edu.cn).}
+	\thanks{P. Shi is with the School of Electrical and Electronic Engineering, University of Adelaide, Adelaide, SA 5005, Australia (e-mail: peng.shi@adelaide.edu.au). }  
+}
 
 % use for special paper notices
 %\IEEEspecialpapernotice{(Invited Paper)}
-
+\markboth{IEEE}%
+{Shell \MakeLowercase{\textit{et al.}}: Bare Demo of IEEEtran.cls for Journals}
 
 % make the title area
 \maketitle
 
 
+
 % As a general rule, do not put math, special symbols or citations
 % in the abstract
 \begin{abstract}
-	This paper is concerned with the issue of asynchronous sliding mode control (SMC) for two-dimensional (2D) discrete-time Markov jump systems, which is formulated by Roesser model. Concerning that modes of origin system are not always accessible to the controller, the hidden Markov model is utilized to describe the asynchronization between them. Based on the properties of 2D systems and Roesser model, a novel 2D sliding surface is constructed and the corresponding asynchronous SMC is designed under the framework of hidden Markov model. The Lyapunov function and linear matrix inequality technique are utilized to establish sufficient condition that can guarantee the concerned 2D system is asymptotically mean square stable with an  $H_{\infty}$ disturbance attenuation performance. Moreover, this condition can  simultaneously ensure the reachability of the constructed 2D sliding surface. Then, an algorithm is proposed to derive the asynchronous 2D-SMC law.  Finally, the validity and effectiveness of the  SMC design algorithm is verified through a numerical example.
+	This paper is concerned with the issue of asynchronous sliding mode control (SMC) for two-dimensional (2D) discrete-time Markov jump systems, whiAch is formulated by Roesser model. Concerning that modes of origin system are not always accessible to the controller, the hidden Markov model is utilized to describe the asynchronization between them. Based on the properties of 2D systems and Roesser model, a novel 2D sliding surface is constructed and the corresponding asynchronous SMC is designed under the framework of hidden Markov model. The Lyapunov function and linear matrix inequality technique are utilized to establish a sufficient condition that can guarantee the concerned 2D system is asymptotically mean square stable with an  $H_{\infty}$ disturbance attenuation performance. Moreover, this condition can  simultaneously ensure the reachability of the constructed 2D sliding surface. Then, an algorithm is proposed to derive the asynchronous 2D-SMC law.  Finally, the validity and effectiveness of the  SMC design algorithm is verified through a numerical example.
 \end{abstract}
 
 % no keywords
@@ -383,19 +392,19 @@
    
 
 \section{Introduction}
-	Markov jump systems (MJSs), an especial class of stochastic switching systems, have received considerable attentions for its powerful ability in modeling systems with sudden changes in parameters or system structures, for instance,  environmental disturbances, actuator failures, and interconnection variations in subsystems, etc. Over the past decades, a large number of results on stability analysis and the design of controller/filter have been reported in \cite{f1}-\cite{f5}.  
+	Markov jump systems (MJSs), an especial class of stochastic switching systems, have received considerable attentions for its powerful ability in modeling systems with sudden changes in parameters or system structures, for instance,  environmental disturbances, actuator failures, and interconnection variations in subsystems, etc. Over the past decades, a large number of results on stability analysis and the design of controller/filter have been reported in \cite{costa2006discrete, wu2014asynchronous, zhang2008analysis, shi2006designing, zhang2009stability}.
 	
-	However, the aforementioned works  are generally based on the implicit assumption that the information of system modes can always be  fully available for the controller/filter, so that the controller/filter modes can run synchronously with system modes. Unfortunately, in practical applications, it is rather difficult to satisfy this ideal assumption because of some unexpected factors, such as, time delays, data dropouts and quantization in networked control systems. To overcome the strict limitation, two research approaches were proposed, namely, mode-independent and asynchronous methods. In mode-independent methods, see \cite{mode_independent_T} and \cite{mode_independent_wuhuaining}, the controller/filter modes are independent of system modes, which means the information of system modes is not fully utilized and may result in some conservativeness. In \cite{passive_wu}, Wu proposed the hidden Markov model, a united asynchronous framework that covers synchronous and mode-independent cases. The hidden Markov model supposes that the controller/filter modes can be detected via a hidden Markov chain, such that controllers/filters can utilize more information of system modes.  Therefore, many problems of asynchronous control/filtering for MJSs have been studied in recent years \cite{Hinfty_shenying}-\cite{continus_filter_dongshanling}. 
-	
-	
-	Moreover, SMC, an effective control technique for its strong robustness against parameter variations,  exogenous disturbances and model uncertainties, has been successfully applied to a large variety of practical systems \cite{smc-motor}-\cite{smc-robot}.  The prime idea of SMC is to design a dis-continuous control law to drive the system state trajectories toward a predefined sliding surface and stay within a neighbourhood of the  sliding surface after reaching it \cite{smc-book}. In the last few decades, the SMC design problems have been extensively studied, and a large number of  research results for MJSs have been published \cite{smc-semiMarkov}-\cite{smc-nonlinear}. Recently, some researchers have investigated the asynchronous SMC design methods for MJSs based on hidden Markov model \cite{songjun-smc}-\cite{smc-qi}. 
+	However, the aforementioned works  are generally based on the implicit assumption that the information of system modes can always be  fully available for the controller/filter, so that the controller/filter modes can run synchronously with system modes. Unfortunately, in practical applications, it is rather difficult to satisfy this ideal assumption because of some unexpected factors, such as, time delays, data dropouts and quantization in networked control systems. To overcome the strict limitation, two research approaches were proposed, namely, mode-independent and asynchronous methods. In mode-independent methods, see \cite{todorov2016new,wu2005mode,dolgov2017static}, the controller/filter modes are independent of system modes, which means the information of system modes is not fully utilized and may result in some conservativeness. In \cite{wu2016passivity}, Wu proposed the hidden Markov model, a united asynchronous framework that covers synchronous and mode-independent cases. A similar description of this model can also be found in earlier works \cite{costa2006discrete} and \cite{do2014detector}. The hidden Markov model supposes that the controller/filter modes can be detected via a hidden Markov chain, such that controllers/filters can utilize more information of the origin system modes.  Base on this model, many problems of asynchronous control/filtering for MJSs have been studied in recent years \cite{de2017h,todorov2018detector,rodrigues2018detector}. 
 	
 	
+	Moreover, SMC, an effective control technique for its strong robustness against parameter variations,  exogenous disturbances and model uncertainties, has been successfully applied to a large variety of practical systems \cite{utkin2009sliding,yang1999sliding,shima2006sliding}.  The prime idea of SMC is to design a dis-continuous control law to drive the system state trajectories toward a predefined sliding surface and stay within a neighbourhood of the  sliding surface after reaching it \cite{edwards1998sliding}. In the last few decades, the SMC design problems have been extensively studied, and a large number of  research results for MJSs have been published \cite{li2015state,wu2010state,wang2017smc}. Recently, some researchers have investigated the asynchronous SMC design methods for MJSs based on hidden Markov model \cite{song2018asynchronous,li2017passivity,qi2018observer}. 
 	
-	On the other hand, two-dimensional systems, a special class of multi-dimensional systems  dating back to 1970s,  have been used to represent a large variety of practical applications, such as digital image processing, partial differential equations modeling and signal filtering \cite{roesser}-\cite{signal-processing}, etc. Different from one-dimensional systems, the prime feature of  2D systems lie in the system information propagates along two different directions and the information in each direction is independent with each other, which brings much complexity and difficulty in system analysis and synthesis. To describe the special properties of 2D systems, several  mathematical models presented in state-space framework have been proposed, for example Roesser model \cite{roesser} and Fornasini-Marchesini model \cite{FM-model}. In Roesser model, the system state is composed of two independent states, horizontal state and vertical state, which are denoted by  sub-vectors, the next horizontal state and vertical state in different directions can be deduced from current state, respectively. Unlike the Roesser model, the system state in Fornasini-Marchesini model is represented by a vector which is a function with two independent variables, and the current system state is derived from the  last two adjacent states in different directions. In most circumstances, the Roesser model can be regarded as particular case of Fornasini-Marchesini model, but is much simpler and more intelligible than the latter. Based on 2D bounded real lemma, the $H_{\infty}$ control theory for 2D systems was established by Du and Xie in \cite{du-chunling&l-xie} and \cite{Du-Xie}. This result was extended to control and filtering problems for 2D systems with time-varying delays \cite{tile-varing-delay},  multiplicative noise \cite{Ahn-noise} and uncertainty parameters \cite{Uncertainty-parmeters2D}. 
-	Anh has studied  the dissipative control and filtering problems for 2D systems in \cite{Ahn-2}  by utilizing linear matrix inequalities technique.
-	A large number of preliminary results on SMC of discrete-time 2D systems have been established \cite{SMC2D1}-\cite{SMC2D3}.
-	In recent years, 2D systems with Markov jump parameters have attracted more interests of researchers. For example,  the $H_{\infty}$ control, $H_{\infty}$ filtering, $H_{\infty}$ mode reduction and fault detection problems for 2D-MJSs have been investigated in \cite{Markov-Gao}-\cite{fault-dectction-shenying}, respectively. However, we have to notice that, the issue of SMC  for 2D-MJSs has not been fully studied yet, which motivates us for current work.
+	
+	
+	On the other hand, two-dimensional systems, a special class of multi-dimensional systems  dating back to 1970s,  have been used to represent a large variety of practical applications, such as digital image processing, partial differential equations modeling and signal filtering \cite{roesser1975discrete,marszalek1984two,rogers2015multidimensional}, etc. Different from one-dimensional systems, the prime feature of  2D systems lie in the system information propagates along two different directions and the information in each direction is independent with each other, which brings much complexity and difficulty in system analysis and synthesis. To describe the special properties of 2D systems, several  mathematical models presented in state-space framework have been proposed, for example Roesser model \cite{roesser1975discrete} and Fornasini-Marchesini model \cite{fornasini1978doubly}. In Roesser model, the system state is composed of two independent states, horizontal state and vertical state, which are denoted by  sub-vectors, the next horizontal state and vertical state in different directions can be deduced from current state, respectively. Unlike the Roesser model, the system state in Fornasini-Marchesini model is represented by a vector which is a function with two independent variables, and the current system state is derived from the  last two adjacent states in different directions. In most circumstances, the Roesser model can be regarded as particular case of Fornasini-Marchesini model, but is much simpler and more intelligible than the latter. Based on 2D bounded real lemma, the $H_{\infty}$ control theory for 2D systems was established by Du and Xie in \cite{du2001h} and \cite{du2002hinfinity}. This result was extended to control and filtering problems for 2D systems with time-varying delays \cite{trinh2016stability},  multiplicative noise \cite{ahn2016stochastic} and uncertainty parameters \cite{chesi2016robust}. 
+	Anh has studied  the dissipative control and filtering problems for 2D systems in \cite{ahn2015two}  by utilizing linear matrix inequalities technique.
+	A large number of preliminary results on SMC of discrete-time 2D systems have been established \cite{liu2005adaptive,wu2008sliding,yang2019two}.
+	In recent years, 2D systems with Markov jump parameters have attracted more interests of researchers. For example,  the $H_{\infty}$ control, $H_{\infty}$ filtering, $H_{\infty}$ mode reduction and fault detection problems for 2D-MJSs have been investigated in \cite{gao2004stabilization,wu2018hcontrol2d,wu2008hfiltering2d,wu2006modelreduction,shen2019dissipativity}, respectively. However, we have to notice that, the issue of SMC  for 2D-MJSs has not been fully studied yet, which motivates us for current work.
 	 
 	Based on the aforementioned considerations, we will investigate the asynchronous SMC design problem for 2D-MJSs in this paper. 
 	The primary contributions of this paper are shown as following aspects:
@@ -465,7 +474,7 @@
 	 	where $\mathbb{E}\{\cdot\}$ represents the mathematical expectation.
 	\end{assumption}
 	
-	In practical applications, the complete information of $r(i,j)$ can not always be available to the controller. Hence, in this paper, the hidden Markov model $(r(i,j),\sigma(i,j),\varLambda,\varPsi)$ as in \cite{passive_wu} is introduced to characterize the asynchronous phenomenon between the controller and the original system. The parameter $\sigma(i,j)$, refers to controller mode, takes values in another finite set $\mathcal{N}_{2} = \{1,2...N_{2}\}$, and satisfies the conditional probability matrix $\varPsi=\{\mu_{k\tau }\}$ with conditional mode transition probabilities
+	In practical applications, the complete information of $r(i,j)$ can not always be available to the controller. Hence, in this paper, the hidden Markov model $(r(i,j),\sigma(i,j),\varLambda,\varPsi)$ as in \cite{wu2016passivity} is introduced to characterize the asynchronous phenomenon between the controller and the original system. The parameter $\sigma(i,j)$, refers to controller mode, takes values in another finite set $\mathcal{N}_{2} = \{1,2...N_{2}\}$, and satisfies the conditional probability matrix $\varPsi=\{\mu_{k\tau }\}$ with conditional mode transition probabilities
 	\begin{equation}
 		\Pr\{\sigma(i,j)=\tau|r(i,j)=k\}=\mu_{k\tau } %\forall  k\in\mathcal{N}_{1}, \tau\in\mathcal{N}_{2}
 	\end{equation}
@@ -757,7 +766,7 @@
 
 
 \begin{remark}
-	As mentioned above, the hidden Markov model consists of two Markov chains which will result in some difficulties in SMC design. Following a similar method proposed in \cite{passive_wu}, the matrices $Q_{k\tau }$ and $T_{k\tau}$ are introduced to separate those two Markov chains.
+	As mentioned above, the hidden Markov model consists of two Markov chains which will result in some difficulties in SMC design. Following a similar method proposed in \cite{wu2016passivity}, the matrices $Q_{k\tau }$ and $T_{k\tau}$ are introduced to separate those two Markov chains.
 \end{remark}
 
 \subsection{Analysis of Reachability}\label{minimization} 
@@ -1004,7 +1013,7 @@ It is obvious that, if the theorem \ref{theorem1} and the theorem \ref{theorem2}
 
 
 \section{Numerical Example} \label{example}
-In this section, we are going to provide an simulation example to verify the effectiveness of the proposed asynchronous 2D-SMC design method.  As is well-known that several dynamical processes, for instance, gas absorption,  water stream heating and air drying  can be represented by the Darboux equation \cite{darboux-equation}. It is generally presented in the form of partial differential equations, and can be easily transformed into  a 2D system in Roesser model with a similar approach applied in \cite{du-chunling&l-xie}. In this example, the concerned 2D-MJS and the asynchronous  2D-SMC both consist of two operation modes, that is, $\mathcal{N}_1=\{1,2\}$, $ \mathcal{N}_{2}=\{1,2\}$,  and the relevant system parameters are given as follows: \\
+In this section, we are going to provide an simulation example to verify the effectiveness of the proposed asynchronous 2D-SMC design method.  As is well-known that several dynamical processes, for instance, gas absorption,  water stream heating and air drying  can be represented by the Darboux equation \cite{marszalek1984two}. It is generally presented in the form of partial differential equations, and can be easily transformed into  a 2D system in Roesser model with a similar approach applied in \cite{du2001h}. In this example, the concerned 2D-MJS and the asynchronous  2D-SMC both consist of two operation modes, that is, $\mathcal{N}_1=\{1,2\}$, $ \mathcal{N}_{2}=\{1,2\}$,  and the relevant system parameters are given as follows: \\
 Mode 1:
 \begin{equation} \notag
 \begin{aligned}
@@ -1163,147 +1172,134 @@ with the minimum $H_{\infty}$ disturbance attenuation performance $\gamma^{*}=0.
 
 \section{Conclusions} \label{conclusion} 
 This work has investigated the problem of asynchronous SMC for 2D-MJSs in Roesser model. In consideration that the system modes are not always accessible to the controller, an asynchronous 2D-SMC design method is explored with hidden Markov model. By utilizing Lyapunov function, the asymptotic mean square stability for the concerned 2D-MJS  and the reachability of the sliding mode dynamics are analyzed, respectively. A sufficient condition is derived that can guarantee the concerned closed-loop 2D system is AMSS with $H_{\infty}$ disturbance attenuation performance , and  the reachability of the 2D sliding mode dynamics is ensured simultaneously. Finally, the asynchronous SMC design procedures are summarized as an algorithm whose effectiveness is verified by a numerical example.
-% conference papers do not normally have an appendix
 
-% use section* for acknowledgment
-%\section*{Acknowledgment}
+
+\bibliographystyle{ieeetr}
+\bibliography{references}
+
+%\begin{thebibliography}{1}
+%	\bibitem{costa2006discrete}
+%	Costa, Oswaldo Luiz Valle, Marcelo Dutra Fragoso, and Ricardo Paulino Marques. Discrete-time Markov jump linear systems. Springer Science \& Business Media, 2006.
+%	\bibitem{wu2014asynchronous}
+%	Wu, Zheng-Guang, Peng Shi, Hongye Su, and Jian Chu. "Asynchronous $l_{2}-l_{\infty}$ filtering for discrete-time stochastic Markov jump systems with randomly occurred sensor nonlinearities." Automatica 50, no. 1 (2014): 180-186.
+%	\bibitem{zhang2008analysis}
+%	Zhang, Lixian, El-Kébir Boukas, and James Lam. "Analysis and synthesis of Markov jump linear systems with time-varying delays and partially known transition probabilities." IEEE Transactions on Automatic Control 53.10 (2008): 2458-2464.
+%	\bibitem{shi2006designing}
+%	Shi, Peng, Yuanqing Xia, G. P. Liu, and David Rees. "On designing of sliding-mode control for stochastic jump systems." IEEE Transactions on Automatic Control 51, no. 1 (2006): 97-103.
+%	\bibitem{zhang2009stability}
+%	Zhang, Lixian, and El-Kébir Boukas. "Stability and stabilization of Markovian jump linear systems with partly unknown transition probabilities." Automatica 45.2 (2009): 463-468.
+%	
+%	\bibitem{todorov2016new}
+%	Todorov, Marcos G., and Marcelo D. Fragoso. "New methods for mode-independent robust control of Markov jump linear systems." Systems \& Control Letters 90 (2016): 38-44.
+%	
+%	\bibitem{wu2005mode}
+%	Wu, Huai-Ning, and Kai-Yuan Cai. "Mode-independent robust stabilization for uncertain Markovian jump nonlinear systems via fuzzy control." IEEE Transactions on Systems, Man, and Cybernetics, Part B (Cybernetics) 36.3 (2005): 509-519.
+%	
+%	\bibitem{dolgov2017static}
+%	Dolgov, M., \& Hanebeck, U. D. (2017). Static output-feedback control of Markov jump linear systems without mode observation. IEEE Transactions on Automatic Control, 62(10), 5401-5406.
+%	
+%	
+%	\bibitem{wu2016passivity}
+%	Wu, Zheng-Guang, Peng Shi, Zhan Shu, Hongye Su, and Renquan Lu. "Passivity-based asynchronous control for Markov jump systems." IEEE Transactions on Automatic Control 62, no. 4 (2016): 2020-2025.
+%	
+%	\bibitem{shen2019h}
+%	Shen, Ying, Zheng-Guang Wu, Peng Shi, Zhan Shu, and Hamid Reza Karimi. "$H_{\infty}$ control of Markov jump time-delay systems under asynchronous controller and quantizer." Automatica 99 (2019): 352-360.
+%	
+%	\bibitem{zhang2017fuzzy}
+%	Zhang, Meng, Peng Shi, Zhitao Liu, Hongye Su, and Longhua Ma. "Fuzzy model-based asynchronous $H_{\infty}$ filter design of discrete-time Markov jump systems." Journal of the Franklin Institute 354, no. 18 (2017): 8444-8460.
+%	
+%	\bibitem{dong2018hidden}
+%	Dong, Shanling, Zheng-Guang Wu, Ya-Jun Pan, Hongye Su, and Yang Liu. "Hidden-Markov-model-based asynchronous filter design of nonlinear Markov jump systems in continuous-time domain." IEEE transactions on cybernetics 49, no. 6 (2018): 2294-2304.
+%	
+%	
+%	\bibitem{du2018discrete}
+%	Du, Haibo, Xiuping Chen, Guanghui Wen, Xinghuo Yu, and Jinhu Lü. "Discrete-time fast terminal sliding mode control for permanent magnet linear motor." IEEE Transactions on Industrial Electronics 65, no. 12 (2018): 9916-9927.
+%	
+%	\bibitem{wang2017sliding}
+%	Wang, Yueying, Yabin Gao, Hamid Reza Karimi, Hao Shen, and Zhijun Fang. "Sliding mode control of fuzzy singularly perturbed systems with application to electric circuit." IEEE Transactions on Systems, Man, and Cybernetics: Systems 48, no. 10 (2017): 1667-1675.
+%	
+%	\bibitem{baek2016new}
+%	Baek, Jaemin, Maolin Jin, and Soohee Han. "A new adaptive sliding-mode control scheme for application to robot manipulators." IEEE Transactions on Industrial Electronics 63.6 (2016): 3628-3637.
+%	
+%	\bibitem{edwards1998sliding}
+%	Edwards, Christopher, and Sarah Spurgeon. Sliding mode control: theory and applications. Crc Press, 1998.
+%	
+%	\bibitem{li2015state}
+%	Li, Fanbiao, Ligang Wu, Peng Shi, and Cheng-Chew Lim. "State estimation and sliding mode control for semi-Markovian jump systems with mismatched uncertainties." Automatica 51 (2015): 385-393.
+%	
+%	\bibitem{wu2010state}
+%	Wu, Ligang, Peng Shi, and Huijun Gao. "State estimation and sliding-mode control of Markovian jump singular systems." IEEE Transactions on Automatic Control 55.5 (2010): 1213-1219.
+%	
+%	\bibitem{wang2017smc}
+%	Wang, Yueying, Yuanqing Xia, Hao Shen, and Pingfang Zhou. "SMC design for robust stabilization of nonlinear Markovian jump singular systems." IEEE Transactions on Automatic Control 63, no. 1 (2017): 219-224.
+%	
+%	\bibitem{song2018asynchronous}
+%	Song, Jun, Yugang Niu, and Yuanyuan Zou. "Asynchronous sliding mode control of Markovian jump systems with time-varying delays and partly accessible mode detection probabilities." Automatica 93 (2018): 33-41.
 %
-%
-%The authors would like to thank...
-
-
-\begin{thebibliography}{1}
-	\bibitem{f1}
-	Costa, Oswaldo Luiz Valle, Marcelo Dutra Fragoso, and Ricardo Paulino Marques. Discrete-time Markov jump linear systems. Springer Science \& Business Media, 2006.
-	\bibitem{f2}
-	Wu, Zheng-Guang, Peng Shi, Hongye Su, and Jian Chu. "Asynchronous $l_{2}-l_{\infty}$ filtering for discrete-time stochastic Markov jump systems with randomly occurred sensor nonlinearities." Automatica 50, no. 1 (2014): 180-186.
-	\bibitem{f3}
-	Zhang, Lixian, El-Kébir Boukas, and James Lam. "Analysis and synthesis of Markov jump linear systems with time-varying delays and partially known transition probabilities." IEEE Transactions on Automatic Control 53.10 (2008): 2458-2464.
-	\bibitem{f4}
-	Shi, Peng, Yuanqing Xia, G. P. Liu, and David Rees. "On designing of sliding-mode control for stochastic jump systems." IEEE Transactions on Automatic Control 51, no. 1 (2006): 97-103.
-	\bibitem{f5}
-	Zhang, Lixian, and El-Kébir Boukas. "Stability and stabilization of Markovian jump linear systems with partly unknown transition probabilities." Automatica 45.2 (2009): 463-468.
-	
-	\bibitem{mode_independent_T}
-	Todorov, Marcos G., and Marcelo D. Fragoso. "New methods for mode-independent robust control of Markov jump linear systems." Systems \& Control Letters 90 (2016): 38-44.
-	
-	\bibitem{mode_independent_wuhuaining}
-	Wu, Huai-Ning, and Kai-Yuan Cai. "Mode-independent robust stabilization for uncertain Markovian jump nonlinear systems via fuzzy control." IEEE Transactions on Systems, Man, and Cybernetics, Part B (Cybernetics) 36.3 (2005): 509-519.
-	
-	
-	\bibitem{passive_wu}
-	Wu, Zheng-Guang, Peng Shi, Zhan Shu, Hongye Su, and Renquan Lu. "Passivity-based asynchronous control for Markov jump systems." IEEE Transactions on Automatic Control 62, no. 4 (2016): 2020-2025.
-	
-	\bibitem{Hinfty_shenying}
-	Shen, Ying, Zheng-Guang Wu, Peng Shi, Zhan Shu, and Hamid Reza Karimi. "$H_{\infty}$ control of Markov jump time-delay systems under asynchronous controller and quantizer." Automatica 99 (2019): 352-360.
-	
-	\bibitem{filter_zhangmeng}
-	Zhang, Meng, Peng Shi, Zhitao Liu, Hongye Su, and Longhua Ma. "Fuzzy model-based asynchronous $H_{\infty}$ filter design of discrete-time Markov jump systems." Journal of the Franklin Institute 354, no. 18 (2017): 8444-8460.
-	
-	\bibitem{continus_filter_dongshanling}
-	Dong, Shanling, Zheng-Guang Wu, Ya-Jun Pan, Hongye Su, and Yang Liu. "Hidden-Markov-model-based asynchronous filter design of nonlinear Markov jump systems in continuous-time domain." IEEE transactions on cybernetics 49, no. 6 (2018): 2294-2304.
-	
-	
-	\bibitem{smc-motor}
-	Du, Haibo, Xiuping Chen, Guanghui Wen, Xinghuo Yu, and Jinhu Lü. "Discrete-time fast terminal sliding mode control for permanent magnet linear motor." IEEE Transactions on Industrial Electronics 65, no. 12 (2018): 9916-9927.
-	
-	\bibitem{smc-circuit}
-	Wang, Yueying, Yabin Gao, Hamid Reza Karimi, Hao Shen, and Zhijun Fang. "Sliding mode control of fuzzy singularly perturbed systems with application to electric circuit." IEEE Transactions on Systems, Man, and Cybernetics: Systems 48, no. 10 (2017): 1667-1675.
-	
-	\bibitem{smc-robot}
-	Baek, Jaemin, Maolin Jin, and Soohee Han. "A new adaptive sliding-mode control scheme for application to robot manipulators." IEEE Transactions on Industrial Electronics 63.6 (2016): 3628-3637.
-	
-	\bibitem{smc-book}
-	Edwards, Christopher, and Sarah Spurgeon. Sliding mode control: theory and applications. Crc Press, 1998.
-	
-	\bibitem{smc-semiMarkov}
-	Li, Fanbiao, Ligang Wu, Peng Shi, and Cheng-Chew Lim. "State estimation and sliding mode control for semi-Markovian jump systems with mismatched uncertainties." Automatica 51 (2015): 385-393.
-	
-	\bibitem{smc-singular}
-	Wu, Ligang, Peng Shi, and Huijun Gao. "State estimation and sliding-mode control of Markovian jump singular systems." IEEE Transactions on Automatic Control 55.5 (2010): 1213-1219.
-	
-	\bibitem{smc-nonlinear}
-	Wang, Yueying, Yuanqing Xia, Hao Shen, and Pingfang Zhou. "SMC design for robust stabilization of nonlinear Markovian jump singular systems." IEEE Transactions on Automatic Control 63, no. 1 (2017): 219-224.
-	
-	\bibitem{songjun-smc}
-	Song, Jun, Yugang Niu, and Yuanyuan Zou. "Asynchronous sliding mode control of Markovian jump systems with time-varying delays and partly accessible mode detection probabilities." Automatica 93 (2018): 33-41.
-
-	\bibitem{lifanbo-smc}
-	Li, Fanbiao, Chenglong Du, Chunhua Yang, and Weihua Gui. "Passivity-based asynchronous sliding mode control for delayed singular Markovian jump systems." IEEE Transactions on Automatic Control 63, no. 8 (2017): 2715-2721.
-	
-	\bibitem{smc-qi}
-	Qi, Wenhai, Guangdeng Zong, and Hamid Reza Karim. "Observer-based adaptive SMC for nonlinear uncertain singular semi-Markov jump systems with applications to DC motor." IEEE Transactions on Circuits and Systems I: Regular Papers 65.9 (2018): 2951-2960.
-	
-	
-	
-	
-	
-	
-	
-	
-	\bibitem{roesser}
-	Roesser, Robert. "A discrete state-space model for linear image processing." IEEE Transactions on Automatic Control 20.1 (1975): 1-10.
-	
-	\bibitem{darboux-equation}
-	Marszalek, Wieslaw. "Two-dimensional state-space discrete models for hyperbolic partial differential equations." Applied Mathematical Modelling 8.1 (1984): 11-14.
-	
-	\bibitem{signal-processing}
-	E. Rogers, K. Galkowski, W. Paszke, K. L. Moore, P. H. Bauer, L. Hladowski, and P. Dabkowski, “Multidimensional control systems: case studies in design and evaluation,” Multidimensional Systems and Signal Processing, vol. 26, no. 4, pp. 895–939, 2015.
-	
-	\bibitem{FM-model}
-	Fornasini, Ettore, and Giovanni Marchesini. "Doubly-indexed dynamical systems: State-space models and structural properties." Mathematical systems theory 12.1 (1978): 59-72.
-	
-	\bibitem{du-chunling&l-xie}
-	Du, Chunling , L. Xie , and C. Zhang . "$H_{\infty}$ control and robust stabilization of two-dimensional systems in Roesser models." Automatica 37.2(2001):205-211.
-	
-	\bibitem{Du-Xie}
-	Du, Chungling, and Lihua Xie. $H_{\infty}$ Control and Filtering of Two-Dimensional Systems. Vol. 278. Springer Science \& Business Media, 2002.
-	
-	\bibitem{tile-varing-delay}
-	Trinh, Hieu. "Stability of two-dimensional Roesser systems with time-varying delays via novel 2D finite-sum inequalities." IET Control Theory \& Applications 10.14 (2016): 1665-1674.
-	
-	\bibitem{Ahn-noise}
-	Ahn, Choon Ki, Ligang Wu, and Peng Shi. "Stochastic stability analysis for 2-D Roesser systems with multiplicative noise." Automatica 69 (2016): 356-363.
-	
-	\bibitem{Uncertainty-parmeters2D}
-	Chesi, Graziano, and Richard H. Middleton. "Robust stability and performance analysis of 2D mixed continuous–discrete-time systems with uncertainty." Automatica 67 (2016): 233-243.
-	
-	\bibitem{Ahn-2}
-	Ahn, Choon Ki, Peng Shi, and Michael V. Basin. "Two-dimensional dissipative control and filtering for Roesser model." IEEE Transactions on Automatic Control 60.7 (2015): 1745-1759.
-	
-	\bibitem{SMC2D1}
-	Liu, Diantong, Jianqiang Yi, Dongbin Zhao, and Wei Wang. "Adaptive sliding mode fuzzy control for a two-dimensional overhead crane." Mechatronics 15, no. 5 (2005): 505-522.
-	
-	\bibitem{SMC2D2}
-	Wu, Ligang, and Huijun Gao. "Sliding mode control of two-dimensional systems in Roesser model." IET Control Theory \& Applications 2.4 (2008): 352-364.
-	
-	\bibitem{SMC2D3}
-	Yang, Rongni, and Wei Xing Zheng. "Two-dimensional Sliding Mode Control of Discrete-Time Fornasini-Marchesini Systems." IEEE Transactions on Automatic Control (2019).
-	
-	\bibitem{Markov-Gao}
-	Gao, Huijun, James Lam, Shengyuan Xu, and Changhong Wang. "Stabilization and $H_{\infty}$ control of two-dimensional Markovian jump systems." IMA Journal of Mathematical Control and Information 21, no. 4 (2004): 377-392.
-	
-	\bibitem{H_infty-Wuzg-control}
-	Wu, Zheng-Guang, Ying Shen, Peng Shi, Zhan Shu, and Hongye Su. "$\mathcal H_ {\infty} $ Control for 2-D Markov Jump Systems in Roesser Model." IEEE Transactions on Automatic Control 64, no. 1 (2018): 427-432.
-	
-	\bibitem{H_infty-Wuligang-filtering}
-	Wu, Ligang, Peng Shi, Huijun Gao, and Changhong Wang. "$H_{\infty}$ filtering for 2D Markovian jump systems." Automatica 44, no. 7 (2008): 1849-1858.
-	
-	\bibitem{H_infty-Wuligang-modereduction}
-	Wu, Ligang, Peng Shi, Huijun Gao, and Changhong Wang. "$H_{\infty}$ mode reduction for two-dimensional discrete state-delayed systems." IEE Proceedings-Vision, Image and Signal Processing 153, no. 6 (2006): 769-784.
-	
-	
-	\bibitem{fault-dectction-shenying}
-	Shen, Ying, Zheng-Guang Wu, Peng Shi, and Guanghui Wen. "Dissipativity based fault detection for 2D Markov jump systems with asynchronous modes." Automatica 106 (2019): 8-17.
-	
-	
-	
-	
-	
-	
-	
-	
-\end{thebibliography}
+%	\bibitem{li2017passivity}
+%	Li, Fanbiao, Chenglong Du, Chunhua Yang, and Weihua Gui. "Passivity-based asynchronous sliding mode control for delayed singular Markovian jump systems." IEEE Transactions on Automatic Control 63, no. 8 (2017): 2715-2721.
+%	
+%	\bibitem{qi2018observer}
+%	Qi, Wenhai, Guangdeng Zong, and Hamid Reza Karim. "Observer-based adaptive SMC for nonlinear uncertain singular semi-Markov jump systems with applications to DC motor." IEEE Transactions on Circuits and Systems I: Regular Papers 65.9 (2018): 2951-2960.
+%	
+%	
+%	\bibitem{roesser1975discrete}
+%	Roesser, Robert. "A discrete state-space model for linear image processing." IEEE Transactions on Automatic Control 20.1 (1975): 1-10.
+%	
+%	\bibitem{marszalek1984two}
+%	Marszalek, Wieslaw. "Two-dimensional state-space discrete models for hyperbolic partial differential equations." Applied Mathematical Modelling 8.1 (1984): 11-14.
+%	
+%	\bibitem{rogers2015multidimensional}
+%	E. Rogers, K. Galkowski, W. Paszke, K. L. Moore, P. H. Bauer, L. Hladowski, and P. Dabkowski, “Multidimensional control systems: case studies in design and evaluation,” Multidimensional Systems and Signal Processing, vol. 26, no. 4, pp. 895–939, 2015.
+%	
+%	\bibitem{fornasini1978doubly}
+%	Fornasini, Ettore, and Giovanni Marchesini. "Doubly-indexed dynamical systems: State-space models and structural properties." Mathematical systems theory 12.1 (1978): 59-72.
+%	
+%	\bibitem{du2001h}
+%	Du, Chunling , L. Xie , and C. Zhang . "$\mathscr{H}_{\infty}$ control and robust stabilization of two-dimensional systems in Roesser models." Automatica 37.2(2001):205-211.
+%	
+%	\bibitem{du2002hinfinity}
+%	Du, Chungling, and Lihua Xie. $H_{\infty}$ Control and Filtering of Two-Dimensional Systems. Vol. 278. Springer Science \& Business Media, 2002.
+%	
+%	\bibitem{trinh2016stability}
+%	Trinh, Hieu. "Stability of two-dimensional Roesser systems with time-varying delays via novel 2D finite-sum inequalities." IET Control Theory \& Applications 10.14 (2016): 1665-1674.
+%	
+%	\bibitem{ahn2016stochastic}
+%	Ahn, Choon Ki, Ligang Wu, and Peng Shi. "Stochastic stability analysis for 2-D Roesser systems with multiplicative noise." Automatica 69 (2016): 356-363.
+%	
+%	\bibitem{chesi2016robust}
+%	Chesi, Graziano, and Richard H. Middleton. "Robust stability and performance analysis of 2D mixed continuous–discrete-time systems with uncertainty." Automatica 67 (2016): 233-243.
+%	
+%	\bibitem{ahn2015two}
+%	Ahn, Choon Ki, Peng Shi, and Michael V. Basin. "Two-dimensional dissipative control and filtering for Roesser model." IEEE Transactions on Automatic Control 60.7 (2015): 1745-1759.
+%	
+%	\bibitem{liu2005adaptive}
+%	Liu, Diantong, Jianqiang Yi, Dongbin Zhao, and Wei Wang. "Adaptive sliding mode fuzzy control for a two-dimensional overhead crane." Mechatronics 15, no. 5 (2005): 505-522.
+%	
+%	\bibitem{wu2008sliding}
+%	Wu, Ligang, and Huijun Gao. "Sliding mode control of two-dimensional systems in Roesser model." IET Control Theory \& Applications 2.4 (2008): 352-364.
+%	
+%	\bibitem{yang2019two}
+%	Yang, Rongni, and Wei Xing Zheng. "Two-dimensional Sliding Mode Control of Discrete-Time Fornasini-Marchesini Systems." IEEE Transactions on Automatic Control (2019).
+%	
+%	\bibitem{gao2004stabilization}
+%	Gao, Huijun, James Lam, Shengyuan Xu, and Changhong Wang. "Stabilization and $H_{\infty}$ control of two-dimensional Markovian jump systems." IMA Journal of Mathematical Control and Information 21, no. 4 (2004): 377-392.
+%	
+%	\bibitem{wu2018hcontrol2d}
+%	Wu, Zheng-Guang, Ying Shen, Peng Shi, Zhan Shu, and Hongye Su. "$H_{\infty}$ Control for 2-D Markov Jump Systems in Roesser Model." IEEE Transactions on Automatic Control 64, no. 1 (2018): 427-432.
+%	
+%	\bibitem{wu2008hfiltering2d}
+%	Wu, Ligang, Peng Shi, Huijun Gao, and Changhong Wang. "$H_{\infty}$ filtering for 2D Markovian jump systems." Automatica 44, no. 7 (2008): 1849-1858.
+%	
+%	\bibitem{wu2006modelreduction}
+%	Wu, Ligang, Peng Shi, Huijun Gao, and Changhong Wang. "$H_{\infty}$ mode reduction for two-dimensional discrete state-delayed systems." IEE Proceedings-Vision, Image and Signal Processing 153, no. 6 (2006): 769-784.
+%	
+%	
+%	\bibitem{shen2019dissipativity}
+%	Shen, Ying, Zheng-Guang Wu, Peng Shi, and Guanghui Wen. "Dissipativity based fault detection for 2D Markov jump systems with asynchronous modes." Automatica 106 (2019): 8-17.
+%	
+%	
+%\end{thebibliography}
 
 
 
