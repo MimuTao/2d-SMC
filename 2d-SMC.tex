@@ -368,7 +368,7 @@
 % As a general rule, do not put math, special symbols or citations
 % in the abstract
 \begin{abstract}
-	This paper is concerned with the issue of asynchronous sliding mode control (SMC) for two-dimensional (2D) discrete-time Markov jump systems, whiAch is formulated by Roesser model. Concerning that modes of origin system are not always accessible to the controller, the hidden Markov model is utilized to describe the asynchronization between them. Based on the properties of 2D systems and Roesser model, a novel 2D sliding surface is constructed and the corresponding asynchronous SMC is designed under the framework of hidden Markov model. The Lyapunov function and linear matrix inequality technique are utilized to establish a sufficient condition that can guarantee the concerned 2D system is asymptotically mean square stable with an  $H_{\infty}$ disturbance attenuation performance. Moreover, this condition can  simultaneously ensure the reachability of the constructed 2D sliding surface. Then, an algorithm is proposed to derive the asynchronous 2D-SMC law.  Finally, the validity and effectiveness of the  SMC design algorithm is verified through a numerical example.
+	In this paper, asynchronous sliding mode control (SMC) is designed for two-dimensional (2D) discrete-time Markovian jump systems. As the system modes are not always accessible to the controller, the hidden Markov model is employed to describe the asynchronization between the system models and controller. A new 2D sliding surface is constructed and the corresponding asynchronous SMC is designed under the framework of hidden Markov model. By Lyapunov function and linear matrix inequality (LMI) approaches, sufficient conditions are presented to guarantee the underlying 2D system is asymptotically mean square stable (AMSS) with an $H_\infty$ disturbance attenuation performance. Then, an algorithm is provided to derive the asynchronous 2D-SMC law. Finally, an example is given to verify the validity and effectiveness of the new SMC design algorithm.
 \end{abstract}
 
 % no keywords
@@ -392,26 +392,26 @@
    
 
 \section{Introduction}
-	Markov jump systems (MJSs), an especial class of stochastic switching systems, have received considerable attentions for its powerful ability in modeling systems with sudden changes in parameters or system structures, for instance,  environmental disturbances, actuator failures, and interconnection variations in subsystems, etc. Over the past decades, a large number of results on stability analysis and the design of controller/filter have been reported in \cite{costa2006discrete, wu2014asynchronous, zhang2008analysis, shi2006designing, zhang2009stability}.
+	Markov jump systems (MJSs), a special class of stochastic switching systems, have received considerable attentions for its powerful ability in modeling systems with sudden changes in parameters or system structures, for instance,  environmental disturbances, actuator failures, and interconnection variations in subsystems, etc. Over the past decades, a large number of results on stability analysis and the design of controller/filter have been reported in \cite{costa2006discrete, wu2014asynchronous, zhang2008analysis, shi2006designing, zhang2009stability}.
 	
 	However, the aforementioned works  are generally based on the implicit assumption that the information of system modes can always be  fully available for the controller/filter, so that the controller/filter modes can run synchronously with system modes. Unfortunately, in practical applications, it is rather difficult to satisfy this ideal assumption because of some unexpected factors, such as, time delays, data dropouts and quantization in networked control systems. To overcome the strict limitation, two research approaches were proposed, namely, mode-independent and asynchronous methods. In mode-independent methods, see \cite{todorov2016new,wu2005mode,dolgov2017static}, the controller/filter modes are independent of system modes, which means the information of system modes is not fully utilized and may result in some conservativeness. In \cite{wu2016passivity}, Wu proposed the hidden Markov model, a united asynchronous framework that covers synchronous and mode-independent cases. A similar description of this model can also be found in earlier works \cite{costa2006discrete} and \cite{do2014detector}. The hidden Markov model supposes that the controller/filter modes can be detected via a hidden Markov chain, such that controllers/filters can utilize more information of the origin system modes.  Base on this model, many problems of asynchronous control/filtering for MJSs have been studied in recent years \cite{de2017h,todorov2018detector,rodrigues2018detector}. 
 	
 	
-	Moreover, SMC, an effective control technique for its strong robustness against parameter variations,  exogenous disturbances and model uncertainties, has been successfully applied to a large variety of practical systems \cite{utkin2009sliding,yang1999sliding,shima2006sliding}.  The prime idea of SMC is to design a dis-continuous control law to drive the system state trajectories toward a predefined sliding surface and stay within a neighbourhood of the  sliding surface after reaching it \cite{edwards1998sliding}. In the last few decades, the SMC design problems have been extensively studied, and a large number of  research results for MJSs have been published \cite{li2015state,wu2010state,wang2017smc}. Recently, some researchers have investigated the asynchronous SMC design methods for MJSs based on hidden Markov model \cite{song2018asynchronous,li2017passivity,qi2018observer}. 
+	Moreover, SMC, an effective control technique for its strong robustness against parameter variations,  exogenous disturbances and model uncertainties, has been successfully applied to a large variety of practical systems \cite{utkin2009sliding,yang1999sliding,shima2006sliding}.  The prime idea of SMC is to design a discontinuous control law to drive the system state trajectories toward a predefined sliding surface and stay within a neighbourhood of the  sliding surface after reaching it \cite{edwards1998sliding}. In the last few decades, the SMC design problems have been extensively studied, and a large number of  research results for MJSs have been published \cite{li2015state,wu2010state,wang2017smc}. Recently, some researchers have investigated the asynchronous SMC design methods for one-dimensional (1D) MJSs based on hidden Markov model \cite{song2018asynchronous,li2017passivity,qi2018observer}. 
 	
 	
-	
-	On the other hand, two-dimensional systems, a special class of multi-dimensional systems  dating back to 1970s,  have been used to represent a large variety of practical applications, such as digital image processing, partial differential equations modeling and signal filtering \cite{roesser1975discrete,marszalek1984two,rogers2015multidimensional}, etc. Different from one-dimensional systems, the prime feature of  2D systems lie in the system information propagates along two different directions and the information in each direction is independent with each other, which brings much complexity and difficulty in system analysis and synthesis. To describe the special properties of 2D systems, several  mathematical models presented in state-space framework have been proposed, for example Roesser model \cite{roesser1975discrete} and Fornasini-Marchesini model \cite{fornasini1978doubly}. In Roesser model, the system state is composed of two independent states, horizontal state and vertical state, which are denoted by  sub-vectors, the next horizontal state and vertical state in different directions can be deduced from current state, respectively. Unlike the Roesser model, the system state in Fornasini-Marchesini model is represented by a vector which is a function with two independent variables, and the current system state is derived from the  last two adjacent states in different directions. In most circumstances, the Roesser model can be regarded as particular case of Fornasini-Marchesini model, but is much simpler and more intelligible than the latter. Based on 2D bounded real lemma, the $H_{\infty}$ control theory for 2D systems was established by Du and Xie in \cite{du2001h} and \cite{du2002hinfinity}. This result was extended to control and filtering problems for 2D systems with time-varying delays \cite{trinh2016stability},  multiplicative noise \cite{ahn2016stochastic} and uncertainty parameters \cite{chesi2016robust}. 
+	On the other hand, 2D systems, a special class of multi-dimensional systems  dating back to 1970s,  have been used to represent a large variety of practical applications, such as digital image processing, partial differential equations modeling and signal filtering \cite{roesser1975discrete,marszalek1984two,rogers2015multidimensional}, etc. Different from 1D systems, the prime feature of  2D systems lie in the system information propagates along two different directions and the information in each direction will have effects on the other, which brings much complexity and difficulty in system analysis and synthesis. To describe the special properties of 2D systems, several  mathematical models presented in state-space framework have been proposed, for example Roesser model \cite{roesser1975discrete} and Fornasini-Marchesini model \cite{fornasini1978doubly}. In Roesser model, the system state is composed of two independent states, horizontal state and vertical state, which are denoted by  sub-vectors, the next horizontal state and vertical state in different directions can be deduced from current state, respectively. Unlike the Roesser model, the system state in Fornasini-Marchesini model is represented by a vector which is a function with two independent variables, and the current system state is derived from the  last two adjacent states in different directions. In most circumstances, Roesser model can be regarded as particular case of Fornasini-Marchesini model, but is much simpler and more intelligible than the latter. Based on 2D bounded real lemma, the $H_{\infty}$ control theory for 2D systems was established by Du and Xie in \cite{du2001h} and \cite{du2002hinfinity}. This result was extended to control and filtering problems for 2D systems with time-varying delays \cite{trinh2016stability},  multiplicative noise \cite{ahn2016stochastic} and uncertainty parameters \cite{chesi2016robust}. 
 	Anh has studied  the dissipative control and filtering problems for 2D systems in \cite{ahn2015two}  by utilizing linear matrix inequalities technique.
 	A large number of preliminary results on SMC of discrete-time 2D systems have been established \cite{liu2005adaptive,wu2008sliding,yang2019two}.
-	In recent years, 2D systems with Markov jump parameters have attracted more interests of researchers. For example,  the $H_{\infty}$ control, $H_{\infty}$ filtering, $H_{\infty}$ mode reduction and fault detection problems for 2D-MJSs have been investigated in \cite{gao2004stabilization,wu2018hcontrol2d,wu2008hfiltering2d,wu2006modelreduction,shen2019dissipativity}, respectively. However, we have to notice that, the issue of SMC  for 2D-MJSs has not been fully studied yet, which motivates us for current work.
+	In recent years, 2D systems with Markov jump parameters have attracted more interests of researchers. For example,  the $H_{\infty}$ control, $H_{\infty}$ filtering, $H_{\infty}$ mode reduction and fault detection problems for 2D-MJSs have been investigated in \cite{gao2004stabilization,wu2018hcontrol2d,wu2008hfiltering2d,wu2006modelreduction,shen2019dissipativity}, respectively. However, we have to notice that, the issue of SMC  for 2D-MJSs has not been studied yet, which motivates us for current work.
 	 
-	Based on the aforementioned considerations, we will investigate the asynchronous SMC design problem for 2D-MJSs in this paper. 
+	Based on the aforementioned considerations, we will investigate the problem of asynchronous SMC for 2D-MJSs in this paper. 
 	The primary contributions of this paper are shown as following aspects:
 	\begin{enumerate}
-		\item  According to the properties of 2D systems, a novel 2D sliding surface is constructed, and the corresponding asynchronous 2D-SMC  is designed under the framework of hidden Markov model, which means it is more generalized than the synchronous and mode-independent ones.
-		\item  A sufficient condition that can guarantee the concerned 2D system is asymptotically mean square stable (AMSS) with an  $H_{\infty}$ disturbance attenuation performance is established. Moreover, this condition can simultaneously ensure the reachability of the constructed 2D sliding surface. Finally, the  design procedures of SMC are summarized into an algorithm.
-		\item  It is the first time that the asynchronous SMC is investigated for 2D-MJSs, which shows the feasibility and effectiveness of SMC for 2D-MJSs. What's more, the proposed asynchronous SMC design method can be applied not only to the Roesser model, but also to the  Fornasini-Marchesini  model  merely through some simple modifications.
+		\item Based on the properties of 2D systems, a novel 2D sliding surface is constructed, and the corresponding asynchronous 2D-SMC law is designed under the framework of hidden Markov model, which means it is more practical and flexible than the synchronous or mode-independent ones.
+		\item  A sufficient condition that can guarantee the concerned 2D system is AMSS with an  $H_{\infty}$ disturbance attenuation performance is established. Moreover, this condition can simultaneously ensure the reachability of the sliding mode dynamics. Finally, the  design procedures of SMC law are summarized into an algorithm. 
+		\item It is the first time that the asynchronous SMC is investigated for 2D-MJSs, which shows the feasibility and effectiveness of SMC for 2D-MJSs.  However, Considering the complexity and difficulty in system analysis and synthesis of 2D systems over 1D systems, our work Though asynchronous SMC schemes for 1D-MJSs have been extensively studied in preview works, such as \cite{song2018asynchronous,li2017passivity,qi2018observer} etc. However, as 
+		
 	\end{enumerate}
 
 \section{Preliminaries} \label{priliminaries}
@@ -440,19 +440,28 @@
 		x^{v}(i,j)
 		\end{bmatrix}          
 	\end{equation*}
-	$x^{h}(i,j)\in \mathbb{R}^{n_h}$ and $x^{v}(i,j)\in \mathbb{R}^{n_v}$ represent horizontal and vertical sub-states respectively, $u(i,j) \in \mathbb{R}^{n_u}$ and $y(i,j) \in \mathbb{R}^{n_y}$ represent the controlled input and output respectively, and $w(i,j) \in \mathbb{R}^{n_w}$ represents the exogenous disturbance which belongs to $\ell_{2}\{[0,\infty),[0,\infty)\}$. $A_{r(i,j)}$,$B_{r(i,j)}$,$C_{r(i,j)}$,$D_{r(i,j)}$ and $E_{r(i,j)}$ represent the time-varying system matrices, all of which are real known constant matrices with appropriate dimensions. Besides, we assume that the matrix $B_{r(i,j)}$ is full column rank for each $r(i,j)\in\mathcal{N}_{1}$, that is, rank($B_{r(i,j)}$)$=n_u$. The nonlinear function $f(x(i,j),r(i,j))$ satisfies the following property:
+	$x^{h}(i,j)\in \mathbb{R}^{n_h}$ and $x^{v}(i,j)\in \mathbb{R}^{n_v}$ represent horizontal and vertical sub-states respectively, $u(i,j) \in \mathbb{R}^{n_u}$ and $y(i,j) \in \mathbb{R}^{n_y}$ represent the control input and controlled output respectively, and $w(i,j) \in \mathbb{R}^{n_w}$ represents the exogenous disturbance which belongs to $\ell_{2}\{[0,\infty),[0,\infty)\}$. $A_{r(i,j)}$, $B_{r(i,j)}$, $C_{r(i,j)}$, $D_{r(i,j)}$ and $E_{r(i,j)}$ represent the time-varying system matrices, all of which are real known with appropriate dimensions. Besides, we assume that the matrix $B_{r(i,j)}$ is full column rank for each $r(i,j)\in\mathcal{N}_{1}$, that is, rank($B_{r(i,j)}$)$=n_u$. The nonlinear function $f(x(i,j),r(i,j))$ satisfies the following property:
 	\begin{equation}\label{nonlinear-func}
 		\|f(x(i,j),r(i,j)\| \leq \delta_{r(i,j)}\|x(i,j)\|
 	\end{equation}
-	where $\delta_{r(i,j)}$ is a known scalar, $\|\cdot\|$ denotes the Euclidean norm of a vector. The parameter $r(i,j)$ takes values in a finite set $\mathcal{N}_{1}=\{1,2...,N_{1} \}$ with transition probability matrix $\varLambda = \{\lambda_{kp}\}$, and the related transition probability from mode $k$ to mode $p$ is given by 
-	\begin{equation}
-		\begin{split}
-			&\Pr\{r(i+1,j)=p|r(i,j)=k\}\\
-		    =&\Pr\{r(i,j+1)=p|r(i,j)=k\}=\lambda_{kp},\  \forall k,p \in \mathcal{N}_{1}
-		\end{split}
+	where $\delta_{r(i,j)}$ is a known scalar, $\|\cdot\|$ denotes the Euclidean norm of a vector. The parameter $r(i,j)$ takes values in a finite set $\mathcal{N}_{1}=\{1,2...,N_{1} \}$ with transition probability matrix $\varLambda = [\lambda_{kp}]$, and the related transition probability from mode $k$ to mode $p$ is given by (see \cite{wu2018hcontrol2d,wu2008hfiltering2d})
+	\begin{equation}\label{tps_system}
+	\begin{split}
+	&\Pr\{r(i+1,j)=p|r(i,j)=k\}\\
+	=&\Pr\{r(i,j+1)=p|r(i,j)=k\}=\lambda_{kp},\  \forall k,p \in \mathcal{N}_{1}
+	\end{split}
 	\end{equation}
+%	\begin{equation}\label{tps_system}
+%	\lambda_{kp}=
+%	\begin{cases}
+%	\Pr\{r(i+1,j)=p|r(i,j)=k\},\\
+%	\Pr\{r(i,j+1)=p|r(i,j)=k\}, 
+%	\end{cases} \forall k,p \in \mathcal{N}_{1}
+%	\end{equation}
 	where $\lambda_{kp}\in[0,1]$, for all $k, p\in\mathcal{N}_{1}$, and $\sum_{p=1}^{N_1}\lambda_{kp}=1$ for every mode $k$.
-	
+%	\begin{remark}
+%		We should notice that condition \eqref{tps_system}  contains a implicit assumption, that is, mode transition probability from (i,j)  to (i+1,j) and (i,j+1) are equal. 
+%	\end{remark}
 	We define the boundary condition ($X_{0},\varGamma_{0}$) of the 2D-MJS \eqref{system-equation}, as follows:
 	\begin{equation} \label{boundary-condition}
 	\left\{
@@ -474,22 +483,14 @@
 	 	where $\mathbb{E}\{\cdot\}$ represents the mathematical expectation.
 	\end{assumption}
 	
-	In practical applications, the complete information of $r(i,j)$ can not always be available to the controller. Hence, in this paper, the hidden Markov model $(r(i,j),\sigma(i,j),\varLambda,\varPsi)$ as in \cite{wu2016passivity} is introduced to characterize the asynchronous phenomenon between the controller and the original system. The parameter $\sigma(i,j)$, refers to controller mode, takes values in another finite set $\mathcal{N}_{2} = \{1,2...N_{2}\}$, and satisfies the conditional probability matrix $\varPsi=\{\mu_{k\tau }\}$ with conditional mode transition probabilities
+	In practical applications, the complete information of $r(i,j)$ can not always be available to the controller. Hence, in this paper, the hidden Markov model $(r(i,j),\sigma(i,j),\varLambda,\varPsi)$ as in \cite{wu2016passivity} is introduced to characterize the asynchronous phenomenon between the controller and the original system. The parameter $\sigma(i,j)$, refers to controller mode, takes values in another finite set $\mathcal{N}_{2} = \{1,2...N_{2}\}$, and satisfies the conditional probability matrix $\varPsi=[\mu_{k\tau} ]$ with conditional mode transition probabilities
 	\begin{equation}
 		\Pr\{\sigma(i,j)=\tau|r(i,j)=k\}=\mu_{k\tau } %\forall  k\in\mathcal{N}_{1}, \tau\in\mathcal{N}_{2}
 	\end{equation}
 	where $\mu_{k\tau }\in[0,1]$ for all $k\in\mathcal{N}_{1}, \tau\in\mathcal{N}_{2}$, and $\sum_{\tau =1}^{N_{2}}\mu_{k\tau } = 1$ for any mode $k$.
 	
 \begin{remark}
-	The hidden Markov model is a united framework that covers synchronous and mode-independent cases. Which case the controller belongs to depends on the conditional probability matrix $\varPsi$.  The controller belongs to synchronous case if and only if $\varPsi$ satisfies:
-	\begin{equation*}
-	\mu_{k\tau }=
-	\begin{cases}
-	1, \quad \tau=\tau_{k}\\
-	0, \quad \tau\neq \tau_{k}
-	\end{cases}\ \tau_{k}\in\mathcal{N}_{2}
-	\end{equation*}
-	for every mode $k\in\mathcal{N}_{1}$. The controller becomes a mode-independent one when $\mathcal{N}_{2}=\{1\}$. Thus, the established results  can be readily extended to synchronous and mode-independent cases  by adjusting the conditional probability matrix $\varPsi$.
+	The hidden Markov model is a united framework that covers synchronous, asynchronous and mode-independent cases. Which case the controller belongs to depends on the conditional probability matrix $\varPsi$.  The controller belongs to synchronous case if $\varPsi=\varLambda$, or becomes a mode-independent one when $\mathcal{N}_{2}=\{1\}$. Thus, the established results  can be readily extended to synchronous and mode-independent cases  by adjusting the conditional probability matrix $\varPsi$.
 \end{remark}
 	
 	In the following, the definitions of  AMSS and $H_{\infty}$ disturbance attenuation performance for 2D systems will be given in Definition \ref{mean-square-stable} and Definition \ref{H_infty-performance}, respectively.
@@ -511,20 +512,21 @@
 %	\end{definition}
 
 	\begin{definition}\label{H_infty-performance}
-		Given a scalar $\gamma>0$, the 2D-MJS \eqref{system-equation} under zero boundary condition is said to be AMSS with an $H_{\infty}$ disturbance attenuation performance $\gamma$, if condition \eqref{AMSS} and the following formulation hold:
+		Given a scalar $\gamma>0$, the 2D-MJS \eqref{system-equation} under zero boundary condition is said to be AMSS with an $H_{\infty}$ disturbance attenuation performance $\gamma$, if condition \eqref{AMSS} and following formulation hold:
 		\begin{equation} \label{invDef2}
 			\sum_{i=0}^{\infty}\sum_{j=0}^{\infty}\mathbb\{\|y(i,j)\|^{2}\} <  \gamma^{2} \sum_{i=0}^{\infty}\sum_{j=0}^{\infty}\mathbb\{\|w(i,j)\|^{2}\}
 		\end{equation}
 		for all $w(i,j)\in\ell_{2}\{[0,\infty),[0,\infty)\}$.
 	\end{definition}
 	
-	Now, we will make some notational simplification for convenience. The parameter $r(i,j)$ will be represented by $k$, $r(i+1,j)$ and $r(i,j+1)$ will be represented by $p$, and $\sigma(i,j)$ will be represented by $s$. 
+	Now, we will make some notational simplification for convenience. The parameter $r(i,j)$ will be represented by $k$, $r(i+1,j)$ and $r(i,j+1)$ will be represented by $p_1$ and $p_2$, respectively, and $\sigma(i,j)$ will be represented by $\tau$. 
 	
 	
 	
-	 One objective of this work is to design an asynchronous  SMC, such that the 2D-MJS \eqref{system-equation} is AMSS with an $H_{\infty}$ disturbance attenuation performance $\gamma$. 
+	 The objective of this work is to design an asynchronous  2D-SMC law, such that the 2D-MJS \eqref{system-equation} is AMSS with an $H_{\infty}$ disturbance attenuation performance $\gamma$. 
 
 \section{Main Result}
+In this section, we first construct a novel 2D sliding surface based on the properties of 2D systems, and design an  corresponding  asynchronous 2D-SMC law based on hidden Markov model.  Then, we will analyze the asymptotic mean square stability for the concerned 2D-MJS and the reachability of the sliding mode dynamics.
 
 \subsection{ Sliding Surface and Asynchronous SMC Design} \label{sliding-surface}
 	In this work, we construct a novel 2D sliding surface as follows: 
@@ -538,7 +540,7 @@
 	where $s^{h}(i,j)$ and $s^{v}(i,j)$ represent horizontal and vertical sub-sliding surface respectively, the matrix $G=\sum_{k=1}^{N_{1}}\beta_{k}B^{T}_{k}$, and scalars $\beta_{k}$ should be chosen properly such that $GB_{k}$ is nonsingular for any $k\in\mathcal{N}_{1}$. Based on the assumption that $B_{k}$ is full column rank for any $k\in\mathcal{N}_{1}$, we can find that the above condition can be guaranteed easily with properly selected parameter $\beta_{k}$. 
 %	by selecting parameter $\beta_{k}$ properly. 
  	
- 	Considering that modes of original system can not be directly accessed  to the controller,  thus, we design an asynchronous 2D-SMC law as follows:
+ 	Considering that modes of original system can not be  accessed  directly to the controller,  thus, we design an asynchronous 2D-SMC law as follows:
 	\begin{equation}\label{smc-law}
 		u(i,j) = K_{\tau }x(i,j)-\rho(i,j)\frac{s(i,j)}{\|s(i,j)\|}
 	\end{equation}
@@ -566,19 +568,28 @@
 	\end{equation}
 	where $\bar{A}_{k\tau } = A_{k}+B_{k}K_{\tau }$, and $\bar{\rho}_{k}(i,j)$ as follows:
 	\begin{equation*}
-	\bar\rho_{k}(i,j)=f_{k}(x(i,j))-(\varrho_{1}\|x(i,j)\|+\varrho_{2}\|w(i,j)\|)\cdot\frac{s(i,j)}{\|s(i,j)\|}.
+	\bar\rho_{k}(i,j)=f_{k}(x(i,j))-\big(\varrho_{1}\|x(i,j)\|+\varrho_{2}\|w(i,j)\|\big)\cdot\frac{s(i,j)}{\|s(i,j)\|}.
 	\end{equation*}
-	Then, based on the properties of norm, following condition can be deduced easily
+	Then, based on \eqref{nonlinear-func} and the properties of norm, following condition can be easily deduced 
 	\begin{equation}\label{norm-rho-inequality}
-	\|\bar{\rho}_{k}(i,j)\| \leq (\varrho_{1}+\delta_{k})\|x(i,j)\| + \varrho_{2}\|w(i,j)\| .
+	\|\bar{\rho}_{k}(i,j)\| \leq (\varrho_{1}+\delta_{k})\|x(i,j)\| + \varrho_{2}\|w(i,j)\| ,
 	\end{equation} 
+	which can further deduce
+	\begin{equation}\label{rholeseq}
+	\|\bar{\rho}_{k}(i,j)\|^{2} \leq 2(\varrho_{1}+\delta_{k})^{2}\|x(i,j)\|^{2} +2\varrho_{2}^{2}\|w(i,j\|^{2} .
+	\end{equation}	
+	
 		
 	\begin{remark}
-		As mentioned above, the SMC  designed in this paper is  asynchronous with the original system, and this phenomenon that lies between them is described by the hidden Markov model $(r(i,j),\sigma(i,j),\varLambda,\varPsi)$. The model consists of two Markov chain, the first Markov chain $\{r(i,j), i,j=1,2\ \dots\}$ governs the mode jumps of original system and the second $\{ \sigma(i,j), i,j=1,2\dots \}$ governs the mode jumps of controller. Noting that, the second Markov chain is related to a conditional probability matrix $\varPsi$ which establishes a connection between the modes of controller and original system, which  means the asynchronous SMC can  maximumly  utilize the information of original system.
+		As mentioned in introduction section,  asynchronous SMC schemes for 1D-MJSs have been extensively studied in preview works, such as \cite{song2018asynchronous,li2017passivity,qi2018observer} etc. However, results of those works can not  extend directly to 2D-MJSs due to the special properties of 2D systems. In fact, compari
+		the asynchronous SMC schemes for 1D-MJSs based on hidden Markov model have been extensively studied, such as \cite{song2018asynchronous,li2017passivity,qi2018observer} etc. However, because o 
+		 the SMC  designed in this paper is  asynchronous with the original system, and this phenomenon that lies between them is described by the hidden Markov model $(r(i,j),\sigma(i,j),\varLambda,\varPsi)$. %The model consists of two mode information, that is modes of the original system and modes of the controller.%
+		In this model, modes of original system are governed by the Markov chain $\{r(i,j), i,j=1,2\ \dots\}$, and modes of the controller can be derived based on the conditional mode transition probabilities $u_{k\tau}$. In other words, the conditional probability matrix $\varPsi$ establishes a connection between the modes of controller and original system, and this is an advantage of the asynchronous approach over the mode-independent approach.
 	\end{remark}
 
 \begin{remark}
-	Different from SMC for 1D systems, the SMC designed in this paper is an asynchronous 2D-SMC. First, it is asynchronous and described by the hidden Markov model. Secondly, following the idea of Roesser model, $s^{h}(i,j)$ and $s^{v}(i,j)$ that denote horizontal and vertical sub-sliding surface respectively, are employed to construct a new 2D sliding surface $s(i,j)$. The property will be inherited by the 2D-SMC law \eqref{smc-law} since the $s(i,j)$ is included, which is the reason we name it as 2D-SMC.
+	As we mentioned in introduction, 
+	Different from SMC for 1D-MJSs\cite{song2018asynchronous,li2017passivity,qi2018observer}, the SMC designed in this paper is an asynchronous 2D-SMC. First, it is asynchronous and described by the hidden Markov model. Secondly, following the idea of Roesser model, $s^{h}(i,j)$ and $s^{v}(i,j)$ that denote horizontal and vertical sub-sliding surface respectively, are employed to construct a new 2D sliding surface $s(i,j)$. The property will be inherited by the 2D-SMC law \eqref{smc-law} since $x(i,j)$ and $s(i,j)$ are included, which is the reason we name it as 2D-SMC.
 \end{remark}
 
 
@@ -591,7 +602,7 @@
 	B^{T}_{k}  	\mathcal{R}_{k} B_{k} -\epsilon_{k}I \leq 0
 	\end{equation}
 	\begin{equation}\label{T1C2}
-	\mathcal{A} +2\Big(\sum_{\tau =0}^{N_{2}}\mu_{k\tau } \mathrm{diag}\{Q_{k\tau }, T_{k\tau }\}\Big) < 0
+	\mathcal{A} +2\Big(\sum_{\tau =1}^{N_{2}}\mu_{k\tau } \mathrm{diag}\{Q_{k\tau }, T_{k\tau }\}\Big) < 0
 	\end{equation}
 	\begin{equation}\label{T1C3}
 	\hat{A}^{T}_{k\tau }\mathcal{R}_{k}\hat{A}_{k\tau } - \mathrm{diag}\{Q_{k\tau }, T_{k\tau }\} < 0
@@ -622,14 +633,18 @@
 
 
 \begin{proof}
-	Let's start the proof with the stability of system. Selecting the Lyapunov candidate as $V_{1}(i,j) = x^{T}(i,j)R_{k}x(i,j)$, then, define
+	Let's start the proof with the stability of system. Selecting the Lyapunov candidate as $V_{1}(i,j) = x^{T}(i,j)R_{r(i,j)}x(i,j)$, then, define 
 	\begin{equation}\label{VAR-DELTA-V1}
-	\varDelta V_{1}(i,j) = \emph{\textbf{x(i, j)}}^{T}R_{p}\emph{\textbf{x(i, j)}} - x^{T}(i,j)R_{k}x(i,j)
+		\begin{split}
+			\varDelta V_{1}(i,j) = \emph{\textbf{x(i, j)}}^{T} R^{*}(i,j) \emph{\textbf{x(i, j)}} - x^{T}(i,j)R_{k}x(i,j)
+		\end{split}
 	\end{equation}
+	where $R^{*}(i,j)=\mathrm{diag}\{R^{h}_{r(i+1,j)},R^{v}_{r(i,j+1)}\}$.\\
 	Based on the closed-loop system equation \eqref{closed-loop-system-equation} with $w(i,j)=0$, we have 
 	\begin{equation}
 	\begin{split}
 	&\mathbb{E}\{\varDelta V_{1}(i,j) \}\\
+	&=\mathbb{E}\{\emph{\textbf{x(i, j)}}^{T}\mathcal{R}_{k}\emph{\textbf{x(i, j)}} - x^{T}(i,j)R_{k}x(i,j) \} \\
 	&=  \sum_{\tau =0}^{N_{2}}\mu_{k\tau }\Big\{\big[\bar{A}_{k\tau }x(i,j)+B_{k}\bar{\rho}_{k}(i,j)\big]^{T}\mathcal{R}_{k}\\
 	&\times\big[\bar{A}_{k\tau }x(i,j)+B_{k}\bar{\rho}_{k}(i,j)\big]\Big\}\\
 	&- x^{T}(i,j)R_{k}x(i,j) \\
@@ -643,9 +658,9 @@
 		\mathbb{E}\{\varDelta  V_{1}(i,j) \} \leq x^{T}(i,j)\mathcal{G}_{k\tau }x(i,j)
 	\end{split}
 	\end{equation}
-	where $\mathcal{G}_{k\tau }= 2\big(\sum_{\tau =0}^{N_{2}}\mu_{k\tau }\bar{A}^{T}_{k\tau }\mathcal{R}_{k}\bar{A}_{k\tau }\big)
+	where $\mathcal{G}_{k\tau }= 2\big(\sum_{\tau =1}^{N_{2}}\mu_{k\tau }\bar{A}^{T}_{k\tau }\mathcal{R}_{k}\bar{A}_{k\tau }\big)
 	+ 2\epsilon_{k}(\delta_{k}+\varrho_{1})^{2}I- R_{k}$.
-	The following inequality can be deduced from \eqref{T1C2} based on the properties of  matrix quadratic
+	The following inequality can be deduced from \eqref{T1C2} ) based on the property of positive definite matrix
 	\begin{equation}
 	2\big(\sum_{\tau =1}^{N_{2}}\mu_{k\tau }Q_{k\tau }\big)+4\epsilon_{k}(\delta_{k}+\varrho_{1})^{2}I+C^{T}_{k}C_{k}-R_{k} < 0
 	\end{equation}
@@ -653,7 +668,7 @@
 	\begin{equation}\label{combine-one-2}
 			2\big(\sum_{\tau =1}^{N_{2}}\mu_{k\tau }Q_{k\tau }\big)+2\epsilon_{k}(\delta_{k}+\varrho_{1})^{2}I-R_{k} < 0
 	\end{equation}
-	The following inequality can be  inferred directly from condition \eqref{T1C3} 
+	The following inequality can be  derived directly from condition \eqref{T1C3} 
 	\begin{equation}\label{combine-one-3}
 		\bar{A}^{T}_{k\tau }\mathcal{R}_{k}\bar{A}_{k\tau }-Q_{k\tau } < 0
 	\end{equation}
@@ -670,11 +685,11 @@
 	\begin{equation} \label{levE}
 		\mathbb{E}\Big\{\sum_{i=0}^{\hat{\kappa}_{1}}\sum_{j=0}^{\hat{\kappa}_{2}}  \|x(i,j)\|^{2} \Big\} \leq -\frac{1}{\alpha} \mathbb{E}\Big\{\sum_{i=0}^{\hat{\kappa}_{1}}\sum_{j=0}^{\hat{\kappa}_{2}}  \varDelta V_{1}(i,j)  \Big\}
 	\end{equation}
-	where parameters $\hat{\kappa}_{1}$, $\hat{\kappa}_{2}$ are any positive integers. By substituting $\varDelta V_{1}$ with \eqref{VAR-DELTA-V1} and let $R_{k}=\mathrm{diag}\{R^{\rm{h}}_{k},R^{\rm{v}}_{k}\}$, we obtain
+	where parameters $\hat{\kappa}_{1}$, $\hat{\kappa}_{2}$ are any positive integers. By substituting $\varDelta V_{1}$ with \eqref{VAR-DELTA-V1} and let $R_{k}=\mathrm{diag}\{R^{\rm{h}}_{k},R^{\rm{v}}_{k}\}$ (see Theorem \ref{theorem1}) , we obtain
 	\begin{equation} \label{Vhv}
 		\begin{split}
 			&\sum_{i=0}^{\hat{\kappa}_{1}}\sum_{j=0}^{\hat{\kappa}_{2}}  \varDelta V_{1}(i,j)\\&= \sum_{i=0}^{\hat{\kappa}_{1}}\big\{V^{v}_{1}(i,\hat{\kappa}_{2}+1) - V^{v}_{1}(i,0) \big\}\\
-			&-  \sum_{j=0}^{\hat{\kappa}_{2}}\big\{V^{h}_{1}(\hat{\kappa}_{1}+1,j) - V^{h}_{1}(0,j) \big\}\\
+			&+  \sum_{j=0}^{\hat{\kappa}_{2}}\big\{V^{h}_{1}(\hat{\kappa}_{1}+1,j) - V^{h}_{1}(0,j) \big\}\\
 			&\leq -\big( \sum_{i=0}^{\hat{\kappa}_{1}}V^{v}_{1}(i,0) + \sum_{j=0}^{\hat{\kappa}_{2}}V^{h}_{1}(0,j)\big) \\
 %			&\leq -\beta \sum_{\ell=0}^{\infty} \big(  \|x^{v}(\ell,0)\|^{2} + \|x^{h}(0,\ell)\|^{2} \big)
 		\end{split}
@@ -694,11 +709,11 @@
 	\begin{equation}
 		\begin{split}
 		&\mathbb{E}\Big\{\sum_{i=0}^{\hat{\kappa}_{1}}\sum_{j=0}^{\hat{\kappa}_{2}}  \|x(i,j)\|^{2} \Big\} \\
-		&\leq -\frac{\beta}{\alpha} \sum_{\ell=0}^{\infty} \big(  \|x^{v}(\ell,0)\|^{2} + \|x^{h}(0,\ell)\|^{2} \big)\\
+		&\leq \frac{\beta}{\alpha} \sum_{\ell=0}^{\infty} \big(  \|x^{v}(\ell,0)\|^{2} + \|x^{h}(0,\ell)\|^{2} \big)\\
 		&<\infty
 		\end{split}	
 	\end{equation}
-	where $\beta$ is the maximum eigenvalue of $R^{h}(0,\ell)$ and $R^{v}(\ell,0)$, for any $\ell=0,1,2...$, which indicates that \eqref{AMSS} holds. Therefore, the asymptotic mean square stability of the concerned closed-loop  2D system is proved. 
+	where $\beta$ (obviously, $\beta>0$) is the maximum eigenvalue of $R^{h}_{r(0,\ell)}$ and $R^{v}_{r(\ell,0)}$, for any $\ell=0,1,2...$, which indicates that \eqref{AMSS} holds. Therefore, the asymptotic mean square stability of the concerned closed-loop  2D system is proved. 
 	
 	Next, let's focus on the $H_{\infty}$  disturbance attenuation performance when the system is under zero boundary condition. Based on the closed-loop system equation \eqref{closed-loop-system-equation}, it is easy to find that
 	\begin{equation}\label{DETAV1}
@@ -724,10 +739,11 @@
 		\bar{A}_{k\tau }&E_{k}
 		\end{bmatrix}
 	\end{equation*}
-	Notice that from \eqref{norm-rho-inequality} and \eqref{T1C1}, we have
+	Notice that from \eqref{rholeseq} and \eqref{T1C1}, we have
 	\begin{equation}\label{invRho}
 		\begin{split}
 		 	&\bar{\rho}^{T}_{k}(i,j)B^{T}_{k}\mathcal{R}_{k}B_{k}\bar{\rho}_{k}(i,j)\\
+		 	&\leq \|B^{T}_{k}\mathcal{R}_{k}B_{k}\|\|\bar{\rho}_{k}\|^{2} \\
 		 	&\leq 2\epsilon_{k}\big((\delta_{k}+\varrho_{1})^{2}\|x(i,j)\|^{2}+\varrho_{2}^{2}\|w(i,j)\|^{2} \big)
 		\end{split}
 	\end{equation} 
@@ -746,9 +762,9 @@
 	Noting \eqref{Vhv} with the zero boundary condition, we can infer that
 	\begin{equation} \label{Vhv2}
 	\begin{split}
-	&\sum_{i=0}^{\kappa_{1}}\sum_{j=0}^{\kappa_{2}}  \varDelta V_{1}(i,j)\\
-	&=\sum_{i=0}^{\kappa_{1}}V^{v}_{1}(i,\kappa_{2}+1) + \sum_{j=0}^{\kappa_{2}}V^{h}_{1}(\kappa_{1}+1,j) \\
-	&\geq 0 \qquad \forall \kappa_{1},\kappa_{2} = 1,2,3...
+	&\sum_{i=0}^{\hat{\kappa}_{1}}\sum_{j=0}^{\hat{\kappa}_{2}}  \varDelta V_{1}(i,j)\\
+	&=\sum_{i=0}^{\hat{\kappa_{1}}}V^{v}_{1}(i,\hat{\kappa}_{2}+1) + \sum_{j=0}^{\hat{\kappa}_{2}}V^{h}_{1}(\hat{\kappa}_{1}+1,j) \\
+	&\geq 0 \qquad \forall \hat{\kappa}_{1},\hat{\kappa}_{2} = 1,2,3...
 	\end{split}
 	\end{equation}
 	Then, we can further deduce from \eqref{DETAV1ZW} and \eqref{Vhv2} that 
@@ -763,18 +779,16 @@
 	
 	
 \end{proof}
-
-
-\begin{remark}
-	As mentioned above, the hidden Markov model consists of two Markov chains which will result in some difficulties in SMC design. Following a similar method proposed in \cite{wu2016passivity}, the matrices $Q_{k\tau }$ and $T_{k\tau}$ are introduced to separate those two Markov chains.
-\end{remark}
+%\begin{remark}
+%	As mentioned above, the hidden Markov model consists of two Markov chains which will result in some difficulties in SMC design. Following a similar method proposed in \cite{wu2016passivity}, the matrices $Q_{k\tau }$ and $T_{k\tau}$ are introduced to separate those two Markov chains.
+%\end{remark}
 
 \subsection{Analysis of Reachability}\label{minimization} 
-	 The reachability of the  designed asynchronous 2D-SMC law for the concerned closed-loop 2D system \eqref{closed-loop-system-equation} is going to be discussed in this subsection. By using a stochastic Lyapunov method, we provide a sufficient condition which will confirm that the designed asynchronous 2D-SMC law \eqref{smc-law} can force the state trajectories of the concerned closed-loop 2D system \eqref{closed-loop-system-equation} into a time-varying sliding region around the predefined 2D sliding surface \eqref{siding-surface-equation}.
+	 The reachability of the  designed asynchronous 2D-SMC law for the concerned closed-loop 2D system \eqref{closed-loop-system-equation} will be discussed in this subsection. By using a stochastic Lyapunov method, we provide a sufficient condition which will confirm that the designed asynchronous 2D-SMC law \eqref{smc-law} can force the state trajectories of the concerned closed-loop 2D system \eqref{closed-loop-system-equation} into a time-varying sliding region around the predefined 2D sliding surface \eqref{siding-surface-equation}.
 	 
 
 \begin{theorem}\label{theorem2}	
-	Consider the closed-loop 2D-MJS \eqref{closed-loop-system-equation} with asynchronous 2D-SMC law \eqref{smc-law}. If there exist matrices $K_{\tau }\in\mathbb{R}^{n_u\times n_x}$, $R_{k}>0$, $F_{k}>0$, and  scalars $\epsilon_{k}>0$, for any $k\in\mathcal{N}_{1}, \tau\in\mathcal{N}_{2}$, such that the condition \eqref{T1C1} and the following inequality holds
+	Consider the closed-loop 2D-MJS \eqref{closed-loop-system-equation} with asynchronous 2D-SMC law \eqref{smc-law}. If there exist matrices $K_{\tau }\in\mathbb{R}^{n_u\times n_x}$, $R_{k}>0$, $F_{k}>0$, and  scalars $\epsilon_{k}>0$, for any $k\in\mathcal{N}_{1}, \tau\in\mathcal{N}_{2}$, such that  condition \eqref{T1C1} and  following inequality holds
 	\begin{equation} \label{T2C1}
 		2\sum_{\tau =1}^{N_{2}} \bar{A}^{T}_{k\tau }\big(\mathcal{R}_{k}+G^{T}\mathcal{F}_{k}G\big)\bar{A}_{k\tau }-R_{k} <0
 	\end{equation}
@@ -786,9 +800,9 @@
 	\lambda_{\mathrm{min}}(F_{k})}$ with
 	\begin{equation*}
 		 \begin{split}
-		 	\hat{\rho}_{k}(i,j)&=4\big(\|E^{T}_{k}\mathcal{R}_{k}E_{k}\|+ \|E^{T}_{k}G^{T}\mathcal{R}_{k}GE_{k}\|\\
+		 	\hat{\rho}_{k}(i,j)=&4\big(\|E^{T}_{k}\mathcal{R}_{k}E_{k}\|+ \|E^{T}_{k}G^{T}\mathcal{R}_{k}GE_{k}\|\\
 		 	&+2\varrho_{2}^{2}(\|B^{T}_{k}\mathcal{F}_{k}B_{k}\|+ \|B^{T}_{k}G^{T}\mathcal{F}_{k}GB_{k}\| )\big)\|w(i,j)\|^{2}\\
-		 	&+8\big(\|B^{T}_{k}\mathcal{R}_{k}B_{k}\|+\|B^{T}_{k}G^{T}\mathcal{R}_{k}GB_{k}\|\big)\\ &\times(\varrho_{1}+\delta_{k})^{2}\|x(i,j)\|^{2}.
+		 	+&8(\varrho_{1}+\delta_{k})^{2}\big(\|B^{T}_{k}\mathcal{R}_{k}B_{k}\|+\|B^{T}_{k}G^{T}\mathcal{R}_{k}GB_{k}\|\big)\|x(i,j)\|^{2}.
 		 \end{split}
 	\end{equation*}
 	and $\lambda_{\mathrm{min}}(F_{k})$ here denotes the minimum eigenvalue of $F_{k}$.
@@ -801,11 +815,11 @@
 	\begin{equation}\label{LyapunoovT}
 		V(i,j)=V_{1}(i,j)+V_{2}(i,j)
 	\end{equation}
-	where $V_{1}(i,j)$ is defined in Theorem \ref{theorem1}, and $V_{2}(i,j)=s^{T}(i,j)F_{k}s(i,j)$. Similar with the proof procedure of Theorem \ref{theorem1}, it is easy to find that
+	where $V_{1}(i,j)$ is defined in Theorem \ref{theorem1}, and $V_{2}(i,j)=s^{T}(i,j)F_{r(i,j)}s(i,j)$. Similar with the proof procedure of Theorem \ref{theorem1}, it is easy to find that
 	\begin{equation} \label{P2T1}
 		\begin{split}
 				&\mathbb{E}\{\varDelta V_{1}(i,j) \}\\
-			&=\mathbb{E}\Big\{\emph{\textbf{x(i, j)}}^{T}R_{p}\emph{\textbf{x(i, j)}} - x^{T}(i,j)R_{k}x(i,j)\Big\}\\
+			&=\mathbb{E}\Big\{\emph{\textbf{x(i, j)}}^{T}R^{*}(i,j)\emph{\textbf{x(i, j)}} - x^{T}(i,j)R_{k}x(i,j)\Big\}\\
 			&=  \sum_{\tau =0}^{N_{2}}\mu_{k\tau }\Big\{\big[\bar{A}_{k\tau }x(i,j)+B_{k}\bar{\rho}_{k}(i,j)+E_{k}w(i,j)\big]^{T}\\
 			&\times\mathcal{R}_{k} \big[ \bar{A}_{k\tau }x(i,j)+B_{k}\bar{\rho}_{k}(i,j)+E_{k}w(i,j)\big]\Big\}\\
 			&-x^{T}(i,j)R_{k}x(i,j)\\
@@ -814,8 +828,8 @@
 			&\times\big[B_{k}\bar{\rho}_{k}(i,j)+E_{k}w(i,j)\big]\\
 			&-x^{T}(i,j)R_{k}x(i,j)\\
 			&\leq 2x^{T}(i,j)\sum_{\tau =1}^{N_{2}}\mu_{k\tau }\bar{A}^{T}_{k\tau }\mathcal{R}_{k}\bar{A}_{k\tau }x(i,j) \\
-			&+ \bar{\rho}^{T}_{k}(i,j)B^{T}_{k}\mathcal{R}_{k}B_{k}\bar{\rho}_{k}(i,j)\\
-			&+w^{T}(i,j)E^{T}_{k}\mathcal{R}_{k}E_{k}w(i,j)\\
+			&+ 4\bar{\rho}^{T}_{k}(i,j)B^{T}_{k}\mathcal{R}_{k}B_{k}\bar{\rho}_{k}(i,j)\\
+			&+4w^{T}(i,j)E^{T}_{k}\mathcal{R}_{k}E_{k}w(i,j)\\
 			&-x^{T}(i,j)R_{k}x(i,j)
 			%&\mathbb{E}\{\varDelta V_{1}(i,j) \}\\
 			%=&\mathbb{E}\Big\{\emph{\textbf{x(i, j)}}^{T}R_{p}\emph{\textbf{x(i, j)}} - x^{T}(i,j)R_{k}x(i,j)\Big\}\\
@@ -832,12 +846,12 @@
 			%-&x^{T}(i,j)R_{k}x(i,j)
 		\end{split}
 	\end{equation}
-	
+	where $R^{*}(i,j)$ is defined in the proof of Theorem 1.  
 	Along with the sliding surface function \eqref{siding-surface-equation}, we can deduce that
 	\begin{equation} \label{P2T2}
 		\begin{split}
 			&\mathbb{E}\{\varDelta V_{2}(i,j) \}\\
-			&=\mathbb{E}\Big\{\emph{\textbf{s(i, j)}}^{T}F_{p}\emph{\textbf{s(i, j)}} - s^{T}(i,j)F_{k}s(i,j)\Big\}\\
+			&=\mathbb{E}\Big\{\emph{\textbf{s(i, j)}}^{T}F^{*}(i,j)\emph{\textbf{s(i, j)}} - s^{T}(i,j)F_{k}s(i,j)\Big\}\\
 			&=  \sum_{\tau =0}^{N_{2}}\mu_{k\tau }\Big\{\big[\bar{A}_{k\tau }x(i,j)+B_{k}\bar{\rho}_{k}(i,j)+E_{k}w(i,j)\big]^{T}\\
 			&\times G^{T}\mathcal{F}_{k} G\big[ \bar{A}_{k\tau }x(i,j)+B_{k}\bar{\rho}_{k}(i,j)+E_{k}w(i,j)\big]\Big\}\\
 			&-s^{T}(i,j)F_{k}s(i,j)\\
@@ -846,11 +860,12 @@
 			&\times G\big[B_{k}\bar{\rho}_{k}(i,j)+E_{k}w(i,j)\big]\\
 			&-s^{T}(i,j)F_{k}s(i,j)\\
 			&\leq 2x^{T}(i,j)\sum_{\tau =1}^{N_{2}}\mu_{k\tau }\bar{A}^{T}_{k\tau }G^{T}\mathcal{F}_{k}G\bar{A}_{k\tau }x(i,j) \\
-			&+ \bar{\rho}^{T}_{k}(i,j)B^{T}_{k}G^{T}\mathcal{F}_{k}GB_{k}\bar{\rho}_{k}(i,j)\\
-			&+w^{T}(i,j)E^{T}_{k}G^{T}\mathcal{F}_{k}GE_{k}w(i,j)\\
+			&+ 4\bar{\rho}^{T}_{k}(i,j)B^{T}_{k}G^{T}\mathcal{F}_{k}GB_{k}\bar{\rho}_{k}(i,j)\\
+			&+4w^{T}(i,j)E^{T}_{k}G^{T}\mathcal{F}_{k}GE_{k}w(i,j)\\
 			&-s^{T}(i,j)F_{k}s(i,j)
 		\end{split}
 	\end{equation}
+	where $F^{*}(i,j)=\mathrm{diag}\{F^{h}_{r(i+1,j)},F^{v}_{r(i,j+1)}\}$. 
 	Combing conditions \eqref{LyapunoovT}-\eqref{P2T2}, we can infer that 
 	\begin{equation}\label{P2T3}
 		\begin{split}
@@ -867,12 +882,8 @@
 			&= 4\big(\|B^{T}_{k}\mathcal{F}_{k}B_{k}\|+ \|B^{T}_{k}G^{T}\mathcal{F}_{k}GB_{k}\|\big) \|\bar{\rho}_{k}(i,j)\|^{2} \\
 			&+ 4\big(\|E^{T}_{k}\mathcal{R}_{k}E_{k}\|+ \|E^{T}_{k}G^{T}\mathcal{R}_{k}GE_{k}\|\big) \|w(i,j)\|^{2} 
 		\end{split}
-	\end{equation*}
-	Recalling the condition \eqref{norm-rho-inequality}, we can get an inequality as follows
-	\begin{equation}\label{rholeseq}
-		\|\bar{\rho}_{k}(i,j)\|^{2} \leq 2(\varrho_{1}+\delta_{k})^{2}\|x(i,j)\|^{2} +2\varrho_{2}^{2}\|w(i,j\|^{2} 
-	\end{equation}	  
-	It is obvious that $\vec{\rho}_{k}(i,j) < \hat{\rho}_{k}(i,j) $ for any $k\in\mathcal{N}_{1}$ after substituting $\vec{\rho}_{k}(i,j)$ with \eqref{rholeseq}. 
+	\end{equation*}  
+	It is obvious that $\vec{\rho}_{k}(i,j) < \hat{\rho}_{k}(i,j) $ for any $k\in\mathcal{N}_{1}$ after substituting $\|\bar{\rho}_{k}(i,j)\|^{2}$ with \eqref{rholeseq}. 
 	Then, based on the condition \eqref{T1C2}, when the state trajectories are out of the region $\mathcal{O}$, we can infer that
 	\begin{equation}\label{P2T5}
 		-\lambda_{\mathrm{min}}(F_{k})\|s(i,j)\|^{2} + \vec{\rho}_{k}(i,j) <0
@@ -884,7 +895,7 @@
 			&\leq x^{T}(i,j)\Big\{ 2\sum_{\tau =1}^{N_{2}}\mu_{k\tau }\bar{A}^{T}_{k\tau }\big(\mathcal{R}_{k} +G^{T}\mathcal{F}_{k}G \big)\bar{A}_{k\tau }\\ &-R_{k} \Big\} x(i,j)<0
 		\end{split}
 	\end{equation}
-	which means that, when outside the region $\mathcal{O}$,  the state trajectories of the concerned close-loop 2D system \eqref{closed-loop-system-equation} will strictly decrease in the sense of mean square. Now, the proof is completed.
+	which means that, when outside the region $\mathcal{O}$,  the state trajectories of the concerned closed-loop 2D system \eqref{closed-loop-system-equation} will strictly decrease in the sense of mean square. Now, the proof is completed.
 	 
 \end{proof}
 
@@ -959,7 +970,7 @@ It is obvious that, if the theorem \ref{theorem1} and the theorem \ref{theorem2}
 			\end{bmatrix}	\\						
 		\end{split}
 	\end{equation}
-	and $\tilde{A}_{k\tau } =  A_{k}L_{\tau } + B_{k}\tilde{K}_{\tau }$. Then,  the concerned closed-loop 2D-MJS \eqref{closed-loop-system-equation} is AMSS with an $H_{\infty}$ disturbance attenuation  performance $\gamma$, and the state trajectories of the concerned closed-loop 2D-MJS will be forced into a sliding region $\mathcal{O}$, around the predefined sliding surface \eqref{siding-surface-equation}. Moreover, the to-be-determined matrix $K_{\tau }$ in 2D-SMC law \eqref{smc-law} can be chosen as 
+	and $\tilde{A}_{k\tau } =  A_{k}L_{\tau } + B_{k}\tilde{K}_{\tau }$. Then,  the concerned closed-loop 2D-MJS \eqref{closed-loop-system-equation} is AMSS with an $H_{\infty}$ disturbance attenuation  performance $\gamma$, and the state trajectories of the concerned closed-loop 2D-MJS will be forced into a sliding region $\mathcal{O}$. Moreover, the to-be-determined matrix $K_{\tau }$ in 2D-SMC law \eqref{smc-law} can be chosen as 
 	\begin{equation}
 		K_{\tau } = \tilde{K}_{\tau }L^{-1}_{\tau }
 	\end{equation}
@@ -992,7 +1003,8 @@ It is obvious that, if the theorem \ref{theorem1} and the theorem \ref{theorem2}
 	 \end{equation}
 	 where $\check{A}_{k\tau }=\begin{bmatrix}
 	 \bar{A}_{k\tau }&0
-	 \end{bmatrix}$. Combing \eqref{T1C2} and \eqref{ls3},  we will have
+	 \end{bmatrix}$. It is clear that \eqref{T1C3} can be guaranteed by \eqref{ls3}. \\
+	 Combing \eqref{T1C2} and \eqref{ls3},  we will have
 	 \begin{equation}
 	 	\mathcal{A} +2\sum_{\tau =0}^{N_{2}}\mu_{k\tau }\Big\{ \hat{A}^{T}_{k\tau }\mathcal{R}_{k}\hat{A}_{k\tau } + \check{A}^{T}_{k\tau }\mathcal{F}_{k}\check{A}_{k\tau } \Big\} < 0
 	 \end{equation}
@@ -1000,7 +1012,7 @@ It is obvious that, if the theorem \ref{theorem1} and the theorem \ref{theorem2}
 \end{proof}
 
 
-	It is clear that, the conditions in Theorem \ref{theorem3} are presented in the form of linear matrix inequality (LMI), which can be easily solved with the help of Matlab LMI toolbox. Next, we are going to propose an algorithm to obtain the asynchronous 2D-SMC law with the minimum disturbance attenuation performance $\gamma^{*}$. The design procedures of the 2D-SMC are summarized into an algorithm as follows:
+	It is clear that, the conditions in Theorem \ref{theorem3} are presented in the form of LMI, which can be easily solved with Matlab LMI toolbox. Next, we will propose an algorithm to obtain the asynchronous 2D-SMC law with the minimum disturbance attenuation performance $\gamma^{*}$. The  2D-SMC law design algorithm is summarized  as follows:
 	\begin{enumerate}[\indent $\blacktriangleright$ Step 1:]
 		\item Select the parameters $\beta_{k}$ properly and compute matrix $G$, such that, for any $k\in\mathcal{N}_{1}$,  the  matrix $GB_{k}$ is nonsingular.
 		\item Figure out the scalars $\varrho_{1}$ and $\varrho_{2}$ in \eqref{varrho}.
@@ -1083,8 +1095,8 @@ The mode jumps of the considered 2D-MJS and 2D-SMC are governed by the transitio
 	\caption{Modes of the 2D-SMC}
 	\label{fig2}
 \end{figure}
-A possible time sequences with two different directions of the system modes and the asynchronous 2D-SMC modes are depicted in Fig.\ref{fig1}-\ref{fig2}. By comparison, it is clear that the designed 2D-SMC run asynchronously with the original 2D system.  \\
-Based on the corresponding assumptions, the boundary condition $X_{0}$ and  the exogenous disturbance $w(i,j)$ are assumed to be
+A possible time sequences with two different directions of the system modes and the asynchronous controller modes are depicted in Fig.\ref{fig1}-\ref{fig2}. By comparison, it is clear that the designed controller run asynchronously with the original 2D system.  \\
+Based on the corresponding assumptions, the boundary condition $X_{0}$ and  exogenous disturbance $w(i,j)$ are assumed to be
 \begin{equation*}
 \begin{aligned}
 	x^{h}(0, j)&=\begin{cases}
@@ -1171,7 +1183,7 @@ with the minimum $H_{\infty}$ disturbance attenuation performance $\gamma^{*}=0.
 
 
 \section{Conclusions} \label{conclusion} 
-This work has investigated the problem of asynchronous SMC for 2D-MJSs in Roesser model. In consideration that the system modes are not always accessible to the controller, an asynchronous 2D-SMC design method is explored with hidden Markov model. By utilizing Lyapunov function, the asymptotic mean square stability for the concerned 2D-MJS  and the reachability of the sliding mode dynamics are analyzed, respectively. A sufficient condition is derived that can guarantee the concerned closed-loop 2D system is AMSS with $H_{\infty}$ disturbance attenuation performance , and  the reachability of the 2D sliding mode dynamics is ensured simultaneously. Finally, the asynchronous SMC design procedures are summarized as an algorithm whose effectiveness is verified by a numerical example.
+This work has investigated the problem of asynchronous SMC for 2D-MJSs in Roesser model. In consideration that the system modes are not always accessible to the controller, an asynchronous 2D-SMC law design method is explored with hidden Markov model. By utilizing Lyapunov function, the asymptotic mean square stability for the concerned 2D-MJS  and the reachability of the sliding mode dynamics are analyzed, respectively. A sufficient condition is derived that can guarantee the concerned closed-loop 2D system is AMSS with $H_{\infty}$ disturbance attenuation performance , and  the reachability of the 2D sliding mode dynamics is ensured simultaneously. Finally, the asynchronous SMC design procedures are summarized as an algorithm whose effectiveness is verified by a numerical example.
 
 
 \bibliographystyle{ieeetr}
