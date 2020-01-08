@@ -523,7 +523,7 @@
 	
 	
 	
-	 The objective of this work is to design an asynchronous  2D-SMC law, such that the 2D-MJS \eqref{system-equation} is AMSS with an $H_{\infty}$ disturbance attenuation performance $\gamma$. 
+	 The objective of this work is to design an asynchronous  2D-SMC law, such that the 2D-MJS \eqref{system-equation} is AMSS with an $H_{\infty}$ disturbance attenuation performance $\gamma$. //here and say something about reachability of states.
 
 \section{Main Result}
 In this section, we first construct a novel 2D sliding surface based on the properties of 2D systems, and design an  corresponding  asynchronous 2D-SMC law based on hidden Markov model.  Then, we will analyze the asymptotic mean square stability for the concerned 2D-MJS and the reachability of the sliding mode dynamics.
@@ -550,7 +550,7 @@ In this section, we first construct a novel 2D sliding surface based on the prop
 	\end{equation}
 	with $\varrho_{1}=\max_{k\in\mathcal{N}_{1}} \{\delta_{k} \}$, $\varrho_{2} = \max_{k\in\mathcal{N}_{1}}\{\|(GB_{k})^{-1}GE_{k}\| \} $, and the parameter $\delta_{k}$ is given in \eqref{nonlinear-func}. 
 	
-	Considering system \eqref{system-equation} with asynchronous 2D-SMC law \eqref{siding-surface-equation}, we can derive the following closed-loop 2D system 
+	Considering system \eqref{system-equation} with asynchronous 2D-SMC law \eqref{smc-law}, we can derive the following closed-loop 2D system 
 %	\begin{equation} \label{closed-loop-system-equation}
 %	\left\{
 %	\begin{array}{lr}
@@ -788,7 +788,7 @@ In this section, we first construct a novel 2D sliding surface based on the prop
 	 
 
 \begin{theorem}\label{theorem2}	
-	Consider the closed-loop 2D-MJS \eqref{closed-loop-system-equation} with asynchronous 2D-SMC law \eqref{smc-law}. If there exist matrices $K_{\tau }\in\mathbb{R}^{n_u\times n_x}$, $R_{k}>0$, $F_{k}>0$, and  scalars $\epsilon_{k}>0$, for any $k\in\mathcal{N}_{1}, \tau\in\mathcal{N}_{2}$, such that  condition \eqref{T1C1} and  following inequality holds
+	Consider the 2D-MJS \eqref{system-equation} with asynchronous 2D-SMC law \eqref{smc-law}. If there exist matrices $K_{\tau }\in\mathbb{R}^{n_u\times n_x}$, $R_{k}>0$, $F_{k}>0$, and  scalars $\epsilon_{k}>0$, for any $k\in\mathcal{N}_{1}, \tau\in\mathcal{N}_{2}$, such that  condition \eqref{T1C1} and  following inequality holds
 	\begin{equation} \label{T2C1}
 		2\sum_{\tau =1}^{N_{2}} \bar{A}^{T}_{k\tau }\big(\mathcal{R}_{k}+G^{T}\mathcal{F}_{k}G\big)\bar{A}_{k\tau }-R_{k} <0
 	\end{equation}
@@ -815,7 +815,7 @@ In this section, we first construct a novel 2D sliding surface based on the prop
 	\begin{equation}\label{LyapunoovT}
 		V(i,j)=V_{1}(i,j)+V_{2}(i,j)
 	\end{equation}
-	where $V_{1}(i,j)$ is defined in Theorem \ref{theorem1}, and $V_{2}(i,j)=s^{T}(i,j)F_{r(i,j)}s(i,j)$. Similar with the proof procedure of Theorem \ref{theorem1}, it is easy to find that
+	where $V_{1}(i,j)$ is defined in the proof of Theorem \ref{theorem1}, and $V_{2}(i,j)=s^{T}(i,j)F_{r(i,j)}s(i,j)$. Similar with the proof procedure of Theorem \ref{theorem1}, it is easy to find that
 	\begin{equation} \label{P2T1}
 		\begin{split}
 				&\mathbb{E}\{\varDelta V_{1}(i,j) \}\\
