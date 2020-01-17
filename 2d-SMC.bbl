@@ -1,0 +1,215 @@
+\begin{thebibliography}{10}
+
+\bibitem{costa2006discrete}
+O.~L.~V. Costa, M.~D. Fragoso, and R.~P. Marques, {\em {Discrete-time Markov
+  jump linear systems}}.
+\newblock Springer Science \& Business Media, 2006.
+
+\bibitem{wu2014asynchronous}
+Z.-G. Wu, P.~Shi, H.~Su, and J.~Chu, ``{Asynchronous $l_{2}-l_{\infty}$
+  filtering for discrete-time stochastic Markov jump systems with randomly
+  occurred sensor nonlinearities},'' {\em Automatica}, vol.~50, no.~1,
+  pp.~180--186, 2014.
+
+\bibitem{zhang2008analysis}
+L.~Zhang, E.-K. Boukas, and J.~Lam, ``{Analysis and synthesis of Markov jump
+  linear systems with time-varying delays and partially known transition
+  probabilities},'' {\em IEEE Transactions on Automatic Control}, vol.~53,
+  no.~10, pp.~2458--2464, 2008.
+
+\bibitem{shi2006designing}
+P.~Shi, Y.~Xia, G.~Liu, and D.~Rees, ``{On designing of sliding-mode control
+  for stochastic jump systems},'' {\em IEEE Transactions on Automatic Control},
+  vol.~51, no.~1, pp.~97--103, 2006.
+
+\bibitem{zhang2009stability}
+L.~Zhang and E.-K. Boukas, ``{Stability and stabilization of Markovian jump
+  linear systems with partly unknown transition probabilities},'' {\em
+  Automatica}, vol.~45, no.~2, pp.~463--468, 2009.
+
+\bibitem{todorov2016new}
+M.~G. Todorov and M.~D. Fragoso, ``{New methods for mode-independent robust
+  control of Markov jump linear systems},'' {\em Systems \& Control Letters},
+  vol.~90, pp.~38--44, 2016.
+
+\bibitem{wu2005mode}
+H.-N. Wu and K.-Y. Cai, ``{Mode-independent robust stabilization for uncertain
+  Markovian jump nonlinear systems via fuzzy control},'' {\em IEEE Transactions
+  on Systems, Man, and Cybernetics, Part B (Cybernetics)}, vol.~36, no.~3,
+  pp.~509--519, 2005.
+
+\bibitem{dolgov2017static}
+M.~Dolgov and U.~D. Hanebeck, ``{Static output-feedback control of Markov jump
+  linear systems without mode observation},'' {\em IEEE Transactions on
+  Automatic Control}, vol.~62, no.~10, pp.~5401--5406, 2017.
+
+\bibitem{wu2016passivity}
+Z.-G. Wu, P.~Shi, Z.~Shu, H.~Su, and R.~Lu, ``{Passivity-based asynchronous
+  control for Markov jump systems},'' {\em IEEE Transactions on Automatic
+  Control}, vol.~62, no.~4, pp.~2020--2025, 2016.
+
+\bibitem{do2014detector}
+O.~L. do~Valle~Costa, M.~D. Fragoso, and M.~G. Todorov, ``{A detector-based
+  approach for the $ H_{2}$ control of Markov jump linear systems with partial
+  information},'' {\em IEEE Transactions on Automatic Control}, vol.~60, no.~5,
+  pp.~1219--1234, 2014.
+
+\bibitem{de2017h}
+A.~M. de~Oliveira and O.~Costa, ``{$H_{2}$-filtering for discrete-time hidden
+  Markov jump systems},'' {\em International Journal of Control}, vol.~90,
+  no.~3, pp.~599--615, 2017.
+
+\bibitem{todorov2018detector}
+M.~G. Todorov, M.~D. Fragoso, and O.~L. do~Valle~Costa, ``{Detector-based
+  $H_{\infty}$ results for discrete-time Markov jump linear systems with
+  partial observations},'' {\em Automatica}, vol.~91, pp.~159--172, 2018.
+
+\bibitem{rodrigues2018detector}
+C.~C.~G. Rodrigues, M.~G. Todorov, and M.~D. Fragoso, ``{Detector-based
+  approach for $H_{\infty}$ filtering of Markov jump linear systems with
+  partial mode information},'' {\em IET Control Theory \& Applications},
+  vol.~13, no.~9, pp.~1298--1308, 2018.
+
+\bibitem{utkin2009sliding}
+V.~Utkin, J.~Guldner, and J.~Shi, {\em {Sliding mode control in
+  electro-mechanical systems}}.
+\newblock CRC press, 2009.
+
+\bibitem{yang1999sliding}
+J.-M. Yang and J.-H. Kim, ``{Sliding mode control for trajectory tracking of
+  nonholonomic wheeled mobile robots},'' {\em IEEE Transactions on robotics and
+  automation}, vol.~15, no.~3, pp.~578--587, 1999.
+
+\bibitem{shima2006sliding}
+T.~Shima, M.~Idan, and O.~M. Golan, ``{Sliding-mode control for integrated
+  missile autopilot guidance},'' {\em Journal of guidance, control, and
+  dynamics}, vol.~29, no.~2, pp.~250--260, 2006.
+
+\bibitem{edwards1998sliding}
+C.~Edwards and S.~Spurgeon, {\em {Sliding mode control: theory and
+  applications}}.
+\newblock Crc Press, 1998.
+
+\bibitem{li2015state}
+F.~Li, L.~Wu, P.~Shi, and C.-C. Lim, ``{State estimation and sliding mode
+  control for semi-Markovian jump systems with mismatched uncertainties},''
+  {\em Automatica}, vol.~51, pp.~385--393, 2015.
+
+\bibitem{wu2010state}
+L.~Wu, P.~Shi, and H.~Gao, ``{State estimation and sliding-mode control of
+  Markovian jump singular systems},'' {\em IEEE Transactions on Automatic
+  Control}, vol.~55, no.~5, pp.~1213--1219, 2010.
+
+\bibitem{wang2017smc}
+Y.~Wang, Y.~Xia, H.~Shen, and P.~Zhou, ``{SMC design for robust stabilization
+  of nonlinear Markovian jump singular systems},'' {\em IEEE Transactions on
+  Automatic Control}, vol.~63, no.~1, pp.~219--224, 2017.
+
+\bibitem{song2018asynchronous}
+J.~Song, Y.~Niu, and Y.~Zou, ``{Asynchronous sliding mode control of Markovian
+  jump systems with time-varying delays and partly accessible mode detection
+  probabilities},'' {\em Automatica}, vol.~93, pp.~33--41, 2018.
+
+\bibitem{li2017passivity}
+F.~Li, C.~Du, C.~Yang, and W.~Gui, ``{Passivity-based asynchronous sliding mode
+  control for delayed singular Markovian jump systems},'' {\em IEEE
+  Transactions on Automatic Control}, vol.~63, no.~8, pp.~2715--2721, 2017.
+
+\bibitem{qi2018observer}
+W.~Qi, G.~Zong, and H.~R. Karim, ``{Observer-based adaptive SMC for nonlinear
+  uncertain singular semi-Markov jump systems with applications to DC motor},''
+  {\em IEEE Transactions on Circuits and Systems I: Regular Papers}, vol.~65,
+  no.~9, pp.~2951--2960, 2018.
+
+\bibitem{roesser1975discrete}
+R.~Roesser, ``{A discrete state-space model for linear image processing},''
+  {\em IEEE Transactions on Automatic Control}, vol.~20, no.~1, pp.~1--10,
+  1975.
+
+\bibitem{marszalek1984two}
+W.~Marszalek, ``{Two-dimensional state-space discrete models for hyperbolic
+  partial differential equations},'' {\em Applied Mathematical Modelling},
+  vol.~8, no.~1, pp.~11--14, 1984.
+
+\bibitem{rogers2015multidimensional}
+E.~Rogers, K.~Galkowski, W.~Paszke, K.~L. Moore, P.~H. Bauer, L.~Hladowski, and
+  P.~Dabkowski, ``{Multidimensional control systems: case studies in design and
+  evaluation},'' {\em Multidimensional Systems and Signal Processing}, vol.~26,
+  no.~4, pp.~895--939, 2015.
+
+\bibitem{fornasini1978doubly}
+E.~Fornasini and G.~Marchesini, ``{Doubly-indexed dynamical systems:
+  State-space models and structural properties},'' {\em Mathematical systems
+  theory}, vol.~12, no.~1, pp.~59--72, 1978.
+
+\bibitem{du2001h}
+C.~Du, L.~Xie, and C.~Zhang, ``{$H_{\infty}$ control and robust stabilization
+  of two-dimensional systems in Roesser models},'' {\em Automatica}, vol.~37,
+  no.~2, pp.~205--211, 2001.
+
+\bibitem{du2002hinfinity}
+C.~Du and L.~Xie, {\em $H_{\infty}$ {Control and Filtering of Two-Dimensional
+  Systems}}, vol.~278.
+\newblock Springer Science \& Business Media, 2002.
+
+\bibitem{trinh2016stability}
+H.~Trinh, ``{Stability of two-dimensional Roesser systems with time-varying
+  delays via novel 2D finite-sum inequalities},'' {\em IET Control Theory \&
+  Applications}, vol.~10, no.~14, pp.~1665--1674, 2016.
+
+\bibitem{ahn2016stochastic}
+C.~K. Ahn, L.~Wu, and P.~Shi, ``{Stochastic stability analysis for 2-D Roesser
+  systems with multiplicative noise},'' {\em Automatica}, vol.~69,
+  pp.~356--363, 2016.
+
+\bibitem{chesi2016robust}
+G.~Chesi and R.~H. Middleton, ``{Robust stability and performance analysis of
+  2D mixed continuous--discrete-time systems with uncertainty},'' {\em
+  Automatica}, vol.~67, pp.~233--243, 2016.
+
+\bibitem{ahn2015two}
+C.~K. Ahn, P.~Shi, and M.~V. Basin, ``{Two-dimensional dissipative control and
+  filtering for Roesser model},'' {\em IEEE Transactions on Automatic Control},
+  vol.~60, no.~7, pp.~1745--1759, 2015.
+
+\bibitem{liu2005adaptive}
+D.~Liu, J.~Yi, D.~Zhao, and W.~Wang, ``{Adaptive sliding mode fuzzy control for
+  a two-dimensional overhead crane},'' {\em Mechatronics}, vol.~15, no.~5,
+  pp.~505--522, 2005.
+
+\bibitem{wu2008sliding}
+L.~Wu and H.~Gao, ``{Sliding mode control of two-dimensional systems in Roesser
+  model},'' {\em IET Control Theory \& Applications}, vol.~2, no.~4,
+  pp.~352--364, 2008.
+
+\bibitem{yang2019two}
+R.~Yang and W.~X. Zheng, ``{Two-dimensional Sliding Mode Control of
+  Discrete-Time Fornasini-Marchesini Systems},'' {\em IEEE Transactions on
+  Automatic Control}, 2019.
+
+\bibitem{gao2004stabilization}
+H.~Gao, J.~Lam, S.~Xu, and C.~Wang, ``{Stabilization and $H_{\infty}$ control
+  of two-dimensional Markovian jump systems},'' {\em IMA Journal of
+  Mathematical Control and Information}, vol.~21, no.~4, pp.~377--392, 2004.
+
+\bibitem{wu2018hcontrol2d}
+Z.-G. Wu, Y.~Shen, P.~Shi, Z.~Shu, and H.~Su, ``{$H_{\infty}$ {Control} for 2-D
+  Markov Jump Systems in Roesser Model},'' {\em IEEE Transactions on Automatic
+  Control}, vol.~64, no.~1, pp.~427--432, 2018.
+
+\bibitem{wu2008hfiltering2d}
+L.~Wu, P.~Shi, H.~Gao, and C.~Wang, ``{$H_{\infty}$ filtering for 2D Markovian
+  jump systems},'' {\em Automatica}, vol.~44, no.~7, pp.~1849--1858, 2008.
+
+\bibitem{wu2006modelreduction}
+L.~Wu, P.~Shi, H.~Gao, and C.~Wang, ``{$H_{\infty}$ mode reduction for
+  two-dimensional discrete state-delayed systems},'' {\em IEE
+  Proceedings-Vision, Image and Signal Processing}, vol.~153, no.~6,
+  pp.~769--784, 2006.
+
+\bibitem{shen2019dissipativity}
+Y.~Shen, Z.-G. Wu, P.~Shi, and G.~Wen, ``{Dissipativity based fault detection
+  for 2D Markov jump systems with asynchronous modes},'' {\em Automatica},
+  vol.~106, pp.~8--17, 2019.
+
+\end{thebibliography}
